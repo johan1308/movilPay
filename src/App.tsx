@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { NextUIProvider } from "@nextui-org/react";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { RutaPrincipal } from "./routers/RutaPrincipal";
+import { store } from "./store/store";
+import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "./context/ThemeContext";
+
+
+const theme = {
+  colors: {
+    primary: "blue",
+    secondary: "green",
+  },
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NextUIProvider>
+      <ThemeProvider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <RutaPrincipal />
+          <Toaster position="top-right" reverseOrder={false} />
+        </Provider>
+      </BrowserRouter>
+      </ThemeProvider>
+    </NextUIProvider>
   );
 }
 
