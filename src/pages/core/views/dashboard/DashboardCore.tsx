@@ -1,5 +1,4 @@
 import { IoIosCash } from "react-icons/io";
-import { useThemeMovilPay } from "../../../../hooks/useTheme";
 import { CardInforDarshboard } from "./components/CardInforDarshboard";
 import { FaUserTag } from "react-icons/fa";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";

@@ -15,12 +15,14 @@ export const CoreRouters = () => {
   const ruta = param["*"];
   const getTitle = useMemo(() => {
     const filtrado = navigation.find((title) => title.path == ruta);
-    if (!filtrado)
-      return '';
+    if (!filtrado) return "";
     return (
-      <p className="text-4xl mb-10 font-semibold flex text-secondary dark:text-white">
-        {filtrado.name} <filtrado.icon className="ml-3 mt-1" />
-      </p>
+      <>
+        <p className="text-3xl font-semibold flex text-tertiary dark:text-white">
+          {filtrado.name} <filtrado.icon className="ml-3 mt-1" />
+        </p>
+        <hr className="mb-10 mt-2"/>
+      </>
     );
   }, [ruta]);
 
@@ -33,7 +35,7 @@ export const CoreRouters = () => {
           }
         >
           <>
-            {/* {getTitle} */}
+            {getTitle}
             <Routes>
               <Route path="/" element={<Navigate to="dashboard/" />} />
               <Route path="dashboard/" element={<DashboardCore />} />

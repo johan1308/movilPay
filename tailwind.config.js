@@ -20,7 +20,8 @@ module.exports = {
   darkMode: "class",
   plugins: [
     nextui(),
-    require('tailwindcss-animated')
+    require('tailwindcss-animated'),
+    require('tailwind-scrollbar'),
   ],
 }
 
