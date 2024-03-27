@@ -13,15 +13,13 @@ export const SidebarCore = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     document.documentElement.style.backgroundColor = darkMode
-      ? "#333333"
-      : "#256348";
-      console.log(darkMode);
-      
+      ? "#0a0a0a"
+      : "#d4d4d4";
   }, [darkMode]);
 
   return (
     <>
-      <div className={`${darkMode &&('dark')}`}>
+      <div className={`${darkMode && "dark"}`}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -90,7 +88,7 @@ export const SidebarCore = ({ children }: { children: React.ReactNode }) => {
             {/* Menu Para el sidebar Mobile */}
             <button
               type="button"
-              className=" text-gray-700 lg:hidden"
+              className=" text-gray-700 dark:text-white lg:hidden"
               onClick={() => setSidebarOpen(true)}
             >
               <span className="sr-only">Open sidebar</span>
@@ -98,8 +96,8 @@ export const SidebarCore = ({ children }: { children: React.ReactNode }) => {
             </button>
           </NavbarCore>
 
-          <main className="py-6">
-            <div className="px-4 sm:px-6 lg:px-4 ">{children}</div>
+          <main className="py-10">
+            <div className="px-6 sm:px-6 lg:px-10 ">{children}</div>
           </main>
         </div>
       </div>

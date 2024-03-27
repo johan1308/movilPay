@@ -2,6 +2,7 @@ import { useThemeMovilPay } from "../../../hooks/useTheme";
 import "../css/CheckTheme.css";
 export const CheckChangeTheme = () => {
   const { darkMode, toggleDarkMode } = useThemeMovilPay();
+
   return (
     <>
       <label className="switch">

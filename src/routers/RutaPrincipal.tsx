@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { RutaPublica } from "./RutaPublica";
 import { RutaPrivada } from "./RutaPrivada";
-import { AuthPage } from "../views/auth/page/AuthPage";
-import { CoreRouters } from "../views/core/routers/CoreRouters";
+
+import { CoreRouters } from "../pages/core/routers/CoreRouters";
+import { AuthPage } from "../pages/auth/view/AuthPage";
 
 
 

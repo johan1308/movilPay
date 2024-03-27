@@ -2,10 +2,17 @@ import { Img } from "react-image";
 import { classNames } from "../../../helpers/ClassN";
 import { navigation, teams } from "../data/menu";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { useThemeMovilPay } from "../../../hooks/useTheme";
 
 export const SidebarMobile = () => {
+  const { darkMode } = useThemeMovilPay();
   return (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-secondary border-r-3 border-primary px-6 pb-4 ring-1 ring-white/10">
+    <div
+      className={`flex grow flex-col gap-y-5 overflow-y-auto ${
+        darkMode ? "bg-primaryDark" : "bg-secondary"
+      } border-r-3 border-primary px-6 pb-4 ring-1 ring-white/10`}
+    >
       <div className="flex h-16 shrink-0 items-center justify-center mt-10 mb-6">
         <Img
           src={require("../../../assets/img/logotipo_letras_blancas_movil_play_23x14cm.png")}

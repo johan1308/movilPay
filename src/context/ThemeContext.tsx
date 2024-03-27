@@ -10,26 +10,24 @@ export const ThemeContext = createContext<ThemeContextType | undefined>(
   undefined
 );
 
-const reducer = (state: any, action: any) => {};
+const appReducer = (state: any) => {
+  return !state;
+};
 
-const initialState = "false";
+const initialState = false;
 
 const init = (start: any) => {
-  const a = localStorage.getItem("darkMode");
-  return !a ? start : a;
+  const seteo = JSON.parse(localStorage.getItem("darkMode") as never);
+  return seteo && seteo;
 };
 
 // Crear el proveedor de contexto del tema
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state] = useReducer(reducer, initialState, init);
-  console.log(state);
-  
-  const [darkMode, setDarkMode] = useState<boolean>(Boolean(state));
-
+  const [darkMode, dispatchToogle] = useReducer(appReducer, initialState, init);
   // Función para cambiar el modo oscuro
   const toggleDarkMode = () => {
     const cambio = !darkMode;
-    setDarkMode((prevMode) => cambio);
+    dispatchToogle();
     localStorage.setItem("darkMode", JSON.stringify(cambio));
   };
 

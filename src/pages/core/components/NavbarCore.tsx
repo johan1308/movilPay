@@ -12,7 +12,7 @@ import { CheckChangeTheme } from "./CheckChangeTheme";
 export const NavbarCore = ({ children }: { children: React.ReactNode }) => {
   const { toggleDarkMode } = useThemeMovilPay();
   return (
-    <Navbar maxWidth="full">
+    <Navbar maxWidth="full" className="dark:bg-primaryDark">
       <NavbarBrand>
         <div>{children}</div>
       </NavbarBrand>

@@ -7,7 +7,6 @@ import { store } from "./store/store";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./context/ThemeContext";
 
-
 const theme = {
   colors: {
     primary: "blue",
@@ -16,15 +15,16 @@ const theme = {
 };
 
 function App() {
+  
   return (
     <NextUIProvider>
       <ThemeProvider>
-      <BrowserRouter>
-        <Provider store={store}>
-          <RutaPrincipal />
-          <Toaster position="top-right" reverseOrder={false} />
-        </Provider>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RutaPrincipal />
+            <Toaster position="top-right" reverseOrder={false} />
+          </Provider>
+        </BrowserRouter>
       </ThemeProvider>
     </NextUIProvider>
   );

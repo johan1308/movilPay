@@ -1,14 +1,12 @@
-import { HiMiniBanknotes } from "react-icons/hi2";
-import { classNames } from "../../../helpers/ClassN";
 import { navigation, teams } from "../data/menu";
 import { Img } from "react-image";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const SidebarDesktop = () => {
   return (
     <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
       {/* Sidebar component, swap this element with another sidebar if you like */}
-      <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-secondary border-r-3 border-primary px-6 pb-4">
+      <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-secondary dark:bg-primaryDark border-r-3 border-primary px-6 pb-4">
         <div className="flex h-16 shrink-0 items-center justify-center pt-7 mt-5 mb-10">
           <Img
             src={require("../../../assets/img/logotipo_letras_blancas_movil_play_23x14cm.png")}
@@ -27,7 +25,7 @@ export const SidebarDesktop = () => {
                         const res = isActive
                           ? "bg-primary text-white"
                           : "text-white hover:text-white hover:bg-primary";
-                        return `${res} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`
+                        return `${res} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`;
                       }}
                     >
                       <item.icon
