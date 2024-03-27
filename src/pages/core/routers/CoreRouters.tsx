@@ -33,7 +33,7 @@ export const CoreRouters = () => {
           }
         >
           <>
-            {getTitle}
+            {/* {getTitle} */}
             <Routes>
               <Route path="/" element={<Navigate to="dashboard/" />} />
               <Route path="dashboard/" element={<DashboardCore />} />
