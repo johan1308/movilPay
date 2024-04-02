@@ -9,16 +9,25 @@ import {
 import { useThemeMovilPay } from "../../../hooks/useTheme";
 import { CheckChangeTheme } from "./CheckChangeTheme";
 
-export const NavbarCore = ({ children }: { children: React.ReactNode }) => {
+export const NavbarCore = ({
+  children,
+  path,
+}: {
+  children: React.ReactNode;
+  path: React.ReactNode;
+}) => {
   const { toggleDarkMode } = useThemeMovilPay();
   return (
-    <Navbar maxWidth="full" className="dark:bg-primaryDark ">
+    <Navbar maxWidth="full" className=" bg-transparent" style={{ zIndex: 10 }}>
       <NavbarBrand>
-        <div>{children}</div>
+        <div className="flex">
+          {children} 
+          <span className="max-sm:hidden">{path}</span>
+        </div>
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem className="">
-        <CheckChangeTheme/>
+          <CheckChangeTheme />
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">

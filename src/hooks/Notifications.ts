@@ -8,7 +8,7 @@ export const LoadingToast = () => {
   const cargando = toast.loading("Cargando...");
 
   return {
-    success: () => toast.success("correcto", { id: cargando }),
-    error: () => toast.error("Error", { id: cargando }),
+    success: (message:string) => toast.success(message, { id: cargando }),
+    error: (message:string) => toast.error(message, { id: cargando }),
   };
 };

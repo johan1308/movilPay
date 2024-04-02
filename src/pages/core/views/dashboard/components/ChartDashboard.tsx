@@ -1,49 +1,96 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
   Tooltip,
-} from "recharts";
-const data = [
-  { name: "Page A", uv: 400, pv: 2400, amt: 2400 },
-  { name: "Page B", uv: 500, pv: 2400, amt: 2400 },
-  { name: "Page C", uv: 600, pv: 2400, amt: 2400 },
-  { name: "Page D", uv: 700, pv: 2400, amt: 2400 },
-];
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../../store/store";
+import { PaymentsThunks } from "../../../../../store/payment/thunks";
+import { PaymentParams } from "../../../params/payment/paymentParams";
+import moment from "moment";
+import { Payment } from "../../../interfaces/PaymentInterfaces";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+export const options = {
+  responsive: true,
+  plugins: {
+    tooltip: {
+      callbacks: {
+        label: (context:any) => {
+          console.log(context);
+          return context.dataset.label + ': ' + context.parsed.y;
+        }
+      }
+    },
+    legend: {
+      position: "top" as const,
+    },
+    title: {
+      display: true,
+      text: "Grafica",
+    },
+    
+  },
+};
+
 
 export const ChartDashboard = () => {
-  const [chartWidth, setChartWidth] = useState(Math.max(window.innerWidth- 400 ,335) );
+  const { payments, isLoading }: any = useSelector<RootState>(
+    (d) => d.payments
+  );
+
+  const dataOption = useMemo(() => {
+    const title = payments.map((resp: Payment) =>
+      moment(resp.date).format("DD-MM-YYYY")
+    );
+    const valores = payments.map((item:any) => item.amount);        
+    return {
+      labels: title,
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: valores,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.5)",
+        },
+      ],
+    };
+  }, [isLoading]);
+
+  const params = new PaymentParams();
+  const today = new Date();
+  const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const handleResize = () => {      
-      setChartWidth(window.innerWidth - 300);
-    };
-    
-    
-    window.addEventListener('resize', handleResize);
+    // params.since = moment(firstDay).format("YYYY-MM-DD");
+    // params.until = moment(today).format("YYYY-MM-DD");
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    dispatch(PaymentsThunks(params));
   }, []);
 
   return (
     <div className="bg-white rounded-xl pb-6 pt-3 shadow-lg dark:bg-primaryDark">
-      <p className=" font-semibold ml-7 text-2xl mb-5">Graficas</p>      
-      <LineChart
-        width={chartWidth} height={300}
-        data={data}
-        margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-      >
-        <Line type="monotone" dataKey="uv" stroke="#52AE32" strokeWidth={3} />
-        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip labelClassName="text-gray-900"/>
-      </LineChart>
+      <p className=" font-semibold ml-7 text-2xl mb-5">Graficas</p>
+      <div className="p-5">
+        <Line options={options} data={dataOption} />
+      </div>
     </div>
   );
 };

@@ -17,7 +17,7 @@ export const CardInforDarshboard = ({ Icon, color, data, title }: Props) => {
         "relative py-4 px-6 rounded-xl w-full  shadow-lg "
       )}
     >
-      <div className=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-primary left-4 -top-5">
+      <div className=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-secondary left-4 -top-5">
         {Icon}
       </div>
       <div className="mt-8">

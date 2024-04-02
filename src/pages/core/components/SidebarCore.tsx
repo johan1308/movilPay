@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { IoIosClose, IoIosMenu } from "react-icons/io";
@@ -7,14 +7,20 @@ import { SidebarDesktop } from "./SidebarDesktop";
 import { SidebarMobile } from "./SidebarMobile";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
 
-export const SidebarCore = ({ children }: { children: React.ReactNode }) => {
+export const SidebarCore = ({
+  children,
+  path,
+}: {
+  children: React.ReactNode;
+  path: React.ReactNode;
+}) => {
   const { darkMode } = useThemeMovilPay();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.backgroundColor = darkMode
       ? "#0a0a0a"
-      : "#d4d4d4";
+      : "#F6F6F6";
   }, [darkMode]);
 
   return (
@@ -84,8 +90,7 @@ export const SidebarCore = ({ children }: { children: React.ReactNode }) => {
         <SidebarDesktop />
 
         <div className={`lg:pl-72  `}>
-          <NavbarCore>
-            {/* Menu Para el sidebar Mobile */}
+          <NavbarCore path={path}>
             <button
               type="button"
               className=" text-gray-700 dark:text-white lg:hidden"

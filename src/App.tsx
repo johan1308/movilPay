@@ -6,6 +6,7 @@ import { RutaPrincipal } from "./routers/RutaPrincipal";
 import { store } from "./store/store";
 import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProviders } from "./context/AuthProviders";
 
 const theme = {
   colors: {
@@ -18,6 +19,7 @@ function App() {
   
   return (
     <NextUIProvider>
+      <AuthProviders>
       <ThemeProvider>
         <BrowserRouter>
           <Provider store={store}>
@@ -26,6 +28,7 @@ function App() {
           </Provider>
         </BrowserRouter>
       </ThemeProvider>
+      </AuthProviders>
     </NextUIProvider>
   );
 }

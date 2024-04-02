@@ -1,20 +1,102 @@
+import { lazy } from "react";
 import {
-  HiChartPie,
-  HiClipboardDocumentList,
-  HiBanknotes,
-  HiMiniUserGroup,
-} from "react-icons/hi2";
-import { FaUserTag } from "react-icons/fa";
+  FcBriefcase,
+  FcBusinessman,
+  FcComboChart,
+  FcConferenceCall,
+  FcCurrencyExchange,
+  FcLibrary,
+  FcViewDetails,
+} from "react-icons/fc";
 
 export const navigation = [
-  { name: "Estadisticas", path: "dashboard/", icon: HiChartPie },
-  { name: "Usuarios", path: "users/", icon: HiMiniUserGroup },
-  { name: "Reportes", path: "reports/", icon: HiClipboardDocumentList },
-  { name: "Clientes", path: "clients/", icon: FaUserTag },
-  { name: "Cobranzas", path: "collections/", icon: HiBanknotes },
-];
-export const teams = [
-  { id: 1, name: "Heroicons", path: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", path: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", path: "#", initial: "W", current: false },
+  {
+    name: "Estadisticas",
+    path: "dashboard/",
+    icon: FcComboChart,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/dashboard/DashboardCore"
+        )
+    ),
+    children:[]
+  },
+  {
+    name: "Usuarios",
+    path: "users/",
+    icon: FcConferenceCall,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/usuarios/UsuariosCore"
+        )
+    ),
+    children:[]
+  },
+  {
+    name: "Reportes",
+    path: "reports/",
+    icon: FcViewDetails,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/reportes/ReportesCore"
+        )
+    ),
+    children:[]
+  },
+  {
+    name: "Clientes",
+    path: "clients/",
+    icon: FcBusinessman,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/clientes/ClientesCore"
+        )
+    ),
+    children:[]
+  },
+  {
+    name: "Pagos",
+    path: "payments/",
+    icon: FcCurrencyExchange,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(/* webpackChunkName: "Clientes" */ "../views/pagos/PaymentCore")
+    ),
+    children:[]
+  },
+  {
+    name: "Compañias",
+    path: "companies/",
+    icon: FcLibrary,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/companies/CompaniesCore"
+        )
+    ),
+    children:[]
+  },
+  {
+    name: "Cobranzas",
+    path: "collections/",
+    icon: FcBriefcase,
+    superAdmin: false,
+    lazyLoad: lazy(
+      () =>
+        import(
+          /* webpackChunkName: "Clientes" */ "../views/cobranzas/CobranzasCore"
+        )
+    ),
+    children:[]
+  },
 ];

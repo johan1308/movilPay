@@ -1,5 +1,6 @@
 import { Navigate } from "react-router";
 import { useContext, useReducer } from "react";
+import { AuthContext } from "../context/AuthProviders";
 
 
 interface Props {
@@ -27,8 +28,7 @@ const init = (start: any) => {
 };
 
 export const RutaPublica = ({ children }: Props) => {
-  // const [state] = useReducer(reducer, initialState, init);
-  // const { token } = useContext(AuthContext);
-  // return !token ? children : <Navigate to={state} />;
-  return children
+  const [state] = useReducer(reducer, initialState, init);
+  const { token } = useContext(AuthContext);
+  return !token ? children : <Navigate to={state} />;
 };

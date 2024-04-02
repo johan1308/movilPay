@@ -1,10 +1,12 @@
-import { TableClients } from "./components/TableClients"
+import { TableClients } from "./components/TableClients";
 
-
-export const ClientesCore = () => {
+const ClientesCore = () => {
   return (
     <div className="animate-fade-up">
-      <TableClients/>
+      <TableClients />
     </div>
-  )
-}
+  );
+};
+
+
+export default ClientesCore
