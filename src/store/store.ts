@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { BanksDashboardSlice } from "./banks/BanksDashboardSlice";
-import { PaymentsSlice } from "./payment/Payment/PaymentSlice";
+import { PaymentsSlice } from "./payment/PaymentSlice";
 
 
 export const store = configureStore({

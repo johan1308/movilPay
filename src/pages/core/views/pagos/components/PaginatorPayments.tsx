@@ -1,32 +1,39 @@
 import { Pagination } from "@nextui-org/react";
-import { useMemo, useState } from "react";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
+import { useAllParams } from "../../../../../hooks/useAllParams";
 
 export const PaginatorPayments = () => {
-    
-  const [page, setPage] = useState(1);
-  const rowsPerPage = 4;
+  const {
+    addParams,
+    deleteParams,
+    params: { page },
+  } = useAllParams();
 
-  const pages = 10;
+  const { count }: any = useSelector<RootState>((d) => d.payments);
 
-  const items = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
+  const pages = Math.ceil(count / 10);
 
-    return 10;
-  }, [page]);
+  const handlePages = (pageFuction: number) => {
+    if (pageFuction == 1) {
+      deleteParams(["page"]);
+      return;
+    }
+    addParams({ page: pageFuction });
+  };
+
   return (
     <div className="flex w-full justify-end">
-          <Pagination
-            isCompact
-            showControls
-            showShadow
-            color="primary"
-            size="lg"
-            page={page}
-            total={pages}
-            onChange={(page) => setPage(page)}
-          />
-        </div>
-  )
-}
+      <Pagination
+        isCompact
+        showControls
+        showShadow
+        color="primary"
+        size="lg"
+        page={page ? Number(page) : 1}
+        total={pages}
+        onChange={handlePages}
+      />
+    </div>
+  );
+};

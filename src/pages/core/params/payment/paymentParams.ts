@@ -4,8 +4,8 @@ export class PaymentParams{
     company?:boolean
     method?:number
     page?:number
-    until?:string
     since?:string
     search?:string
     status?:boolean|string
+    until?:string
 }

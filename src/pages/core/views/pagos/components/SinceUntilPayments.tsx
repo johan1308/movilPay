@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa6";
 import { BiSearch } from "react-icons/bi";
 
 export const SinceUntilPayments = () => {
-  const { addParams, params, deleteParams } = useAllParams();
+  const { addParams, params, deleteParams, setSearchParams } = useAllParams();
   const {
     handleSubmit,
     control,
@@ -26,18 +26,19 @@ export const SinceUntilPayments = () => {
     if (formaterSince > formaterUntil) {
       return ErrorToast("El DESDE no puede ser mayor");
     }
-    const payload = { since, until };
-    addParams(payload);
+    const { page, search, ...restParams } = params;
+    const payload = { ...restParams, since, until };
+    setSearchParams(payload);
   };
 
   const deleteDate = (field: "since" | "until") => {
     setValue(field, "");
-    deleteParams(["since", "until"]);
+    deleteParams(["since", "until", "page"]);
   };
   return (
     <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label htmlFor="desde">Desde</label>
+        <label htmlFor="desde" className="dark:text-white">Desde</label>
         <Controller
           name="since"
           control={control}
@@ -61,7 +62,7 @@ export const SinceUntilPayments = () => {
                   type="button"
                   onClick={() => deleteDate("since")}
                 >
-                  <FaTrash />
+                  <FaTrash className="text-md text-red-500 pointer-events-none " />
                 </button>
               }
             />
@@ -69,7 +70,7 @@ export const SinceUntilPayments = () => {
         />
       </div>
       <div>
-        <label htmlFor="desde">Hasta</label>
+        <label htmlFor="desde" className="dark:text-white">Hasta</label>
         <Controller
           name="until"
           control={control}
@@ -94,7 +95,7 @@ export const SinceUntilPayments = () => {
                   color="danger"
                   onClick={() => deleteDate("until")}
                 >
-                  <FaTrash />
+                  <FaTrash className="text-md text-red-500 pointer-events-none " />
                 </button>
               }
             />

@@ -69,7 +69,7 @@ export const navigation = [
     superAdmin: false,
     lazyLoad: lazy(
       () =>
-        import(/* webpackChunkName: "Clientes" */ "../views/pagos/PaymentCore")
+        import(/* webpackChunkName: "Payments" */ "../views/pagos/PaymentCore")
     ),
     children:[]
   },

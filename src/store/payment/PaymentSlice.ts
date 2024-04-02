@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PaymentsThunks } from "../thunks";
-import { Payment } from "../../../pages/core/interfaces/PaymentInterfaces";
+import { PaymentsThunks } from "./thunks";
+import { Payment } from "../../pages/core/interfaces/PaymentInterfaces";
 
 export interface initialStatePayments {
   isLoading: boolean;
@@ -27,7 +27,7 @@ export const PaymentsSlice = createSlice({
       .addCase(PaymentsThunks.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.payments = payload.results
-        //state.count = payload.count
+        state.count = payload.count
       });
   },
 });
