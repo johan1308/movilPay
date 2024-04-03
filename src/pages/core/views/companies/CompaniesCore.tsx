@@ -1,9 +1,12 @@
-
+import { Outlet } from "react-router-dom";
 
 const CompaniesCore = () => {
   return (
-    <div>CompaniesCore</div>
-  )
-}
+    <>
+      <h1>llegue</h1>
+      <Outlet />
+    </>
+  );
+};
 
-export default CompaniesCore
+export default CompaniesCore;

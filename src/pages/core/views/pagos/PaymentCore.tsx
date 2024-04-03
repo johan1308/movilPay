@@ -7,12 +7,12 @@ import { BottonsPayments } from "./components/BottonsPayments";
 import { CheckFilterPayments } from "./components/CheckFilterPayments";
 import { SinceUntilPayments } from "./components/SinceUntilPayments";
 import { TablePayment } from "./components/TablePayments";
-import { PaymentParams } from "../../params/payment/paymentParams";
+import { PaymentParams } from "../../params/payment/payments/paymentParams";
 import { PaymentsThunks } from "../../../../store/payment/thunks";
 import moment from "moment";
 
 const PaymentCore = () => {
-  const { params, addParams } = useAllParams();
+  const { params, addParams, deleteParams } = useAllParams();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleConsultation = () => {
@@ -27,6 +27,10 @@ const PaymentCore = () => {
   };
 
   const handleSearch = ({ search }: any) => {
+    if (search.length == 0) {
+      deleteParams(["search"]);
+      return;
+    }
     addParams({ search });
   };
 

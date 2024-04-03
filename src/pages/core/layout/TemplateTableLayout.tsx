@@ -16,7 +16,6 @@ interface Props {
   children: React.ReactNode;
   search: (data: string) => void;
   bottons?: React.ReactNode;
-  refresh?: React.ReactNode;
   title?: string;
 }
 
@@ -25,11 +24,10 @@ export const TemplateTableLayout = ({
   children,
   search,
   bottons,
-  refresh,
+
   title,
 }: Props) => {
   const { params } = useAllParams();
-  
 
   const expandKeys = Object.keys(params);
   const {

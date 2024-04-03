@@ -1,4 +1,5 @@
-import { lazy } from "react";
+
+import React, { lazy } from "react";
 import {
   FcBriefcase,
   FcBusinessman,
@@ -8,6 +9,16 @@ import {
   FcLibrary,
   FcViewDetails,
 } from "react-icons/fc";
+import { CompaniesRouters } from "../views/companies/routers/CompaniesRouters";
+import { RouteProps } from "react-router-dom";
+interface navigation {
+    name: string;
+    path: string;
+    icon: any;
+    superAdmin: boolean;
+    lazyLoad: React.LazyExoticComponent<() => JSX.Element>;
+    children: null | JSX.Element|React.ReactNode
+}
 
 export const navigation = [
   {
@@ -21,7 +32,7 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/dashboard/DashboardCore"
         )
     ),
-    children:[]
+    children:null
   },
   {
     name: "Usuarios",
@@ -34,7 +45,7 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/usuarios/UsuariosCore"
         )
     ),
-    children:[]
+    children:null
   },
   {
     name: "Reportes",
@@ -47,7 +58,7 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/reportes/ReportesCore"
         )
     ),
-    children:[]
+    children:null
   },
   {
     name: "Clientes",
@@ -60,7 +71,7 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/clientes/ClientesCore"
         )
     ),
-    children:[]
+    children:null
   },
   {
     name: "Pagos",
@@ -71,7 +82,7 @@ export const navigation = [
       () =>
         import(/* webpackChunkName: "Payments" */ "../views/pagos/PaymentCore")
     ),
-    children:[]
+    children:null
   },
   {
     name: "Compañias",
@@ -84,7 +95,7 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/companies/CompaniesCore"
         )
     ),
-    children:[]
+    children:CompaniesRouters
   },
   {
     name: "Cobranzas",
@@ -97,6 +108,6 @@ export const navigation = [
           /* webpackChunkName: "Clientes" */ "../views/cobranzas/CobranzasCore"
         )
     ),
-    children:[]
+    children:null
   },
 ];

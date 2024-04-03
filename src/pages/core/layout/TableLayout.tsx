@@ -6,43 +6,33 @@ import {
   TableRow,
   TableCell,
 } from "@nextui-org/react";
-import moment from "moment";
 
-type valueType = string | React.ReactNode;
+export type valueType = {
+  name: string;
+  value: string | { (item: any): JSX.Element | string | number };
+};
 
 interface Props {
-  columns: any;
+  columns: valueType[];
   data: any;
-  value?: Array<valueType>;
   Paginator?: React.ReactNode;
   isLoading: boolean;
 }
 
 export const TableLayout = ({ columns, data, Paginator, isLoading }: Props) => {
   const setValueTableCell = (item: any) => {
-    console.log(item);
-
     return (
       <TableRow key={item.id}>
-        <TableCell className="my-4 dark:text-white">
-          {item.bank_origin_name}
-        </TableCell>
-        <TableCell className="my-4 dark:text-white">
-          {item.bank_destiny_name}
-        </TableCell>
-        <TableCell className="my-4 dark:text-white">
-          {item.method_name}
-        </TableCell>
-        <TableCell className="my-4 dark:text-white">
-          {moment(item.date).format("DD-MM-YYYY")}
-        </TableCell>
-        <TableCell className="my-4 dark:text-white">
-          <span className={item.status ? "text-green-500" : "text-red-500"}>
-            {item.status ? "Activo" : "Inactivo"}
-          </span>
-        </TableCell>
-        <TableCell className=" my-4 dark:text-white">{item.amount}</TableCell>
-        <TableCell>{""}</TableCell>
+        {columns.map((resp: valueType, i) => (
+          <TableCell
+            className="my-4 dark:text-white"
+            key={!resp ? i : resp.name}
+          >
+            {typeof resp.value == "string"
+              ? item[resp.value]
+              : resp.value(item)}
+          </TableCell>
+        ))}
       </TableRow>
     );
   };
@@ -55,8 +45,10 @@ export const TableLayout = ({ columns, data, Paginator, isLoading }: Props) => {
       bottomContent={Paginator}
     >
       <TableHeader>
-        {columns.map((column: string) => (
-          <TableColumn className="text-md">{column}</TableColumn>
+        {columns.map((column: valueType, i) => (
+          <TableColumn className="text-md" key={!column ? i : column.name}>
+            {column.name}
+          </TableColumn>
         ))}
       </TableHeader>
       <TableBody

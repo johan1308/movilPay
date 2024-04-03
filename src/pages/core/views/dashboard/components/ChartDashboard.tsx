@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../../store/store";
 import { PaymentsThunks } from "../../../../../store/payment/thunks";
-import { PaymentParams } from "../../../params/payment/paymentParams";
+import { PaymentParams } from "../../../params/payment/payments/paymentParams";
 import moment from "moment";
 import { Payment } from "../../../interfaces/PaymentInterfaces";
 
