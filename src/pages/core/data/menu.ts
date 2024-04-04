@@ -1,4 +1,3 @@
-
 import React, { lazy } from "react";
 import {
   FcBriefcase,
@@ -7,18 +6,10 @@ import {
   FcConferenceCall,
   FcCurrencyExchange,
   FcLibrary,
+  FcOrganization,
+  FcPlus,
   FcViewDetails,
 } from "react-icons/fc";
-import { CompaniesRouters } from "../views/companies/routers/CompaniesRouters";
-import { RouteProps } from "react-router-dom";
-interface navigation {
-    name: string;
-    path: string;
-    icon: any;
-    superAdmin: boolean;
-    lazyLoad: React.LazyExoticComponent<() => JSX.Element>;
-    children: null | JSX.Element|React.ReactNode
-}
 
 export const navigation = [
   {
@@ -26,88 +17,63 @@ export const navigation = [
     path: "dashboard/",
     icon: FcComboChart,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/dashboard/DashboardCore"
-        )
-    ),
-    children:null
+    children: null,
   },
   {
     name: "Usuarios",
     path: "users/",
     icon: FcConferenceCall,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/usuarios/UsuariosCore"
-        )
-    ),
-    children:null
+    children: null,
   },
   {
     name: "Reportes",
     path: "reports/",
     icon: FcViewDetails,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/reportes/ReportesCore"
-        )
-    ),
-    children:null
+    children: null,
   },
   {
     name: "Clientes",
     path: "clients/",
     icon: FcBusinessman,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/clientes/ClientesCore"
-        )
-    ),
-    children:null
+    children: null,
   },
   {
     name: "Pagos",
     path: "payments/",
     icon: FcCurrencyExchange,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(/* webpackChunkName: "Payments" */ "../views/pagos/PaymentCore")
-    ),
-    children:null
+    children: null,
   },
   {
     name: "Compañias",
     path: "companies/",
     icon: FcLibrary,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/companies/CompaniesCore"
-        )
-    ),
-    children:CompaniesRouters
+    children: [
+      {
+        name: "Todas las compañía",
+        path: "companies/",
+        icon: FcOrganization,
+        superAdmin: false,
+        children: null,
+      },
+      {
+        name: "Registrar compañía",
+        path: "companies/create/",
+        icon: FcPlus ,
+        superAdmin: false,
+        children: null,
+      },
+    ],
   },
   {
     name: "Cobranzas",
     path: "collections/",
     icon: FcBriefcase,
     superAdmin: false,
-    lazyLoad: lazy(
-      () =>
-        import(
-          /* webpackChunkName: "Clientes" */ "../views/cobranzas/CobranzasCore"
-        )
-    ),
-    children:null
+    children: null,
   },
 ];

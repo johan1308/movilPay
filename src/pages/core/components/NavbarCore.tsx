@@ -8,22 +8,33 @@ import {
 } from "@nextui-org/react";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
 import { CheckChangeTheme } from "./CheckChangeTheme";
+import { Img } from "react-image";
+import { useEffect, useState } from "react";
 
 export const NavbarCore = ({
   children,
   path,
 }: {
   children: React.ReactNode;
-  path: React.ReactNode;
+  path?: React.ReactNode;
 }) => {
-  const { toggleDarkMode } = useThemeMovilPay();
+  const { darkMode, toggleDarkMode } = useThemeMovilPay();
+  
+
   return (
-    <Navbar maxWidth="full" className=" bg-transparent" style={{ zIndex: 10 }}>
+    <Navbar
+      maxWidth="full"
+      className={`${darkMode ? "bg-primaryDark" : "bg-secondary"} shadow-md`}
+      style={{ zIndex: 10 }}
+    >
       <NavbarBrand>
-        <div className="flex">
-          {children} 
-          <span className="max-sm:hidden">{path}</span>
+        <div className="mt-3 hidden sm:flex ">
+          <Img
+            src={require("../../../assets/img/logotipo movil play letras todo blanco.png")}
+            className="h-10 w-38 mb-2 ml-7"
+          />
         </div>
+        <div className="flex lg:ml-36">{children}</div>
       </NavbarBrand>
       <NavbarContent justify="end">
         <NavbarItem className="">

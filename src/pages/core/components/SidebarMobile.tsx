@@ -2,6 +2,7 @@ import { Img } from "react-image";
 import { navigation } from "../data/menu";
 import { NavLink } from "react-router-dom";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 
 export const SidebarMobile = () => {
   const { darkMode } = useThemeMovilPay();
@@ -23,21 +24,25 @@ export const SidebarMobile = () => {
             <ul role="list" className="-mx-2 space-y-1">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) => {
-                      const res = isActive
-                        ? "bg-primary text-white"
-                        : "text-white hover:text-white hover:bg-primary";
-                      return `${res} group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold`;
-                    }}
-                  >
-                    <item.icon
-                      className="h-6 w-6 shrink-0"
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </NavLink>
+                  {!item.children ? (
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) => {
+                        const res = isActive
+                          ? "bg-white text-secondary shadow-lg"
+                          : "text-white hover:text-white hover:bg-secondary dark:text-white";
+                        return `${res} group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold`;
+                      }}
+                    >
+                      <item.icon
+                        className="h-6 w-6 shrink-0"
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </NavLink>
+                  ) : (
+                    <ComponentChildren item={item} />
+                  )}
                 </li>
               ))}
             </ul>
@@ -57,5 +62,86 @@ export const SidebarMobile = () => {
         </ul>
       </nav>
     </div>
+  );
+};
+
+const ComponentChildren = ({ item }: any) => {
+  return (
+    <>
+      <Accordion
+        selectionMode="multiple"
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              height: "auto",
+              transition: {
+                height: {
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30,
+                  duration: 1,
+                },
+                opacity: {
+                  easings: "ease",
+                  duration: 1,
+                },
+              },
+            },
+            exit: {
+              y: -10,
+              opacity: 0,
+              height: 0,
+              transition: {
+                height: {
+                  easings: "ease",
+                  duration: 0.25,
+                },
+                opacity: {
+                  easings: "ease",
+                  duration: 0.3,
+                },
+              },
+            },
+          },
+        }}
+        itemClasses={{
+          content: "m-0 px-2",
+        }}
+        isCompact
+      >
+        <AccordionItem
+          key={item.path}
+          aria-label="Accordion 1"
+          startContent={
+            <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+          }
+          title={
+            <p className="text-white  dark:text-white group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold">
+              {item.name}
+            </p>
+          }
+        >
+          <div className="ml-1">
+            {item.children.map((resp: any) => (
+              <NavLink
+                to={resp.path}
+                key={resp.path}
+                className={({ isActive }) => {
+                  const res = isActive
+                    ?  "bg-white text-secondary shadow-lg"
+                    : "text-white hover:text-white hover:bg-secondary dark:text-white";;
+                  return `${res} group flex gap-x-1 rounded-md p-2 text-base leading-6 font-semibold`;
+                }}
+              >
+                <resp.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+                {resp.name}
+              </NavLink>
+            ))}
+          </div>
+        </AccordionItem>
+      </Accordion>
+    </>
   );
 };

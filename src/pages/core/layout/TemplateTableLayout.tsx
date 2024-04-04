@@ -3,6 +3,7 @@ import React from "react";
 import { useAllParams } from "../../../hooks/useAllParams";
 import { Controller, useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
+import { PLayouts } from "./PLayouts";
 
 interface ItemFilter {
   name: string;
@@ -49,7 +50,7 @@ export const TemplateTableLayout = ({
     <div className="grid gap-4 grid-cols-5">
       <div className="col-span-full lg:col-span-1 bg-white dark:bg-primaryDark rounded-xl shadow-xl p-4">
         <form className="border-b" onSubmit={handleSubmit(onSubmit)}>
-          <p className="font-semibold text-xl dark:text-white">Buscador</p>
+          <PLayouts message="Buscador"/>
           <Controller
             name="search"
             control={control}

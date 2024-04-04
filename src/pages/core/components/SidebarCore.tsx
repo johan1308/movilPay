@@ -25,6 +25,16 @@ export const SidebarCore = ({
 
   return (
     <>
+      <NavbarCore>
+        <button
+          type="button"
+          className=" text-gray-700 dark:text-white lg:hidden"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <span className="sr-only">Open sidebar</span>
+          <IoIosMenu className="h-7 w-7" aria-hidden="true" />
+        </button>
+      </NavbarCore>
       <div className={`${darkMode && "dark"}`}>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog
@@ -90,17 +100,6 @@ export const SidebarCore = ({
         <SidebarDesktop />
 
         <div className={`lg:pl-72  `}>
-          <NavbarCore path={path}>
-            <button
-              type="button"
-              className=" text-gray-700 dark:text-white lg:hidden"
-              onClick={() => setSidebarOpen(true)}
-            >
-              <span className="sr-only">Open sidebar</span>
-              <IoIosMenu className="h-7 w-7" aria-hidden="true" />
-            </button>
-          </NavbarCore>
-
           <main className="py-10">
             <div className="px-6 sm:px-6 lg:px-10 ">{children}</div>
           </main>
