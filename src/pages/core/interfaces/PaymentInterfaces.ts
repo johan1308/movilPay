@@ -18,3 +18,13 @@ export interface Payment {
     updated_at: string
   }
   
+
+
+  export interface MethodPayment {
+    id: number
+    currency: string
+    name: string
+    status: number
+    status_name: string
+  }
+  

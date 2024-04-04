@@ -8,12 +8,14 @@ import { PatchCompaniesThunks } from "../../../../../../store/companies/thunks";
 import { PopoverCompanies } from "./PopoverCompanies";
 import { useEffect } from "react";
 import { OptionsThunks } from "../../../../../../store/options/thunks";
+import { useNavigate } from "react-router-dom";
 
 export const TableCompanies = () => {
   const { companies, isLoading } = useSelector(
     (resp: RootState) => resp.companies
   );
 
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleConfirmPopover = ({ id, status }: any) => {
@@ -68,7 +70,12 @@ export const TableCompanies = () => {
               content="Editar compañia"
               className=" bg-default text-white "
             >
-              <Button isIconOnly color="warning" aria-label="Like">
+              <Button
+                isIconOnly
+                color="warning"
+                aria-label="Like"
+                onClick={() => navigate(`/companies/${item.id}/edit/`)}
+              >
                 <FaEdit className="text-white" />
               </Button>
             </Tooltip>
@@ -79,7 +86,7 @@ export const TableCompanies = () => {
   ];
 
   useEffect(() => {
-    dispatch(OptionsThunks({type:2}));
+    dispatch(OptionsThunks({ type: 2 }));
   }, []);
 
   return (

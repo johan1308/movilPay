@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { MethodPaymentsThunks, PaymentsThunks } from "./thunks";
-import { Payment } from "../../pages/core/interfaces/PaymentInterfaces";
+import { MethodPayment, Payment } from "../../pages/core/interfaces/PaymentInterfaces";
 
 export interface initialStateMethodPayments {
   isLoading: boolean;
-  methods_payments:Payment[];
+  methods_payments:MethodPayment[];
   count:number 
   page?:number
 }

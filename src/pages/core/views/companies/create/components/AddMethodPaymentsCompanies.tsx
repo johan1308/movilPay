@@ -7,26 +7,29 @@ import {
   Button,
   useDisclosure,
   Tooltip,
+  Select,
+  SelectItem,
+  Avatar,
 } from "@nextui-org/react";
 
 import { BiPlus } from "react-icons/bi";
 import { useThemeMovilPay } from "../../../../../../hooks/useTheme";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../../../../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../../../store/store";
 import { useEffect } from "react";
 import { MethodPaymentsThunks } from "../../../../../../store/payment/thunks";
+import { PLayouts } from "../../../../layout/PLayouts";
 
 export const AddMethodPaymentsCompanies = () => {
+  const { methods_payments } = useSelector((d: RootState) => d.methodPayments);
   const { darkMode } = useThemeMovilPay();
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
-    
-  dispatch(MethodPaymentsThunks())
-    
-  }, [])
-  
+    dispatch(MethodPaymentsThunks());
+  }, []);
+
   return (
     <>
       <Tooltip
@@ -46,27 +49,41 @@ export const AddMethodPaymentsCompanies = () => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 dark:text-white">
-                Modal Title
+                Registro
               </ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                <form>
+                  <Select
+                    items={methods_payments}
+                    label={<PLayouts message="Metodo de pago" />}
+                    placeholder="Selecciona un metodo"
+                    labelPlacement="outside"
+                    className="w-full"
+                    size="lg"
+                  >
+                    {(user) => (
+                      <SelectItem
+                        key={user.id}
+                        textValue={user.name}
+                        color="primary"
+                      >
+                        <div className="flex gap-2 items-center">
+                          <Avatar
+                            alt={user.name}
+                            className="flex-shrink-0"
+                            size="sm"
+                          />
+                          <div className="flex flex-col">
+                            <span className="text-small">{user.name}</span>
+                            <span className="text-tiny text-default-400">
+                              {user.name}
+                            </span>
+                          </div>
+                        </div>
+                      </SelectItem>
+                    )}
+                  </Select>
+                </form>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

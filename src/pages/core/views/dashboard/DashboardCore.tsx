@@ -4,8 +4,20 @@ import { FaUserTag } from "react-icons/fa";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { ChartDashboard } from "./components/ChartDashboard";
 import { ListBankDashboard } from "./components/ListBankDashboard";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../../store/store";
+import { useEffect } from "react";
+import { DashboardThunks } from "../../../../store/dashboard/thunks";
+import { DashboardParams } from "../../params/dashboard/DashboardParams";
 
- const DashboardCore = () => {
+const DashboardCore = () => {
+  const { dashboard } = useSelector((resp: RootState) => resp.dashboard);
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    const params = new DashboardParams()
+    dispatch(DashboardThunks(params));
+  }, []);
+
   return (
     <div className=" animate-fade-up dark:text-white space-y-7">
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:space-y-0 space-y-7 gap-3">
@@ -34,4 +46,4 @@ import { ListBankDashboard } from "./components/ListBankDashboard";
   );
 };
 
-export default DashboardCore
+export default DashboardCore;

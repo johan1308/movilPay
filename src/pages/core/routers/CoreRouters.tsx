@@ -13,21 +13,13 @@ import {
   Companies,
 } from "../data/ItemRouter";
 import { AllCompanies, CreateCompanies } from "../views/companies";
+import ClientesCore from "../views/clientes/ClientesCore";
 
 export const CoreRouters = () => {
   const param = useParams();
   const ruta = param["*"];
   const getTitle = useMemo(() => {
-    
-    const filtrado = navigation.find((title) => {
-      if (title.children) {                
-        const filter= title.children.find(
-          (titleChild) => titleChild.path == ruta
-        );
-        return filter
-      }
-      return title.path == ruta;
-    });    
+    const filtrado = navigation.find((title) => title.path == ruta);
 
     if (!filtrado) return "";
     return (
@@ -56,7 +48,11 @@ export const CoreRouters = () => {
               <Route path="dashboard/" element={<Statistics />} />
               <Route path="users/" element={<User />} />
               <Route path="reports/" element={<Report />} />
-              <Route path="clients/" element={<Clients />} />
+              <Route path="clients/" element={<ClientesCore />}>
+                <Route path="register/" element={<Clients />} />
+                <Route path="users/" element={<Clients />} />
+                <Route path="users/:id/" element={<Clients />} />
+              </Route>
               <Route path="payments/" element={<Payments />} />
               <Route path="companies/" element={<Companies />}>
                 <Route index element={<AllCompanies />} />
@@ -65,6 +61,7 @@ export const CoreRouters = () => {
                 <Route path="*" element={<Navigate to="./" />} />
               </Route>
               <Route path="collections/" element={<Companies />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </>
         </Suspense>
