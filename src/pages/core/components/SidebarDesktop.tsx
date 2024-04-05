@@ -3,7 +3,6 @@ import { navigation } from "../data/menu";
 import { Img } from "react-image";
 import { NavLink } from "react-router-dom";
 
-
 export const SidebarDesktop = () => {
   return (
     <div className="hidden lg:fixed lg:inset-y-0 lg:z-1  lg:flex lg:w-72 lg:flex-col ">
@@ -98,11 +97,9 @@ const ComponentChildren = ({ item }: any) => {
             },
           },
         }}
-        itemClasses={
-          {
-            content:'m-0 px-2'
-          }
-        }
+        itemClasses={{
+          content: "m-0 px-2",
+        }}
         isCompact
       >
         <AccordionItem
@@ -136,7 +133,6 @@ const ComponentChildren = ({ item }: any) => {
           </div>
         </AccordionItem>
       </Accordion>
-      
     </>
   );
 };

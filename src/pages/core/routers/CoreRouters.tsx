@@ -8,12 +8,11 @@ import {
   Statistics,
   User,
   Report,
-  Clients,
   Payments,
   Companies,
 } from "../data/ItemRouter";
 import { AllCompanies, CreateCompanies } from "../views/companies";
-import ClientesCore from "../views/clientes/ClientesCore";
+
 
 export const CoreRouters = () => {
   const param = useParams();
@@ -48,11 +47,6 @@ export const CoreRouters = () => {
               <Route path="dashboard/" element={<Statistics />} />
               <Route path="users/" element={<User />} />
               <Route path="reports/" element={<Report />} />
-              <Route path="clients/" element={<ClientesCore />}>
-                <Route path="register/" element={<Clients />} />
-                <Route path="users/" element={<Clients />} />
-                <Route path="users/:id/" element={<Clients />} />
-              </Route>
               <Route path="payments/" element={<Payments />} />
               <Route path="companies/" element={<Companies />}>
                 <Route index element={<AllCompanies />} />
