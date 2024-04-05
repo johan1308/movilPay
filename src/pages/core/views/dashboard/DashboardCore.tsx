@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "../../../../store/store";
 import { useEffect } from "react";
 import { DashboardThunks } from "../../../../store/dashboard/thunks";
 import { DashboardParams } from "../../params/dashboard/DashboardParams";
+import { configTaiwind } from "../../../../utils/configTaiwind";
 
 const DashboardCore = () => {
   const { dashboard } = useSelector((resp: RootState) => resp.dashboard);
@@ -19,7 +20,7 @@ const DashboardCore = () => {
   }, []);
 
   return (
-    <div className=" animate-fade-up dark:text-white space-y-7">
+    <div className={`${configTaiwind.animateView} dark:text-white space-y-7`}>
       <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:space-y-0 space-y-7 gap-3">
         <CardInforDarshboard
           title="Cantidad"

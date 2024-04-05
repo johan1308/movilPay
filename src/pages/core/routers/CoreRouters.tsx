@@ -12,7 +12,9 @@ import {
   Companies,
 } from "../data/ItemRouter";
 import { AllCompanies, CreateCompanies } from "../views/companies";
-
+import { CompanyCore } from "../views/companies/company/CompanyCore";
+import { StepOneCreate } from "../views/companies/create/step2/StepOneCreate";
+import { StepTwoCreate } from "../views/companies/create/step1/StepTwoCreate";
 
 export const CoreRouters = () => {
   const param = useParams();
@@ -50,8 +52,14 @@ export const CoreRouters = () => {
               <Route path="payments/" element={<Payments />} />
               <Route path="companies/" element={<Companies />}>
                 <Route index element={<AllCompanies />} />
-                <Route path="create/" element={<CreateCompanies />} />
-                <Route path=":id/edit/" element={<CreateCompanies />} />
+                {/* Rutas del create */}
+                <Route path="create/" element={<CreateCompanies />}>
+                  <Route index element={<Navigate to="step1" />} />
+                  <Route path="step1/" element={<StepOneCreate />} />
+                  <Route path="step2/" element={<StepTwoCreate />} />
+                  <Route path="*" element={<Navigate to="step1" />} />
+                </Route>
+                <Route path=":id/edit/" element={<CompanyCore />} />
                 <Route path="*" element={<Navigate to="./" />} />
               </Route>
               <Route path="collections/" element={<Companies />} />
