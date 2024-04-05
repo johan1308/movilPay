@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { Payment } from "../../pages/core/interfaces/PaymentInterfaces";
 import { CompaniesThunks } from "./thunks";
+import { Company } from "../../pages/core/interfaces/CompaniesInterfaces";
 
 export interface initialStateCompanies {
   isLoading: boolean;
-  companies: Payment[];
+  companies: Company[];
   count: number;
   page?: number;
 }

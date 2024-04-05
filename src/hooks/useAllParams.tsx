@@ -1,4 +1,3 @@
-import React from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const useAllParams = () => {
@@ -9,7 +8,7 @@ export const useAllParams = () => {
     setSearchParams({ ...previousParams, ...payload });
   };
   const deleteParams = (payload: string[]) => {
-    const newParam = { ...previousParams };
+    const newParam = { ...previousParams };    
     payload.forEach((element) => {
       delete newParam[element];
     });

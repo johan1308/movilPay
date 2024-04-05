@@ -6,11 +6,12 @@ import { Button, Tooltip } from "@nextui-org/react";
 import { BiPlus } from "react-icons/bi";
 import { MethodPaymentCompanies } from "./components/MethodPaymentCompanies";
 import { AddMethodPaymentsCompanies } from "./components/AddMethodPaymentsCompanies";
+import { configTaiwind } from "../../../../../utils/configTaiwind";
 
 export const CreateCompanies = () => {
   const { id } = useParams();
   return (
-    <div className="grid sm:grid-cols-1  lg:grid-cols-6 gap-8 animate-fade-up">
+    <div className={`${configTaiwind.animateView} grid sm:grid-cols-1  lg:grid-cols-6 gap-8 `}>
       <div className="col-span-full lg:col-span-2 w-full">
         <div className="flex justify-between items-center bg-white dark:bg-primaryDark shadow-xl rounded-xl  p-4">
           <PLayouts message="Metodos de pagos" />
