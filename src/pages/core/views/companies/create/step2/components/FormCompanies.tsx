@@ -28,7 +28,7 @@ export const FormCompanies = () => {
     console.log(data);
   };
   return (
-    <form className=" space-y-6 mt-5 " onSubmit={handleSubmit(onSubmit)}>
+    <form className=" space-y-4 mt-5 " onSubmit={handleSubmit(onSubmit)}>
       {/* Nombre */}
       <div>
         <label className="font-semibold dark:text-white">Nombre</label>
@@ -61,7 +61,7 @@ export const FormCompanies = () => {
             type="text"
             size="lg"
             variant="faded"
-            className="pl-0"
+            className="pl-0 dark:text-white"
             readOnly
             value="J"
           />

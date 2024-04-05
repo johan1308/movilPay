@@ -63,7 +63,7 @@ const people = [
 
 export const MethodPaymentCompanies = () => {
   return (
-    <div className="mt-6 ">
+    <div className="">
       <ul role="list" className="space-y-3">
         {people.map((person) => (
           <li

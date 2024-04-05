@@ -1,5 +1,7 @@
 import { Disclosure } from "@headlessui/react";
 import { configTaiwind } from "../../../../../../utils/configTaiwind";
+import { FilterStepOne } from "./components/FilterStepOne";
+import { CardServiceStepOne } from "./components/CardServiceStepOne";
 
 const filters = {
   price: [
@@ -94,82 +96,19 @@ export const StepOneCreate = () => {
           </p>
 
           {/* Filters */}
-          <Disclosure
-            as="section"
-            aria-labelledby="filter-heading"
-            className="grid items-center  border-t border-gray-200 dark:border-gray-700"
-          >
-            <h2 id="filter-heading" className="sr-only">
-              Filters
-            </h2>
-            <div className="relative col-start-1 row-start-1 py-4">
-              <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-gray-200 px-4 text-sm sm:px-6 lg:px-8">
-                <div>
-                  <Disclosure.Button className="group flex items-center font-medium text-gray-700">
-                    2 Filters
-                  </Disclosure.Button>
-                </div>
-                <div className="pl-6">
-                  <button type="button" className="text-gray-500">
-                    Clear all
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="col-start-1 row-start-1 py-4">
-              <div className="mx-auto flex max-w-7xl justify-end px-4 sm:px-6 lg:px-8">
-                {/* Sort */}
-              </div>
-            </div>
-          </Disclosure>
+          <FilterStepOne />
         </div>
         {/* Product grid */}
         <section
           aria-labelledby="products-heading"
-          className="mx-auto  overflow-hidden sm:px-6 lg:px-8"
+          className="overflow-hidden "
         >
-          
-
-          <div className="-mx-px grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+          <div className="space-x-5 grid grid-cols-2  sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
             {products.map((product) => (
-              <div
-                key={product.id}
-                className="group relative border-b border-r border-gray-200 p-4 sm:p-6"
-              >
-                <div className="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg bg-gray-200 group-hover:opacity-75">
-                  <img
-                    src={product.imageSrc}
-                    alt={product.imageAlt}
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-                <div className="pb-4 pt-10 text-center">
-                  <h3 className="text-sm font-medium text-gray-900">
-                    <a href={product.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {product.name}
-                    </a>
-                  </h3>
-                  <div className="mt-3 flex flex-col items-center">
-                    <p className="sr-only">{product.rating} out of 5 stars</p>
-                    <div className="flex items-center">
-                      {[0, 1, 2, 3, 4].map((rating) => (
-                        <>{rating}</>
-                      ))}
-                    </div>
-                    <p className="mt-1 text-sm text-gray-500">
-                      {product.reviewCount} reviews
-                    </p>
-                  </div>
-                  <p className="mt-4 text-base font-medium text-gray-900">
-                    {product.price}
-                  </p>
-                </div>
-              </div>
+              <CardServiceStepOne product={product} key={product.id}/>
             ))}
           </div>
         </section>
-        
       </main>
     </div>
   );

@@ -13,12 +13,15 @@ import {
 } from "@nextui-org/react";
 
 import { BiPlus } from "react-icons/bi";
-import { useThemeMovilPay } from "../../../../../../hooks/useTheme";
+
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../../../store/store";
+
 import { useEffect } from "react";
-import { MethodPaymentsThunks } from "../../../../../../store/payment/thunks";
-import { PLayouts } from "../../../../layout/PLayouts";
+import { AppDispatch, RootState } from "../../../../../../../store/store";
+import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
+import { MethodPaymentsThunks } from "../../../../../../../store/payment/thunks";
+import { PLayouts } from "../../../../../layout/PLayouts";
+
 
 export const AddMethodPaymentsCompanies = () => {
   const { methods_payments } = useSelector((d: RootState) => d.methodPayments);
