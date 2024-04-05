@@ -1,11 +1,14 @@
+import { Button } from "@nextui-org/react";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
 import "../css/CheckTheme.css";
+import { FcIdea, FcNoIdea } from "react-icons/fc";
+import { FaMoon, FaSun } from "react-icons/fa";
 export const CheckChangeTheme = () => {
   const { darkMode, toggleDarkMode } = useThemeMovilPay();
-
+  const classN = "h-6 w-6 text-white";
   return (
     <>
-      <label className="switch">
+      {/* <label className="switch">
         <span className="sun">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <g fill="#ffd43b">
@@ -26,7 +29,20 @@ export const CheckChangeTheme = () => {
           onChange={toggleDarkMode}
         />
         <span className="slider"></span>
-      </label>
+      </label> */}
+      <Button
+        isIconOnly
+        variant="light"
+        color="default"
+        aria-label="Like"
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? (
+          <FaSun className={classN} />
+        ) : (
+          <FaMoon className={classN} />
+        )}
+      </Button>
     </>
   );
 };

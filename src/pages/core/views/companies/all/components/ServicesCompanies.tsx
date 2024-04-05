@@ -4,6 +4,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { IoBanOutline } from "react-icons/io5";
 import { useState } from "react";
 import { FaHandHoldingDollar } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const people = [
   {
@@ -148,10 +149,16 @@ const people = [
 ];
 
 export const ServicesCompanies = () => {
+  const navigate = useNavigate();
+  const handleButton = (id: any) => {
+    navigate(`/companies/${id}/edit`);
+  };
   return (
     <>
       <ul role="list">
-        <ScrollShadow className={`h-[600px] overflow-auto lg:mr-3 space-y-3 ${configTaiwind.scroll}`}>
+        <ScrollShadow
+          className={`h-[620px] overflow-auto lg:mr-3 space-y-3 ${configTaiwind.scroll}`}
+        >
           {people.map((person, i) => (
             <li
               key={person.email + i}
@@ -190,10 +197,17 @@ export const ServicesCompanies = () => {
                     </div>
                   )}
                 </div>
-                <FaAngleRight
-                  className="h-5 w-5 flex-none text-gray-400"
-                  aria-hidden="true"
-                />
+                <Button
+                  isIconOnly
+                  variant="light"
+                  color="primary"
+                  onClick={() => handleButton(person.name)}
+                >
+                  <FaAngleRight
+                    className="h-5 w-5 flex-none "
+                    aria-hidden="true"
+                  />
+                </Button>
               </div>
             </li>
           ))}
