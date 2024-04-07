@@ -50,13 +50,13 @@ export const FormAuth = () => {
         setCargando(false);
         if (response.status == 500) return error("Server Internal Error (500)");
         if (response.status == 0)
-          return error("Error de conexion intente nuevamente");
+          return error("Error de conexión intente nuevamente");
         error(response.data.error);
       });
   };
 
   return (
-    <form className="h-full mt-10" onSubmit={handleSubmit(onSubmit)}>
+    <form className="sm:w-2/3 w-full px-4 lg:px-0 mx-auto mt-10" onSubmit={handleSubmit(onSubmit)}>
       <div className="flex -mx-3">
         <div className="w-full px-3 mb-5">
           <Controller
@@ -73,7 +73,7 @@ export const FormAuth = () => {
                 onChange={onChange}
                 isInvalid={!!errors.email}
                 errorMessage={errors.email?.message}
-                className="w-full"
+                className="w-full dark:text-white text-primary"
                 maxLength={40}
                 placeholder="Introduce tu usuario"
               />
@@ -82,7 +82,7 @@ export const FormAuth = () => {
         </div>
       </div>
       <div className="flex -mx-3 my-5">
-        <div className="w-full px-3 mb-12">
+        <div className="w-full px-3 mb-5">
           <Controller
             name="password"
             control={control}
@@ -91,7 +91,7 @@ export const FormAuth = () => {
                 label="Contraseña"
                 color="primary"
                 variant="faded"
-                className="w-full"
+                className="w-full dark:text-white text-primary"
                 placeholder="************"
                 value={value}
                 onBlur={onBlur}
@@ -118,11 +118,12 @@ export const FormAuth = () => {
         </div>
       </div>
       <div className="flex -mx-3">
-        <div className="w-full px-3 mb-5">
+        <div className="w-full px-3 ">
           <Button
             color="primary"
             className="w-full"
             type="submit"
+            size="lg"
             disabled={cargando}
           >
             Ingresar
