@@ -7,12 +7,13 @@ import { SidebarDesktop } from "./SidebarDesktop";
 import { SidebarMobile } from "./SidebarMobile";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
 
+
 export const SidebarCore = ({
   children,
-  path,
+  
 }: {
   children: React.ReactNode;
-  path: React.ReactNode;
+  path?: React.ReactNode;
 }) => {
   const { darkMode } = useThemeMovilPay();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -101,7 +102,10 @@ export const SidebarCore = ({
 
         <div className={`lg:pl-72  `}>
           <main className="py-10">
-            <div className="px-6 sm:px-6 lg:px-10 ">{children}</div>
+            <div className="px-6 sm:px-6 lg:px-10 ">
+              
+              {children}
+            </div>
           </main>
         </div>
       </div>

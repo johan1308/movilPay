@@ -13,27 +13,29 @@ export const SidebarDesktop = () => {
             <li>
               <ul role="list" className="-mx-2 space-y-1">
                 {navigation.map((item) => (
-                  <li key={item.name}>
-                    {!item.children ? (
-                      <NavLink
-                        to={item.path}
-                        className={({ isActive }) => {
-                          const res = isActive
-                            ? "bg-secondary text-white shadow-lg"
-                            : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
-                          return `${res} group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold`;
-                        }}
-                      >
-                        <item.icon
-                          className="h-6 w-6 shrink-0"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </NavLink>
-                    ) : (
-                      <ComponentChildren item={item} />
-                    )}
-                  </li>
+                  item.show && (
+                    <li key={item.name}>
+                      {!item.children ? (
+                        <NavLink
+                          to={item.path}
+                          className={({ isActive }) => {
+                            const res = isActive
+                              ? "bg-secondary text-white shadow-lg"
+                              : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
+                            return `${res} group flex gap-x-3 rounded-md p-2 text-base leading-6 font-semibold`;
+                          }}
+                        >
+                          <item.icon
+                            className="h-6 w-6 shrink-0"
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </NavLink>
+                      ) : (
+                        <ComponentChildren item={item} />
+                      )}
+                    </li>
+                  )
                 ))}
               </ul>
             </li>

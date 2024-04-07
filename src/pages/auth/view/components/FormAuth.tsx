@@ -73,7 +73,7 @@ export const FormAuth = () => {
                 onChange={onChange}
                 isInvalid={!!errors.email}
                 errorMessage={errors.email?.message}
-                className="w-full dark:text-white text-primary"
+                className="w-full dark:text-white text-default"
                 maxLength={40}
                 placeholder="Introduce tu usuario"
               />
@@ -91,7 +91,7 @@ export const FormAuth = () => {
                 label="Contraseña"
                 color="primary"
                 variant="faded"
-                className="w-full dark:text-white text-primary"
+                className="w-full dark:text-white text-default"
                 placeholder="************"
                 value={value}
                 onBlur={onBlur}

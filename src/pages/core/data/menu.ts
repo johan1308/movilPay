@@ -20,6 +20,7 @@ export const navigation = [
     path: "dashboard/",
     icon: FcComboChart,
     superAdmin: false,
+    show:true,
     children: null,
   },
   {
@@ -27,19 +28,47 @@ export const navigation = [
     path: "companies/",
     icon: FcFactory,
     superAdmin: false,
+    show:true,
     children: [
       {
         name: "Registrar compañía",
         path: "companies/create/",
         icon: FcPlus,
         superAdmin: false,
-        children: null,
+        show:true,
+        children: [
+          {
+            name: "Registrar compañía",
+            path: "companies/create/step1/",
+            icon: FcPlus,
+            superAdmin: false,
+            show:false,
+            children: null,
+          },
+          {
+            name: "Todas las compañía",
+            path: "companies/create/step2/",
+            icon: FcOrganization,
+            superAdmin: false,
+            show:false,
+            children: null,
+          },
+          {
+            name: "Todas las compañía",
+            path: "companies/create/step3/",
+            icon: FcOrganization,
+            superAdmin: false,
+            show:false,
+            children: null,
+          },
+        ],
       },
       {
         name: "Todas las compañía",
         path: "companies/",
         icon: FcOrganization,
         superAdmin: false,
+        show:true,
         children: null,
       },
     ],
@@ -49,12 +78,14 @@ export const navigation = [
     path: "finance/",
     icon: FcSalesPerformance,
     superAdmin: false,
+    show:true,
     children: [
       {
         name: "Pagos",
         path: "finance/payments/",
         icon: FcCurrencyExchange,
         superAdmin: false,
+        show:true,
         children: null,
       },
       {
@@ -62,6 +93,7 @@ export const navigation = [
         path: "finance/collections/",
         icon: FcBriefcase,
         superAdmin: false,
+        show:true,
         children: null,
       },
     ],
@@ -71,6 +103,7 @@ export const navigation = [
     path: "users/",
     icon: FcConferenceCall,
     superAdmin: false,
+    show:true,
     children: null,
   },
   {
@@ -78,6 +111,7 @@ export const navigation = [
     path: "reports/",
     icon: FcViewDetails,
     superAdmin: false,
+    show:true,
     children: null,
   },
   
