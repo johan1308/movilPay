@@ -10,7 +10,7 @@ const schema = yup
       .string()
       .email("*Debe introducir un correo valido*")
       .required("*El correo es obligatorio*"),
-    description: yup.string().required("*La descripcion es obligatoria*"),
+    description: yup.string().required("*La descripción es obligatoria*"),
     rif: yup.string().required("*El rif es obligatorio*"),
     status: yup.string().required("*Se debe colocar el Estado*"),
   })
@@ -127,14 +127,14 @@ export const FormCompanies = () => {
               errorMessage={errors.status?.message}
             >
               <Radio value="buenos-aires">Activo</Radio>
-              <Radio value="sydney">Inactivo</Radio>
+              <Radio value="Sydney">Inactivo</Radio>
             </RadioGroup>
           )}
         />
       </div>
-      {/* Descripcion */}
+      {/* Descripción */}
       <div>
-        <label className="font-semibold dark:text-white">Descripcion</label>
+        <label className="font-semibold dark:text-white">Descripción</label>
         <Controller
           name="description"
           control={control}
