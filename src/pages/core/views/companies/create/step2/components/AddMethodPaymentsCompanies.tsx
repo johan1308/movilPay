@@ -36,7 +36,7 @@ export const AddMethodPaymentsCompanies = () => {
   return (
     <>
       <Tooltip
-        content="Registrar Metodo de pago"
+        content="Registrar método de pago"
         className=" bg-default text-white "
       >
         <Button size="sm" isIconOnly onPress={onOpen} color="primary" aria-label="Like">
@@ -47,19 +47,20 @@ export const AddMethodPaymentsCompanies = () => {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         className={darkMode ? "dark" : ""}
+        backdrop="blur"
       >
-        <ModalContent>
+        <ModalContent >
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 dark:text-white">
                 Registro
               </ModalHeader>
-              <ModalBody>
+              <ModalBody >
                 <form>
                   <Select
                     items={methods_payments}
-                    label={<PLayouts message="Metodo de pago" />}
-                    placeholder="Selecciona un metodo"
+                    label={<PLayouts message="Método de pago" />}
+                    placeholder="Selecciona un método"
                     labelPlacement="outside"
                     className="w-full"
                     size="lg"

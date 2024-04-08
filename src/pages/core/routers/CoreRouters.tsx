@@ -12,6 +12,7 @@ import { StepTwoCreate } from "../views/companies/create/step2/StepTwoCreate";
 import { BreadCrumbCore } from "../components/BreadCrumb/BreadCrumbCore";
 import FinancesCore from "../views/finances/FinancesCore";
 import PaymentCore from "../views/finances/payments/PaymentCore";
+import { ColletionsCore } from "../views/finances/collections/ColletionsCore";
 
 export const CoreRouters = () => {
   return (
@@ -35,7 +36,7 @@ export const CoreRouters = () => {
               <Route path="finance/" element={<FinancesCore />}>
                 <Route index element={<Navigate to="payments/" />} />
                 <Route path="payments/" element={<PaymentCore />} />
-                <Route path="collections/" element={<Report />} />
+                <Route path="collections/" element={<ColletionsCore />} />
                 <Route path="*" element={<Navigate to="./" />} />
               </Route>
 

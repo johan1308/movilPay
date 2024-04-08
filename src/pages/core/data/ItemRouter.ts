@@ -30,9 +30,4 @@ export const Companies = lazy(
     )
 );
 
-export const Collections = lazy(
-  () =>
-    import(
-      /* webpackChunkName: "Collections" */ "../views/cobranzas/CobranzasCore"
-    )
-);
+
