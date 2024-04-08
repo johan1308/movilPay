@@ -317,7 +317,7 @@ export const TableUsuarios = () => {
             {(item) => (
               <TableRow key={item.name}>
                 {(columnKey) => (
-                  <TableCell className="dark:text-white">{getKeyValue(item, columnKey)}</TableCell>
+                  <TableCell key={item.name} className="dark:text-white">{getKeyValue(item, columnKey)}</TableCell>
                 )}
               </TableRow>
             )}

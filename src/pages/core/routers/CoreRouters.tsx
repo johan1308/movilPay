@@ -4,25 +4,19 @@ import { Navigate, Route, Routes, useParams } from "react-router-dom";
 import { SidebarCore } from "../components/SidebarCore";
 import { navigation } from "../data/menu";
 import { Loading } from "../../../components/Loading";
-import {
-  Statistics,
-  User,
-  Report,
-  Payments,
-  Companies,
-} from "../data/ItemRouter";
+import { Statistics, User, Report, Companies } from "../data/ItemRouter";
 import { AllCompanies, CreateCompanies } from "../views/companies";
 import { CompanyCore } from "../views/companies/company/CompanyCore";
 import { StepOneCreate } from "../views/companies/create/step1/StepOneCreate";
 import { StepTwoCreate } from "../views/companies/create/step2/StepTwoCreate";
 import { BreadCrumbCore } from "../components/BreadCrumb/BreadCrumbCore";
+import FinancesCore from "../views/finances/FinancesCore";
+import PaymentCore from "../views/finances/payments/PaymentCore";
 
 export const CoreRouters = () => {
-
-
   return (
     <>
-      <SidebarCore >
+      <SidebarCore>
         <Suspense
           fallback={
             <div className="flex justify-center items-center">
@@ -38,7 +32,13 @@ export const CoreRouters = () => {
               <Route path="dashboard/" element={<Statistics />} />
               <Route path="users/" element={<User />} />
               <Route path="reports/" element={<Report />} />
-              <Route path="payments/" element={<Payments />} />
+              <Route path="finance/" element={<FinancesCore />}>
+                <Route index element={<Navigate to="payments/" />} />
+                <Route path="payments/" element={<PaymentCore />} />
+                <Route path="collections/" element={<Report />} />
+                <Route path="*" element={<Navigate to="./" />} />
+              </Route>
+
               <Route path="companies/" element={<Companies />}>
                 <Route index element={<AllCompanies />} />
                 {/* Rutas del create */}

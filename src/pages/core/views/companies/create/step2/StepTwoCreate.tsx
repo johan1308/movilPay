@@ -6,6 +6,7 @@ import { BiPlus } from "react-icons/bi";
 import { ScrollShadow } from "@nextui-org/scroll-shadow";
 import { FormCompanies } from "./components/FormCompanies";
 import { BreadCrumbCore } from "../../../../components/BreadCrumb/BreadCrumbCore";
+import { AddMethodPaymentsCompanies } from "./components/AddMethodPaymentsCompanies";
 
 
 
@@ -31,9 +32,8 @@ export const StepTwoCreate = () => {
           <div className="col-span-full lg:col-span-2">
             <div className="relative flex justify-between gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-xl rounded-xl ">
               <PLayouts message="Metodos de pagos" />
-              <Button size="sm" isIconOnly color="primary">
-                <BiPlus />
-              </Button>
+              
+              <AddMethodPaymentsCompanies />
             </div>
             <ScrollShadow className={` h-[550px] mt-5 ${configTaiwind.scroll}`}>
               <MethodPaymentCompanies />

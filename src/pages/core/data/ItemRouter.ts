@@ -19,8 +19,8 @@ export const Report = lazy(
 
 
 
-export const Payments = lazy(
-  () => import(/* webpackChunkName: "Payments" */ "../views/pagos/PaymentCore")
+export const finances = lazy(
+  () => import(/* webpackChunkName: "Payments" */ "../views/finances/FinancesCore")
 );
 
 export const Companies = lazy(

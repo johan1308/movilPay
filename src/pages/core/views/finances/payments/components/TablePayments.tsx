@@ -1,18 +1,22 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../../store/store";
-import { PaginatorPayments } from "./PaginatorPayments";
-import { TableLayout, valueType } from "../../../layout/TableLayout";
-import moment from "moment";
 
+import { PaginatorPayments } from "./PaginatorPayments";
+
+import moment from "moment";
+import { TableLayout, valueType } from "../../../../layout/TableLayout";
+import { RootState } from "../../../../../../store/store";
 
 const dataTable: valueType[] = [
   { name: "Banco de origen", value: "bank_origin_name" },
   { name: "Banco de destino", value: "bank_destiny_name" },
   { name: "Referencia", value: "reference" },
   { name: "Metodo del pago", value: "method_name" },
-  { name: "fecha del pago", value: (item: any) => {
-    return moment(item.date).format('DD-MM-YYYY')
-  } },
+  {
+    name: "fecha del pago",
+    value: (item: any) => {
+      return moment(item.date).format("DD-MM-YYYY");
+    },
+  },
   {
     name: "Estado",
     value: (item: any) => {

@@ -39,7 +39,7 @@ export const AddMethodPaymentsCompanies = () => {
         content="Registrar Metodo de pago"
         className=" bg-default text-white "
       >
-        <Button isIconOnly onPress={onOpen} color="primary" aria-label="Like">
+        <Button size="sm" isIconOnly onPress={onOpen} color="primary" aria-label="Like">
           <BiPlus className="h-6 w-6" />
         </Button>
       </Tooltip>

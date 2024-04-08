@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useAllParams } from "../../../../hooks/useAllParams";
-import { AppDispatch } from "../../../../store/store";
-import { TemplateTableLayout } from "../../layout/TemplateTableLayout";
+
 import { BottonsPayments } from "./components/BottonsPayments";
 import { CheckFilterPayments } from "./components/CheckFilterPayments";
 import { SinceUntilPayments } from "./components/SinceUntilPayments";
 import { TablePayment } from "./components/TablePayments";
-import { PaymentParams } from "../../params/payment/payments/paymentParams";
-import { PaymentsThunks } from "../../../../store/payment/thunks";
+
 import moment from "moment";
+import { PaymentParams } from "../../../params/payment/payments/paymentParams";
+import { AppDispatch } from "../../../../../store/store";
+import { useAllParams } from "../../../../../hooks/useAllParams";
+import { PaymentsThunks } from "../../../../../store/payment/thunks";
+import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams } = useAllParams();

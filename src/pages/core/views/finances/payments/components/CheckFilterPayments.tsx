@@ -1,5 +1,6 @@
 import { Radio, RadioGroup } from "@nextui-org/react";
-import { useAllParams } from "../../../../../hooks/useAllParams";
+import { useAllParams } from "../../../../../../hooks/useAllParams";
+
 
 export const CheckFilterPayments = () => {
   const { params, setSearchParams, addParams } = useAllParams();
