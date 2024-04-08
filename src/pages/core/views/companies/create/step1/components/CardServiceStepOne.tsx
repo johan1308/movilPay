@@ -10,11 +10,12 @@ export const CardServiceStepOne = ({ product }: { product: any }) => {
   }
   return (
     <div className=" bg-white shadow-xl rounded-xl  dark:bg-primaryDark dark:border-gray-700">
-      <Image
+      {/* <Image
         className="rounded-xl p-8 "
-        src="https://i.ibb.co/KqdgGY4/cosmetic-packaging-mockup-1150-40280.webp"
+        src=""
         alt="product image"
-      />
+      /> */}
+      <p className="text-sm text-gray-200">{'{Imagen}'}</p>
 
       <div className="px-5 pb-5">
         <a href="#">

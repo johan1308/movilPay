@@ -101,8 +101,8 @@ export const SidebarCore = ({
         <SidebarDesktop />
 
         <div className={`lg:pl-72  `}>
-          <main className="py-10">
-            <div className="px-6 sm:px-6 lg:px-10 ">
+          <main className="py-4">
+            <div className="px-6 sm:px-6 lg:px-8 ">
               
               {children}
             </div>

@@ -19,18 +19,18 @@ export const NavbarCore = ({
   path?: React.ReactNode;
 }) => {
   const { darkMode, toggleDarkMode } = useThemeMovilPay();
-  
+  const img = darkMode ? 'logotipo movil play letras todo blanco':'logotipo_movil_play'  
 
   return (
     <Navbar
       maxWidth="full"
-      className={`${darkMode ? "bg-primaryDark" : "bg-secondary"} shadow-md`}
+      className={`${darkMode ? "bg-transparent border-b-2 border-primaryDark" : "border-b-2 border-gray-300"} shadow-md `}
       style={{ zIndex: 10 }}
     >
       <NavbarBrand>
         <div className="mt-3 hidden sm:flex ">
           <Img
-            src={require("../../../assets/img/logotipo movil play letras todo blanco.png")}
+            src={require(`../../../assets/img/${img}.png`)}
             className="h-10 w-38 mb-2 ml-7"
           />
         </div>

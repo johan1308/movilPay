@@ -1,4 +1,3 @@
-import { Disclosure } from "@headlessui/react";
 import { Button } from "@nextui-org/button";
 import { useAllParams } from "../../../../../../../hooks/useAllParams";
 
@@ -9,16 +8,14 @@ export const FilterStepOne = () => {
     addParams({ service_type: id });
   };
   return (
-    <Disclosure
-      as="section"
+    <div
+      
       aria-labelledby="filter-heading"
-      className="grid grid-cols-1 gap-4 border-t border-gray-200 dark:border-gray-700"
+      className="bg-white   rounded-xl mb-7 mt-3 shadow-xl dark:bg-primaryDark grid grid-cols-1 gap-4 "
     >
-      <h2 id="filter-heading" className="sr-only">
-        Filters
-      </h2>
+    
       <div className="relative  row-start-1 py-4 ">
-        <div className=" space-x-6 px-4 text-sm ">
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-1 space-x-6 px-4 text-sm ">
           {["1", "2", "3", "4", "5"].map((resp) => (
             <Button
               key={resp}
@@ -36,6 +33,6 @@ export const FilterStepOne = () => {
           {/* Sort */}
         </div>
       </div>
-    </Disclosure>
+    </div>
   );
 };

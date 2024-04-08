@@ -5,7 +5,7 @@ import { FcIdea, FcNoIdea } from "react-icons/fc";
 import { FaMoon, FaSun } from "react-icons/fa";
 export const CheckChangeTheme = () => {
   const { darkMode, toggleDarkMode } = useThemeMovilPay();
-  const classN = "h-6 w-6 text-white";
+  const classN = `h-6 w-6 ${darkMode?'text-white':'text-dark'}`;
   return (
     <>
       {/* <label className="switch">
@@ -33,7 +33,7 @@ export const CheckChangeTheme = () => {
       <Button
         isIconOnly
         variant="light"
-        color="default"
+        color='default'
         aria-label="Like"
         onClick={toggleDarkMode}
       >

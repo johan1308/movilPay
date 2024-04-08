@@ -5,10 +5,10 @@ import { NavLink } from "react-router-dom";
 
 export const SidebarDesktop = () => {
   return (
-    <div className="hidden lg:fixed lg:inset-y-0 lg:z-1  lg:flex lg:w-72 lg:flex-col ">
+    <div className="hidden lg:fixed lg:inset-y-0 lg:z-1 mt-[4.1rem] lg:flex lg:w-72 lg:flex-col ">
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="flex grow flex-col gap-y-5 overflow-y-auto dark:bg-primaryDark border-r-3 dark:border-r-transparent bg-white/80 px-6 pb-4">
-        <nav className="flex flex-1 flex-col mt-20">
+        <nav className="flex flex-1 flex-col mt-5">
           <ul role="list" className="flex flex-1 flex-col gap-y-7">
             <li>
               <ul role="list" className="-mx-2 space-y-1">

@@ -1,42 +1,40 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { navigation } from "../../data/menu";
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
+import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 
+type dataBread = {
+  path: string;
+  name: string;
+  icon?: any;
+};
+interface Props {
+  data: dataBread[];
+}
 
 export const BreadCrumbCore = () => {
-    const param = useParams();
-    const ruta: any = param["*"];
+  const param = useParams();
+  const ruta: any = param["*"];
+  const arrayRoute = ruta!.split("/");
+  
 
-    const getCurrentRoute:any = (pathname:any, items:any) => {
-        for (const item of items) {
-            const fullPath = item.path;
-            const isCurrent = pathname.startsWith(fullPath);
-            if (isCurrent) {
-                if (item.children && item.children.length > 0) {
-                    return getCurrentRoute(pathname, item.children);
-                } else {
-                    return item;
-                }
-            }
-        }
-        return null;
-    };
+  useEffect(() => {
+    let valid = true;
+    let count = 1;
+    
+  }, []);
 
-    const getTitle = useMemo(() => {
-        return getCurrentRoute(window.location.pathname, navigation);
-    }, [ruta]);
-    console.log(getTitle);
-
-    return (
-        <div className="mb-10">
-            <Breadcrumbs size="lg">
-                <BreadcrumbItem >Home</BreadcrumbItem>
-                <BreadcrumbItem >Music</BreadcrumbItem>
-                <BreadcrumbItem >Artist</BreadcrumbItem>
-                <BreadcrumbItem >Album</BreadcrumbItem>
-                <BreadcrumbItem >Song</BreadcrumbItem>
-            </Breadcrumbs>
-        </div>
-    )
-}
+  return (
+    <div className="mb-7 bg-white dark:bg-primaryDark rounded-xl shadow-xl p-4">
+      <Breadcrumbs size="lg">
+        <BreadcrumbItem>das</BreadcrumbItem>
+        <BreadcrumbItem>das</BreadcrumbItem>
+        <BreadcrumbItem>das</BreadcrumbItem>
+        <BreadcrumbItem>das</BreadcrumbItem>
+        <BreadcrumbItem>das</BreadcrumbItem>
+        <BreadcrumbItem>das</BreadcrumbItem>
+      </Breadcrumbs>
+      <p className="mt-5 text-xl font-semibold dark:text-white">dsadsad</p>
+    </div>
+  );
+};

@@ -16,7 +16,7 @@ import {
 
 export const navigation = [
   {
-    name: "Estadisticas",
+    name: "Estadísticas",
     path: "dashboard/",
     icon: FcComboChart,
     superAdmin: false,
@@ -24,7 +24,7 @@ export const navigation = [
     children: null,
   },
   {
-    name: "Compañias",
+    name: "Compañías",
     path: "companies/",
     icon: FcFactory,
     superAdmin: false,
@@ -38,7 +38,7 @@ export const navigation = [
         show:true,
         children: [
           {
-            name: "Registrar compañía",
+            name: "Paso 1",
             path: "companies/create/step1/",
             icon: FcPlus,
             superAdmin: false,
@@ -46,7 +46,7 @@ export const navigation = [
             children: null,
           },
           {
-            name: "Todas las compañía",
+            name: "Paso 2",
             path: "companies/create/step2/",
             icon: FcOrganization,
             superAdmin: false,
@@ -54,7 +54,7 @@ export const navigation = [
             children: null,
           },
           {
-            name: "Todas las compañía",
+            name: "Paso 3",
             path: "companies/create/step3/",
             icon: FcOrganization,
             superAdmin: false,
