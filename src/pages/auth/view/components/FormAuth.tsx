@@ -65,7 +65,7 @@ export const FormAuth = () => {
             render={({ field: { onChange, onBlur, value } }) => (
               <Input
                 type="email"
-                label="Email"
+                label="Usuario"
                 color="primary"
                 variant="faded"
                 value={value}

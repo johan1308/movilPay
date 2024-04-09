@@ -7,9 +7,9 @@ export const Statistics = lazy(
     )
 );
 
-export const User = lazy(
+export const Setting = lazy(
   () =>
-    import(/* webpackChunkName: "User" */ "../views/usuarios/UsuariosCore")
+    import(/* webpackChunkName: "User" */ "../views/setting/SettingCore")
 );
 
 export const Report = lazy(

@@ -1,7 +1,7 @@
 import { TableUsuarios } from "./components/TableUsuarios"
 
 
-const UsuariosCore = () => {
+export const UsuariosCore = () => {
   return (
     <div className="animate-fade-up">
       <TableUsuarios/>
@@ -10,4 +10,3 @@ const UsuariosCore = () => {
 }
 
 
-export default UsuariosCore
