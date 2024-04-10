@@ -17,6 +17,8 @@ export const SidebarCore = ({
 }) => {
   const { darkMode } = useThemeMovilPay();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isExpandOnHover, setIsExpandOnHover] = useState(true);
+
 
   useEffect(() => {
     document.documentElement.style.backgroundColor = darkMode
@@ -98,14 +100,15 @@ export const SidebarCore = ({
         </Transition.Root>
 
         {/* Sidebar para escritorio*/}
-        <SidebarDesktop />
+        <SidebarDesktop setExpand={setIsExpandOnHover}/>
 
-        <div className={`lg:pl-72  `}>
+        <div className={`${isExpandOnHover?'lg:pl-72':'lg:pl-20'}  transition-all duration-300 ease-in-out `}>
           <main className="py-4">
             <div className="px-6 sm:px-6 lg:px-8 ">
               
               {children}
             </div>
+        
           </main>
         </div>
       </div>
