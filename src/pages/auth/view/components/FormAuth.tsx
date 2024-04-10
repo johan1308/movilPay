@@ -36,6 +36,10 @@ export const FormAuth = () => {
 
   const onSubmit = (data: any) => {
     setCargando(true);
+    const payload = {
+      email:data.email.trim(),
+      password:data.password.trim()
+    }
     const { success, error } = LoadingToast();
     authApi
       .post("/login/", data)

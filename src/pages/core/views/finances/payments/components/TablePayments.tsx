@@ -29,7 +29,7 @@ const dataTable: valueType[] = [
   },
   { name: "Monto", value: "amount" },
   {
-    name: "Accion",
+    name: "Acción",
     value: (e: any) => {
       return <></>;
     },

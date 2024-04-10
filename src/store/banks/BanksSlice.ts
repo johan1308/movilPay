@@ -2,19 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import { BanksThunks } from "./thunks";
 import { Banks } from "../../pages/core/interfaces/BanksInterfaces";
 
-export interface initialStateBanksDashboard {
+export interface initialStateBanks {
   isLoading: boolean;
   banks:Banks[];
 }
 
-const initialStateBanksDashboard: initialStateBanksDashboard = {
+const initialStateBanks: initialStateBanks = {
   isLoading: false,
   banks: [],
 };
 
-export const BanksDashboardSlice = createSlice({
-  name: "BanksDashboardSlice",
-  initialState: initialStateBanksDashboard,
+export const BanksSlice = createSlice({
+  name: "BanksSlice",
+  initialState: initialStateBanks,
   reducers: {},
   extraReducers: (builder) => {
     builder
@@ -28,4 +28,4 @@ export const BanksDashboardSlice = createSlice({
   },
 });
 
-export const {} = BanksDashboardSlice.actions;
+export const {} = BanksSlice.actions;

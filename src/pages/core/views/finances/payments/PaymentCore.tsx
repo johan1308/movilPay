@@ -12,6 +12,8 @@ import { AppDispatch } from "../../../../../store/store";
 import { useAllParams } from "../../../../../hooks/useAllParams";
 import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
+import { BanksDestinyOriginPayments } from "./components/BanksDestinyOriginPayments";
+import { ChartPiePayments } from "./components/ChartPiePayments";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams } = useAllParams();
@@ -25,6 +27,8 @@ const PaymentCore = () => {
     params.since && (param.since = params.since);
     params.until && (param.until = params.until);
     params.search && (param.search = params.search);
+    params.bank_origin && (param.bank_origin = params.bank_origin);
+    params.bank_destiny && (param.bank_destiny = params.bank_destiny);
     dispatch(PaymentsThunks(param));
   };
 
@@ -41,7 +45,10 @@ const PaymentCore = () => {
   }, [params]);
 
   return (
-    <div className="animate-fade-up">
+    <div className="animate-fade-up space-y-5">
+      <div className="grid grid-cols-4 gap-2">
+        <ChartPiePayments />
+      </div>
       <TemplateTableLayout
         title="Información de los pagos"
         bottons={<BottonsPayments refresh={handleConsultation} />}
@@ -56,6 +63,16 @@ const PaymentCore = () => {
             name: "Fecha",
             component: <SinceUntilPayments />,
             field: "since",
+          },
+          {
+            name: "Bancos",
+            component: <BanksDestinyOriginPayments />,
+            field: "banks",
+          },
+          {
+            name: "Compañía",
+            component: <SinceUntilPayments />,
+            field: "company",
           },
         ]}
       >

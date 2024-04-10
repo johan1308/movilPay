@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { BanksDashboardSlice } from "./banks/BanksDashboardSlice";
+import {  BanksSlice } from "./banks/BanksSlice";
 import { PaymentsSlice } from "./payment/PaymentSlice";
 import { CompaniesSlice } from "./companies/CompaniesSlice";
 import { OptionsSlice } from "./options/OptionSlice";
@@ -9,7 +9,7 @@ import { DashboardSlice } from "./dashboard/DashboardSlice";
 
 export const store = configureStore({
   reducer: {
-    bankDashboard:BanksDashboardSlice.reducer,
+    banks:BanksSlice.reducer,
     payments:PaymentsSlice.reducer,
     companies:CompaniesSlice.reducer,
     options:OptionsSlice.reducer,

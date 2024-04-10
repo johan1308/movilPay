@@ -56,7 +56,7 @@ export const SinceUntilPayments = () => {
               onChange={onChange}
               isInvalid={!!errors.since}
               errorMessage={!!errors.since && "Introduce un dato valido"}
-              size="lg"
+              
               endContent={
                 <button
                   className="focus:outline-none"
@@ -88,7 +88,6 @@ export const SinceUntilPayments = () => {
               onChange={onChange}
               isInvalid={!!errors.since}
               errorMessage={!!errors.until && "Introduce un dato valido"}
-              size="lg"
               endContent={
                 <button
                   className="focus:outline-none"

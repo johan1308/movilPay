@@ -1,7 +1,7 @@
 export class PaymentParams{
-    bank_destiny?:number
-    bank_origin?:number
-    company?:boolean
+    bank_destiny?:string
+    bank_origin?:string
+    company?:number
     method?:number
     page?:number
     since?:string

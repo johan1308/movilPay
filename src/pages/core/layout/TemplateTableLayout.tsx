@@ -4,6 +4,7 @@ import { useAllParams } from "../../../hooks/useAllParams";
 import { Controller, useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
 import { PLayouts } from "./PLayouts";
+import { configTaiwind } from "../../../utils/configTaiwind";
 
 interface ItemFilter {
   name: string;
@@ -74,7 +75,7 @@ export const TemplateTableLayout = ({
             )}
           />
         </form>
-        <div className="mt-4">
+        <div className={`mt-4 max-h-[500px] overflow-auto ${configTaiwind.scroll}`}>
           {filters && (
             <>
               <p className="font-semibold text-xl mb-2 dark:text-white">

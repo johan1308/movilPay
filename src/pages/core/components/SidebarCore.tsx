@@ -21,7 +21,7 @@ export const SidebarCore = ({
   useEffect(() => {
     document.documentElement.style.backgroundColor = darkMode
       ? "#0a0a0a"
-      : "#F6F6F6";
+      : "#eeeeee";
   }, [darkMode]);
 
   return (

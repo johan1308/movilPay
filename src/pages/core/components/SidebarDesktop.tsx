@@ -10,7 +10,7 @@ export const SidebarDesktop = () => {
         <nav className="flex flex-1 flex-col mt-5">
           <ul role="list" className="flex flex-1 flex-col gap-y-7">
             <li>
-              <ul role="list" className="-mx-2 space-y-1">
+              <ul role="list" className="-mx-2 space-y-4">
                 {navigation.map((item) => (
                   item.show && (
                     <li key={item.name}>

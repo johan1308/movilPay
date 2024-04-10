@@ -3,7 +3,6 @@ import { CardInforDarshboard } from "./components/CardInforDarshboard";
 import { FaUserTag } from "react-icons/fa";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { ChartDashboard } from "./components/ChartDashboard";
-import { ListBankDashboard } from "./components/ListBankDashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store/store";
 import { useEffect } from "react";
@@ -15,7 +14,13 @@ const DashboardCore = () => {
   const { dashboard } = useSelector((resp: RootState) => resp.dashboard);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    const params = new DashboardParams()
+    const params = new DashboardParams();
+    const today = new Date();
+    const formatter = `${today.getFullYear()}-${
+      today.getMonth() + 1
+    }-${today.getDate()}`;
+    params.since = formatter;
+    params.until = formatter;
     dispatch(DashboardThunks(params));
   }, []);
 
@@ -36,12 +41,10 @@ const DashboardCore = () => {
         />
       </div>
       <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-3">
+        <div className="col-span-full">
           <ChartDashboard />
         </div>
-        <div className="bg-white dark:bg-primaryDark rounded-xl shadow-xl p-3">
-          <ListBankDashboard />
-        </div>
+        
       </div>
     </div>
   );

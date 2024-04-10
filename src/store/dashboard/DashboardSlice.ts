@@ -2,11 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { Payment } from "../../pages/core/interfaces/PaymentInterfaces";
 import { DashboardThunks } from "./thunks";
+import { Dashboard } from "../../pages/core/interfaces/DashboardInterfaces";
 
 
 export interface initialStateDashboard {
   isLoading: boolean;
-  dashboard:any;
+  dashboard:Dashboard[];
   count:number 
   page?:number
 }
@@ -28,7 +29,7 @@ export const DashboardSlice = createSlice({
       })
       .addCase(DashboardThunks.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.dashboard = payload.results
+        state.dashboard = payload
         state.count = payload.count
       });
   },

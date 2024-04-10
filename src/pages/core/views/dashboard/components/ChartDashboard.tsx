@@ -16,6 +16,7 @@ import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { PaymentParams } from "../../../params/payment/payments/paymentParams";
 import moment from "moment";
 import { Payment } from "../../../interfaces/PaymentInterfaces";
+import { Dashboard } from "../../../interfaces/DashboardInterfaces";
 
 ChartJS.register(
   CategoryScale,
@@ -32,11 +33,11 @@ export const options = {
   plugins: {
     tooltip: {
       callbacks: {
-        label: (context:any) => {
+        label: (context: any) => {
           console.log(context);
-          return context.dataset.label + ': ' + context.parsed.y;
-        }
-      }
+          return context.dataset.label + ": " + context.parsed.y;
+        },
+      },
     },
     legend: {
       position: "top" as const,
@@ -45,31 +46,39 @@ export const options = {
       display: true,
       text: "Grafica",
     },
-    
   },
 };
 
-
 export const ChartDashboard = () => {
-  const { payments, isLoading }: any = useSelector<RootState>(
-    (d) => d.payments
+  const { dashboard, isLoading } = useSelector(
+    (resp: RootState) => resp.dashboard
   );
 
-  const dataOption = useMemo(() => {
-    const title = payments.map((resp: Payment) =>
-      moment(resp.date).format("DD-MM-YYYY")
-    );
-    const valores = payments.map((item:any) => item.amount);        
+  const getDataSets = (data?: Dashboard) => {
+    
+    
     return {
-      labels: title,
-      datasets: [
-        {
-          label: "Dataset 1",
-          data: valores,
-          borderColor: "rgb(255, 99, 132)",
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
-        },
-      ],
+      label: 'prueba',
+      data: [1,2,3,4,5,6,7],
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    };
+  };
+
+  const dataOption = useMemo(() => {
+    const labels = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+    ];
+
+    return {
+      labels,
+      datasets: [getDataSets()],
     };
   }, [isLoading]);
 

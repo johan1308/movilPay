@@ -11,30 +11,31 @@ export const PaginatorPayments = () => {
     params: { page },
   } = useAllParams();
 
-  const { count }: any = useSelector<RootState>((d) => d.payments);
+  const { count,payments } = useSelector((d:RootState) => d.payments);
 
   const pages = Math.ceil(count / 10);
-
-  const handlePages = (pageFuction: number) => {
-    if (pageFuction == 1) {
+  const handlePages = (pageFunction: number) => {
+    if (pageFunction == 1) {
       deleteParams(["page"]);
       return;
     }
-    addParams({ page: pageFuction });
+    addParams({ page: pageFunction });
   };
 
   return (
     <div className="flex w-full justify-end">
-      <Pagination
-        isCompact
-        showControls
-        showShadow
-        color="primary"
-        size="lg"
-        page={page ? Number(page) : 1}
-        total={pages}
-        onChange={handlePages}
-      />
+      {payments.length> 0&&(
+        <Pagination
+          isCompact
+          showControls
+          showShadow
+          color="primary"
+          size="lg"
+          page={!!page ? Number(page) : 1}
+          total={pages}
+          onChange={handlePages}
+        />
+      )}
     </div>
   );
 };
