@@ -151,7 +151,7 @@ const people = [
 export const ServicesCompanies = () => {
   const navigate = useNavigate();
   const handleButton = (id: any) => {
-    navigate(`/companies/${id}/edit`);
+    navigate(`/companies/company/${id}/`);
   };
   return (
     <>

@@ -1,6 +1,5 @@
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { navigation } from "../data/menu";
-import { Img } from "react-image";
 import { NavLink } from "react-router-dom";
 
 export const SidebarDesktop = () => {
@@ -118,6 +117,7 @@ const ComponentChildren = ({ item }: any) => {
         >
           <div className="ml-1">
             {item.children.map((resp: any) => (
+              resp.show &&
               <NavLink
                 to={resp.path}
                 key={resp.path}

@@ -64,7 +64,7 @@ export const navigation = [
             children: null,
           },
         ],
-      },
+      },      
       {
         name: "Todas las compañía",
         path: "companies/",
@@ -72,6 +72,14 @@ export const navigation = [
         superAdmin: false,
         show: true,
         children: null,
+      },
+      {
+        name: "Compañía",
+        path: "companies/company/",
+        icon: FcPlus,
+        superAdmin: false,
+        show: false,
+        children: false
       },
     ],
   },

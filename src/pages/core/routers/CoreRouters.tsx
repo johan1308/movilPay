@@ -52,7 +52,7 @@ export const CoreRouters = () => {
                   <Route path="step2/" element={<StepTwoCreate />} />
                   <Route path="*" element={<Navigate to="step1/" />} />
                 </Route>
-                <Route path=":id/edit/" element={<CompanyCore />} />
+                <Route path="company/:id/" element={<CompanyCore />} />
                 <Route path="*" element={<Navigate to="./" />} />
               </Route>
               <Route path="collections/" element={<Companies />} />
