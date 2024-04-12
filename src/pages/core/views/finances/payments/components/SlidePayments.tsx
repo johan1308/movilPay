@@ -13,7 +13,7 @@ export const SlidePayments = ({ open, setOpen,children }: Props) => {
     const {darkMode}=useThemeMovilPay()
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10 " onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-in-out duration-400"
@@ -23,12 +23,12 @@ export const SlidePayments = ({ open, setOpen,children }: Props) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-black bg-opacity-70 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 overflow-hidden">
+        <div className="fixed inset-0 overflow-hidden ">
           <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 ">
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-in-out duration-400 sm:duration-400"
@@ -38,11 +38,11 @@ export const SlidePayments = ({ open, setOpen,children }: Props) => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-[650px]">
+                <Dialog.Panel className="pointer-events-auto w-[650px] border-l-3 border-primary">
                   <div className={classNames(darkMode?'bg-primaryDark':'bg-white',"flex h-full flex-col overflow-y-scroll py-6 shadow-xl ")}>
                     <div className="px-4 sm:px-6 py-2">
                       <div className="flex items-start justify-between ">
-                        <Dialog.Title className="dark:text-white text-base font-semibold leading-6 text-gray-900 ">
+                        <Dialog.Title className={classNames(darkMode?'text-white':'text-gray-900',"text-base font-semibold leading-6  ")}>
                           Registrar pago
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">

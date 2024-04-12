@@ -14,14 +14,15 @@ import { HiDevicePhoneMobile } from "react-icons/hi2";
 import { getToday } from "../../../../../services/getToday";
 import { Controller, useForm } from "react-hook-form";
 import { CompaniesThunks } from "../../../../../../../store/companies/thunks";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { configTaiwind } from "../../../../../../../utils/configTaiwind";
-
+import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
+import { classNames } from "../../../../../../../helpers/ClassN";
 
 export const MovilPayMethod = () => {
-  
+  const { darkMode } = useThemeMovilPay();
   const dispatch = useDispatch<AppDispatch>();
-  
+
   const { banks } = useSelector((d: RootState) => d.banks);
   const { companies, isLoading } = useSelector((d: RootState) => d.companies);
   const { handleSubmit, control, reset, register } = useForm();
@@ -53,7 +54,12 @@ export const MovilPayMethod = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="col-span-full">
-          <label htmlFor="">Compañía</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Compañía
+          </label>
           {isOpen && (
             <Controller
               name="company"
@@ -91,7 +97,12 @@ export const MovilPayMethod = () => {
           )}
         </div>
         <div className="col-span-full lg:col-span-1">
-          <label htmlFor="">Banco origen</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Banco origen
+          </label>
           <Controller
             name="bank_origin"
             control={control}
@@ -120,7 +131,12 @@ export const MovilPayMethod = () => {
           />
         </div>
         <div className="col-span-full lg:col-span-1">
-          <label htmlFor="">Banco destino</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Banco destino
+          </label>
           <Controller
             name="bank_destiny"
             control={control}
@@ -149,7 +165,12 @@ export const MovilPayMethod = () => {
           />
         </div>
         <div className="col-span-full lg:col-span-1">
-          <label htmlFor="">Fecha</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Fecha
+          </label>
           <Controller
             name="date"
             control={control}
@@ -164,14 +185,19 @@ export const MovilPayMethod = () => {
                 onChange={onChange}
                 value={value}
                 max={getToday()}
-                defaultValue="junior@nextui.org"
-                className="w-full"
+                placeholder="Introduce una fecha"
+                className={classNames(darkMode && "text-white", "w-full")}
               />
             )}
           />
         </div>
         <div className="col-span-full lg:col-span-1">
-          <label htmlFor="">Referencia</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Referencia
+          </label>
           <Controller
             name="reference"
             control={control}
@@ -187,14 +213,19 @@ export const MovilPayMethod = () => {
                 value={value}
                 maxLength={6}
                 max={getToday()}
-                defaultValue="junior@nextui.org"
-                className="w-full"
+                placeholder="Escribe la referencia"
+                className={classNames(darkMode && "text-white", "w-full")}
               />
             )}
           />
         </div>
         <div className="col-span-full">
-          <label htmlFor="">Teléfono</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Teléfono
+          </label>
           <Controller
             name="mobile"
             control={control}
@@ -211,12 +242,18 @@ export const MovilPayMethod = () => {
                 value={value}
                 max={getToday()}
                 className="w-full"
+                placeholder="teléfono del pago"
               />
             )}
           />
         </div>
         <div className="col-span-full">
-          <label htmlFor="">Monto</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Monto
+          </label>
           <Controller
             name="amount"
             control={control}
@@ -233,25 +270,31 @@ export const MovilPayMethod = () => {
                 max={getToday()}
                 maxLength={10}
                 className="w-full"
+                placeholder="Monto del pago"
               />
             )}
           />
         </div>
         <div className="col-span-full">
-          <label htmlFor="">Descripción</label>
+          <label
+            htmlFor=""
+            className={`${darkMode ? "text-white" : "text-gray-900"}`}
+          >
+            Descripción
+          </label>
           <Controller
             name="description"
             control={control}
             rules={{ required: true }}
             render={({ field: { onBlur, onChange, value } }) => (
               <Textarea
-                placeholder="Enter your description"
                 className="w-full"
                 color="primary"
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
                 variant="bordered"
+                placeholder="Introduce la descripción"
               />
             )}
           />
