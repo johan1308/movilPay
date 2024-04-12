@@ -1,6 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { HiX } from "react-icons/hi";
 import React, { Fragment } from "react";
+import { useThemeMovilPay } from "../../../../../../hooks/useTheme";
+import { classNames } from "../../../../../../helpers/ClassN";
 interface Props {
   open: boolean;
   setOpen: (status: boolean) => void;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export const SlidePayments = ({ open, setOpen,children }: Props) => {
+    const {darkMode}=useThemeMovilPay()
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -35,12 +38,12 @@ export const SlidePayments = ({ open, setOpen,children }: Props) => {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-                    <div className="px-4 sm:px-6">
-                      <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                          Panel title
+                <Dialog.Panel className="pointer-events-auto w-[650px]">
+                  <div className={classNames(darkMode?'bg-primaryDark':'bg-white',"flex h-full flex-col overflow-y-scroll py-6 shadow-xl ")}>
+                    <div className="px-4 sm:px-6 py-2">
+                      <div className="flex items-start justify-between ">
+                        <Dialog.Title className="dark:text-white text-base font-semibold leading-6 text-gray-900 ">
+                          Registrar pago
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button
