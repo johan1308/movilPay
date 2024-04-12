@@ -1,5 +1,6 @@
 import { Button } from "@nextui-org/react";
 import { HiMiniPlus, HiArrowPath } from "react-icons/hi2";
+import { AddPayments } from "../methodPayments/AddPayments";
 
 interface Props {
   refresh?: () => void;
@@ -8,13 +9,8 @@ interface Props {
 export const BottonsPayments = ({ refresh }: Props) => {
   return (
     <div className="flex space-x-2">
-      <Button
-        color="primary"
-        className="hover:text-white"
-        endContent={<HiMiniPlus className="h-6 w-6" />}
-      >
-        Agregar Pago
-      </Button>
+      
+      <AddPayments/>
       <Button
         variant="ghost"
         className="dark:text-white"

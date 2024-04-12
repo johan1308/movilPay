@@ -2,11 +2,11 @@ import { SelectItem, Select, Button } from "@nextui-org/react";
 import { Controller, useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../../../store/store";
+import { AppDispatch, RootState } from "../../../../../../../store/store";
 import { useEffect, useMemo } from "react";
-import { BanksThunks } from "../../../../../../store/banks/thunks";
-import { useUserMovilPay } from "../../../../../../hooks/useUserMovilPay";
-import { useAllParams } from "../../../../../../hooks/useAllParams";
+import { BanksThunks } from "../../../../../../../store/banks/thunks";
+import { useUserMovilPay } from "../../../../../../../hooks/useUserMovilPay";
+import { useAllParams } from "../../../../../../../hooks/useAllParams";
 
 export const BanksDestinyOriginPayments = () => {
   const { params, setSearchParams } = useAllParams();

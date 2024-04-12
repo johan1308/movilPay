@@ -1,7 +1,7 @@
 import { Pagination } from "@nextui-org/react";
 import { useSelector } from "react-redux";
-import { useAllParams } from "../../../../../../hooks/useAllParams";
-import { RootState } from "../../../../../../store/store";
+import { useAllParams } from "../../../../../../../hooks/useAllParams";
+import { RootState } from "../../../../../../../store/store";
 
 
 export const PaginatorPayments = () => {

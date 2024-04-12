@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { PaginatorPayments } from "./PaginatorPayments";
 
 import moment from "moment";
-import { TableLayout, valueType } from "../../../../layout/TableLayout";
-import { RootState } from "../../../../../../store/store";
+import { TableLayout, valueType } from "../../../../../layout/TableLayout";
+import { RootState } from "../../../../../../../store/store";
 
 const dataTable: valueType[] = [
   { name: "Banco de origen", value: "bank_origin_name" },

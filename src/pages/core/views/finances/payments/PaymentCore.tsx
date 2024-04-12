@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { BottonsPayments } from "./components/BottonsPayments";
-import { CheckFilterPayments } from "./components/CheckFilterPayments";
-import { SinceUntilPayments } from "./components/SinceUntilPayments";
-import { TablePayment } from "./components/TablePayments";
+import { BottonsPayments } from "./components/table/BottonsPayments";
+import { CheckFilterPayments } from "./components/filters/CheckFilterPayments";
+import { SinceUntilPayments } from "./components/filters/SinceUntilPayments";
+import { TablePayment } from "./components/table/TablePayments";
 
 import moment from "moment";
 import { PaymentParams } from "../../../params/payment/payments/paymentParams";
@@ -12,11 +12,11 @@ import { AppDispatch } from "../../../../../store/store";
 import { useAllParams } from "../../../../../hooks/useAllParams";
 import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
-import { BanksDestinyOriginPayments } from "./components/BanksDestinyOriginPayments";
+import { BanksDestinyOriginPayments } from "./components/filters/BanksDestinyOriginPayments";
 import { ChartPiePayments } from "./components/ChartPiePayments";
 
 const PaymentCore = () => {
-  const { params, addParams, deleteParams } = useAllParams();
+  const { params, addParams, deleteParams, setSearchParams } = useAllParams();
   const dispatch = useDispatch<AppDispatch>();
 
   const handleConsultation = () => {
@@ -37,7 +37,8 @@ const PaymentCore = () => {
       deleteParams(["search"]);
       return;
     }
-    addParams({ search });
+    const { page, ...rest } = params;
+    setSearchParams({ ...rest, search });
   };
 
   useEffect(() => {
@@ -46,9 +47,6 @@ const PaymentCore = () => {
 
   return (
     <div className="animate-fade-up space-y-5">
-      <div className="grid grid-cols-4 gap-2">
-        <ChartPiePayments />
-      </div>
       <TemplateTableLayout
         title="Información de los pagos"
         bottons={<BottonsPayments refresh={handleConsultation} />}

@@ -48,7 +48,7 @@ export const TemplateTableLayout = ({
   };
 
   return (
-    <div className="grid gap-4 grid-cols-5">
+    <div className="grid gap-4 grid-cols-5 h-fit">
       <div className="col-span-full lg:col-span-1 bg-white dark:bg-primaryDark rounded-xl shadow-xl p-4 ">
         <form className="border-b" onSubmit={handleSubmit(onSubmit)}>
           <PLayouts message="Buscador"/>

@@ -6,8 +6,6 @@ export const BanksThunks = createAsyncThunk("banks", async (params?:PaymentParam
   return movilPayAPI
     .get("/api/payments/banks/",{params})
     .then((result) => {
-      console.log(result);
-      
       return result.data;
     })
     .catch((err) => {

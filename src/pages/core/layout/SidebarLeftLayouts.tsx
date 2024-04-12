@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 
-import { NavLink } from "react-router-dom";
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import { navigation } from "../data/menu";
-import { useUserMovilPay } from "../../../hooks/useUserMovilPay";
 
 export const SidebarLeftDesktop = ({children}:{children:React.ReactNode}) => {
-  const { name, lastname, identification } = useUserMovilPay();
-  const username = `${name} ${lastname}`;
-  const company = `J${identification}`;
-  const profilePic =
-    "https://img.mbiz.web.id/180x180/erp/R2p1IXoyVEpBMk01WOEAdaI3hHVlkuIg0wW5_pn-CJCKHSrA_n1-U1tfE7Bl5H4_4Z7AxgL0DPOmUCdPuCHHC5lWvMU5Ig3t1uDrkVN53MlWlnA";
+  
 
   const [isExpand, setIsExpand] = useState(true);
   const handleOpened = (status: any) => {
