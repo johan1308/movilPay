@@ -24,7 +24,7 @@ export const SidebarDesktop = ({setExpand}:{setExpand:(e:any)=>void}) => {
         <nav
           role="navigation"
           className={[
-            "dark:bg-primaryDark border-r-3 dark:border-r-transparent bg-white/80  border-r border-slate-100 shadow-sm absolute inset-y-0 left-0 mt-14",
+            "dark:bg-transparent border-r-3 dark:border-r-transparent bg-white/80  border-r border-slate-100 shadow-sm absolute inset-y-0 left-0 mt-14",
             "transition-all duration-300 ease-in-out md:fixed",
             `${isExpand ? "w-72" : "w-20"}`,
           ].join(" ")}
@@ -59,7 +59,7 @@ export const SidebarDesktop = ({setExpand}:{setExpand:(e:any)=>void}) => {
               >
                 <div
                   className={`flex items-center rounded-lg w-full h-20 duration-300 ${
-                    isExpand ? "bg-slate-500/25 px-4 gap-3" : ""
+                    isExpand ? "bg-gray-400/25 dark:bg-primaryDark px-4 gap-3" : ""
                   }`}
                 >
                   <div
