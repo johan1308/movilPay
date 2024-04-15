@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { BiSearch } from "react-icons/bi";
 import { PLayouts } from "./PLayouts";
 import { configTaiwind } from "../../../utils/configTaiwind";
+import { SidebarLeftDesktop } from "./SidebarLeftLayouts";
 
 interface ItemFilter {
   name: string;
@@ -16,7 +17,7 @@ interface ItemFilter {
 interface Props {
   filters?: ItemFilter[];
   children: React.ReactNode;
-  search: (data: string) => void;
+  search?: (data: string) => void;
   bottons?: React.ReactNode;
   title?: string;
 }
@@ -44,73 +45,73 @@ export const TemplateTableLayout = ({
   });
 
   const onSubmit = (data: any) => {
-    search(data);
+    if (search) {
+      search(data);
+    }
   };
 
   return (
     <div className="grid gap-4 grid-cols-5 h-fit">
-      <div className="col-span-full lg:col-span-1 bg-white dark:bg-primaryDark rounded-xl shadow-xl p-4 ">
-        <form className="border-b" onSubmit={handleSubmit(onSubmit)}>
-          <PLayouts message="Buscador"/>
-          <Controller
-            name="search"
-            control={control}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                type="text"
-                placeholder="Introduce para buscar"
-                className="my-4 "
-                variant="bordered"
-                color="primary"
-                size="lg"
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                endContent={
-                  <button className="focus:outline-none" type="submit">
-                    <BiSearch className="text-2xl text-default-400 pointer-events-none " />
-                  </button>
-                }
-              />
-            )}
-          />
-        </form>
-        <div className={`mt-4 max-h-[500px] overflow-auto ${configTaiwind.scroll}`}>
-          {filters && (
-            <>
-              <p className="font-semibold text-xl mb-2 dark:text-white">
-                Filtros
-              </p>
-              <Accordion
-                selectionMode="multiple"
-                isCompact
-                defaultExpandedKeys={expandKeys}
-              >
-                {filters.map((filter) => (
-                  <AccordionItem
-                    key={filter.field}
-                    className="mb-3"
-                    aria-label={filter.name}
-                    title={<span className="font-semibold">{filter.name}</span>}
-                  >
-                    {filter.component}
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </>
-          )}
-        </div>
-      </div>
       <div className="col-span-full lg:col-span-4 bg-white p-5 h-full dark:bg-primaryDark rounded-xl shadow-xl">
-        <div className="lg:flex lg:justify-between  mr-3 space-x-3">
+        <div className="lg:flex lg:justify-between  mr-3 space-x-3 items-center">
           <p className="font-semibold text-xl mb-2 mb-7 lg:mb-0 dark:text-white">
             {title}
           </p>
+          {search && (
+            <form onSubmit={handleSubmit(onSubmit)} className="lg:w-[40%]">
+              <Controller
+                name="search"
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    type="text"
+                    placeholder="Introduce para buscar"
+                    className="my-4 "
+                    variant="bordered"
+                    color="primary"
+                    size="lg"
+                    value={value}
+                    onBlur={onBlur}
+                    onChange={onChange}
+                    endContent={
+                      <button className="focus:outline-none" type="submit">
+                        <BiSearch className="text-2xl text-default-400 pointer-events-none " />
+                      </button>
+                    }
+                  />
+                )}
+              />
+            </form>
+          )}
           {bottons}
         </div>
         <div className=" mt-5">{children}</div>
       </div>
-      
+      <SidebarLeftDesktop>
+        {filters && (
+          <>
+            <p className="font-semibold text-xl mb-2 dark:text-white">
+              Filtros
+            </p>
+            <Accordion
+              selectionMode="multiple"
+              isCompact
+              defaultExpandedKeys={expandKeys}
+            >
+              {filters.map((filter) => (
+                <AccordionItem
+                  key={filter.field}
+                  className="mb-3"
+                  aria-label={filter.name}
+                  title={<span className="font-semibold">{filter.name}</span>}
+                >
+                  {filter.component}
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </>
+        )}
+      </SidebarLeftDesktop>
     </div>
   );
 };

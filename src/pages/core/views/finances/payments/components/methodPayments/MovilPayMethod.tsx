@@ -18,19 +18,59 @@ import { useEffect, useState } from "react";
 import { configTaiwind } from "../../../../../../../utils/configTaiwind";
 import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
 import { classNames } from "../../../../../../../helpers/ClassN";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { CreatePaymentThunks } from "../../../../../../../store/payment/thunks";
+import { LoadingToast } from "../../../../../../../hooks/Notifications";
 
-export const MovilPayMethod = () => {
+interface Props {
+  setOpenSlice: (e?: any) => void;
+  setHandleRefresh: () => void;
+}
+
+const schema = yup
+  .object({
+    company: yup.number().required("*Este campo es obligatorio*"),
+    bank_origin: yup.string().required("*Este campo es obligatorio*"),
+    bank_destiny: yup.string().required("*Este campo es obligatorio*"),
+    date: yup.string().required("*Este campo es obligatorio*"),
+    reference: yup.string().required("*Este campo es obligatorio*"),
+    mobile: yup.string().required("*Este campo es obligatorio*"),
+    amount: yup.string().required("*Este campo es obligatorio*"),
+    description: yup.string().required("*Este campo es obligatorio*"),
+  })
+  .required();
+
+export const MovilPayMethod = ({ setOpenSlice, setHandleRefresh }: Props) => {
   const { darkMode } = useThemeMovilPay();
   const dispatch = useDispatch<AppDispatch>();
 
   const { banks } = useSelector((d: RootState) => d.banks);
+  const [onclick, setOnclick] = useState(false);
   const { companies, isLoading } = useSelector((d: RootState) => d.companies);
-  const { handleSubmit, control, reset, register } = useForm();
+  const {
+    handleSubmit,
+    control,
+    reset,
+    register,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const [isOpen, setSetIsOpen] = useState(false);
 
   const getCompanies = (e: any) => {
     return dispatch(CompaniesThunks({ search: e }));
+  };
+
+  const handleSelected = (e: any) => {
+    const data = [...companies];
+
+    const find = data.find((d: any) => d.id == e);
+    const devolver = !find ? 0 : find.id;
+    setValue("company", devolver);
   };
 
   useEffect(() => {
@@ -39,7 +79,19 @@ export const MovilPayMethod = () => {
   }, []);
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    setOnclick(true);
+    const { success } = LoadingToast();
+    const body = {
+      ...data,
+      method: 1,
+    };
+
+    CreatePaymentThunks(body).then((result) => {
+      setOnclick(false);
+      success("Pago movil registrado con éxito");
+      setHandleRefresh();
+      setOpenSlice(false);
+    });
   };
 
   return (
@@ -76,7 +128,9 @@ export const MovilPayMethod = () => {
                   className={configTaiwind.animateViewFade}
                   color="primary"
                   onInputChange={getCompanies}
-                  onSelectionChange={onChange}
+                  onSelectionChange={(e) => handleSelected(e)}
+                  isInvalid={!!errors.company}
+                  errorMessage={errors.company?.message}
                   value={value}
                   popoverProps={{
                     defaultOpen: false,
@@ -107,7 +161,7 @@ export const MovilPayMethod = () => {
             name="bank_origin"
             control={control}
             rules={{ required: true }}
-            render={({ field: { onBlur, onChange, value } }) => (
+            render={({ field: { onBlur, onChange, value, ref } }) => (
               <Select
                 className="w-full"
                 variant="bordered"
@@ -116,6 +170,8 @@ export const MovilPayMethod = () => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
+                isInvalid={!!errors.bank_origin}
+                errorMessage={errors.bank_origin?.message}
                 placeholder="Selecciona un banco"
                 scrollShadowProps={{
                   isEnabled: false,
@@ -150,6 +206,8 @@ export const MovilPayMethod = () => {
                 onBlur={onBlur}
                 onChange={onChange}
                 value={value}
+                isInvalid={!!errors.bank_destiny}
+                errorMessage={errors.bank_destiny?.message}
                 placeholder="Selecciona un banco"
                 scrollShadowProps={{
                   isEnabled: false,
@@ -185,6 +243,8 @@ export const MovilPayMethod = () => {
                 onChange={onChange}
                 value={value}
                 max={getToday()}
+                isInvalid={!!errors.date}
+                errorMessage={errors.date?.message}
                 placeholder="Introduce una fecha"
                 className={classNames(darkMode && "text-white", "w-full")}
               />
@@ -203,19 +263,26 @@ export const MovilPayMethod = () => {
             control={control}
             rules={{ required: true }}
             render={({ field: { onBlur, onChange, value } }) => (
-              <Input
-                type="date"
-                variant="bordered"
-                color="primary"
-                size="lg"
-                onBlur={onBlur}
-                onChange={onChange}
-                value={value}
-                maxLength={6}
-                max={getToday()}
-                placeholder="Escribe la referencia"
-                className={classNames(darkMode && "text-white", "w-full")}
-              />
+              <>
+                <Input
+                  type="text"
+                  variant="bordered"
+                  color="primary"
+                  size="lg"
+                  onBlur={onBlur}
+                  onChange={onChange}
+                  value={value}
+                  maxLength={6}
+                  max={getToday()}
+                  isInvalid={!!errors.reference}
+                  errorMessage={errors.reference?.message}
+                  placeholder="Escribe la referencia"
+                  className={classNames(darkMode && "text-white", "w-full")}
+                />
+                <span className="text-xs text-gray-400">
+                  Coloca los últimos 6 dígitos
+                </span>
+              </>
             )}
           />
         </div>
@@ -240,6 +307,8 @@ export const MovilPayMethod = () => {
                 maxLength={12}
                 onChange={onChange}
                 value={value}
+                isInvalid={!!errors.mobile}
+                errorMessage={errors.mobile?.message}
                 max={getToday()}
                 className="w-full"
                 placeholder="teléfono del pago"
@@ -269,6 +338,8 @@ export const MovilPayMethod = () => {
                 value={value}
                 max={getToday()}
                 maxLength={10}
+                isInvalid={!!errors.amount}
+                errorMessage={errors.amount?.message}
                 className="w-full"
                 placeholder="Monto del pago"
               />
@@ -294,13 +365,15 @@ export const MovilPayMethod = () => {
                 onChange={onChange}
                 value={value}
                 variant="bordered"
+                isInvalid={!!errors.description}
+                errorMessage={errors.description?.message}
                 placeholder="Introduce la descripción"
               />
             )}
           />
         </div>
         <div className="col-span-full flex justify-end">
-          <Button color="primary" type="submit">
+          <Button color="primary" type="submit" disabled={onclick}>
             Registrar pago
           </Button>
         </div>

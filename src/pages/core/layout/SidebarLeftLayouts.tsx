@@ -1,55 +1,101 @@
-import React, { useState } from "react";
+import { Fragment, useState } from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Button } from "@nextui-org/react";
+import { HiMiniFunnel } from "react-icons/hi2";
+import { configTaiwind } from "../../../utils/configTaiwind";
 
+export const SidebarLeftDesktop = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-export const SidebarLeftDesktop = ({children}:{children:React.ReactNode}) => {
-  
-
-  const [isExpand, setIsExpand] = useState(true);
-  const handleOpened = (status: any) => {
-    setIsExpand(status);
-    
-  };
   return (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto  px-6 pb-4">
-      <nav
-        role="navigation"
-        className={[
-          "dark:bg-primaryDark bg-white/80  z-90 border-r h-full border-slate-100 shadow-xl rounded-xl absolute inset-y-0 right-0 ",
-          "transition-all duration-300 ease-in-out ",
-          `${isExpand ? "w-64" : "w-0"}`,
-        ].join(" ")}
+    <>
+      <Button
+        isIconOnly
+        className=" md:hidden absolute  top-0 right-0 m-4"
+        onClick={() => setSidebarOpen(true)}
       >
-        <button
-          className="absolute z-90 top-16 -left-6 bg-white dark:bg-primaryDark  hover:bg-slate-100 text-primary p-0.5 rounded-full "
-          onClick={() => {
-            handleOpened(!isExpand);
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`${
-              isExpand ? "rotate-0" : "rotate-180"
-            } transform transition duration-500 h-7 w-7`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
+        <HiMiniFunnel />
+      </Button>
+      <div>
+        <Transition.Root show={sidebarOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-50 lg:hidden"
+            onClose={setSidebarOpen}
           >
-            <path
-              fillRule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <div className={`overflow-hidden`}>
-          <div className="mb-0 list-none text-slate-500">
+            <Transition.Child
+              as={Fragment}
+              enter="transition-opacity ease-linear duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition-opacity ease-linear duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-900/80" />
+            </Transition.Child>
 
-            <div className="mt-2  p-2">
-              {children}
+            <div className="fixed inset-0 flex">
+              <Transition.Child
+                as={Fragment}
+                enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full"
+                enterTo="translate-x-0"
+                leave="transition ease-in-out duration-300 transform"
+                leaveFrom="translate-x-0"
+                leaveTo="-translate-x-full"
+              >
+                <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-in-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in-out duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
+                      <button
+                        type="button"
+                        className="-m-2.5 p-2.5"
+                        onClick={() => setSidebarOpen(false)}
+                      >
+                        <span className="sr-only">Close sidebar</span>
+                        {/* <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true" /> */}
+                      </button>
+                    </div>
+                  </Transition.Child>
+                  {/* Sidebar component, swap this element with another sidebar if you like */}
+                  <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4 pt-7">
+                    <nav className="flex flex-1 flex-col">
+                      <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                        <li>{children}</li>
+                      </ul>
+                    </nav>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
+          </Dialog>
+        </Transition.Root>
+
+        {/* Static sidebar for desktop */}
+        <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col ">
+          {/* Sidebar component, swap this element with another sidebar if you like */}
+          <div className={"flex grow flex-col gap-y-5 overflow-y-auto  px-3 pb-4 pt-4 bg-white dark:bg-primaryDark rounded-xl  " + configTaiwind.scroll}>
+            <nav className="flex flex-1 flex-col ">
+              <ul role="list" className="flex flex-1 flex-col gap-y-7">
+                {children}
+              </ul>
+            </nav>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </>
   );
 };
-

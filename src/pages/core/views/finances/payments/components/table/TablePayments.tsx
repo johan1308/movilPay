@@ -5,8 +5,10 @@ import { PaginatorPayments } from "./PaginatorPayments";
 import moment from "moment";
 import { TableLayout, valueType } from "../../../../../layout/TableLayout";
 import { RootState } from "../../../../../../../store/store";
+import { PLayouts } from "../../../../../layout/PLayouts";
 
 const dataTable: valueType[] = [
+  { name: "Compañía", value: "company_name" },
   { name: "Banco de origen", value: "bank_origin_name" },
   { name: "Banco de destino", value: "bank_destiny_name" },
   { name: "Referencia", value: "reference" },
@@ -37,12 +39,13 @@ const dataTable: valueType[] = [
 ];
 
 export const TablePayment = () => {
-  const { payments, isLoading }: any = useSelector<RootState>(
-    (d) => d.payments
+  const { payments, isLoading}: any = useSelector(
+    (d:RootState) => d.payments
   );
 
   return (
     <>
+      
       <TableLayout
         isLoading={isLoading}
         data={payments}

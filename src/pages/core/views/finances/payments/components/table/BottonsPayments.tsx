@@ -10,7 +10,7 @@ export const BottonsPayments = ({ refresh }: Props) => {
   return (
     <div className="flex space-x-2">
       
-      <AddPayments/>
+      <AddPayments refresh={refresh}/>
       <Button
         variant="ghost"
         className="dark:text-white"

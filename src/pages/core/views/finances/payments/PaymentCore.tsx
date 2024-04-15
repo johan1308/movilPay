@@ -14,6 +14,7 @@ import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
 import { BanksDestinyOriginPayments } from "./components/filters/BanksDestinyOriginPayments";
 import { ChartPiePayments } from "./components/ChartPiePayments";
+import { CompaniesFilterPayments } from "./components/filters/CompaniesFilterPayments";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams, setSearchParams } = useAllParams();
@@ -33,6 +34,8 @@ const PaymentCore = () => {
   };
 
   const handleSearch = ({ search }: any) => {
+    if (search == undefined ||search == null ) return
+    
     if (search.length == 0) {
       deleteParams(["search"]);
       return;
@@ -69,7 +72,7 @@ const PaymentCore = () => {
           },
           {
             name: "Compañía",
-            component: <SinceUntilPayments />,
+            component: <CompaniesFilterPayments />,
             field: "company",
           },
         ]}
