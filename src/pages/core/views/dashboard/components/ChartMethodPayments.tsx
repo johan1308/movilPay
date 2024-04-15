@@ -2,6 +2,7 @@ import Chart from "react-apexcharts";
 
 export const ChartMethodPayments = () => {
   const options = {
+    
     series: [
       {
         name: "Net Profit",
@@ -21,57 +22,21 @@ export const ChartMethodPayments = () => {
         type: "column",
         height: 350,
       },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "70%",
-          endingShape: "rounded",
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 3,
-        colors: ["transparent"],
-      },
-      xaxis: {
-        categories: [
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-        ],
-      },
-      yaxis: {
-        title: {
-          text: "$ (thousands)",
-        },
-      },
-      fill: {
-        opacity: 1,
-      },
-      colors: ['#4CAF50'], // Color de las barras en modo oscuro
-      theme: {
-        mode: 'dark', // Modo oscuro
-      },
-      tooltip: {
-        theme: "dark",
-        y: {
-          formatter: function (val: any) {
-            return "$ " + val + " thousands";
-          },
-        },
-        
-      },
     },
-    
+    toolbar: {
+      show: false,
+    },
+    stroke: {
+      show: true ,
+      width: 5,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+
+    fill: {
+      opacity: 1,
+    },
   };
 
   return (
