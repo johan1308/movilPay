@@ -4,7 +4,12 @@ import { PLayouts } from "../../../../layout/PLayouts";
 import { Input } from "@nextui-org/react";
 import { BiSearch } from "react-icons/bi";
 
-export const SearchCompanies = ({ search }: { search: (e: any) => void }) => {
+interface Props {
+  search: (e: any) => void;
+  title?: string;
+}
+
+export const SearchCompanies = ({ search, title }: Props) => {
   const { params } = useAllParams();
   const {
     control,
@@ -21,7 +26,7 @@ export const SearchCompanies = ({ search }: { search: (e: any) => void }) => {
   };
   return (
     <>
-      <PLayouts message="Buscador" />
+      {title && <PLayouts message={title} />}
       <div className="text-center">
         <svg
           className="mx-auto h-12 w-12 text-gray-400"

@@ -1,81 +1,59 @@
 import Chart from "react-apexcharts";
+import { useThemeMovilPay } from "../../../../../hooks/useTheme";
 
 export const ChartDashboard = () => {
+  const { darkMode } = useThemeMovilPay();
   // Configuración del gráfico
   const options = {
     series: [
       {
         name: "XYZ MOTORS",
-        data: [1, 2, 3, 4, 5,2,3,6,9,7,4,1,2,3,5,4,8,6],
+        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
       },
       {
         name: "XYZ 1",
-        data: [1, 2, 3, 4, 5,2,3,6,9,7,4,1,2,3,5,4,8,6],
+        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
       },
       {
         name: "XYZ 3",
-        data: [1, 2, 3, 4, 5,2,3,6,9,7,4,1,2,3,5,4,8,6],
+        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
       },
       {
         name: "XYZ 5",
-        data: [41, 32, 23, 4, 5,2,3,6,9,7,4,1,2,3,5,4,8,6],
+        data: [41, 32, 23, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
       },
     ],
     options: {
       chart: {
         type: "area",
-        stacked: false,
         height: 350,
-        zoom: {
-          type: "x",
-          enabled: true,
-          autoScaleYaxis: true,
-        },
         toolbar: {
-          autoSelected: "zoom",
+          show: false,
         },
       },
-      dataLabels: {
-        enabled: false,
+    },
+
+    stroke: {
+      show: true,
+      width: 5,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+
+    tooltip: {
+      theme: darkMode ? "dark" : "light",
+    },
+
+    legend: {
+      show: true,
+      labels: {
+        colors: darkMode ? "#ffffff" : "#000000",
       },
-      markers: {
-        size: 0,
-      },
-      title: {
-        text: "Stock Price Movement",
-        align: "left",
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 1,
-          inverseColors: false,
-          opacityFrom: 0.5,
-          opacityTo: 0,
-          stops: [0, 90, 100],
-        },
-      },
-      yaxis: {
-        labels: {
-          formatter: function (val: any) {
-            return (val / 1000000).toFixed(0);
-          },
-        },
-        title: {
-          text: "Price",
-        },
-      },
-      xaxis: {
-        type: "datetime",
-      },
-      tooltip: {
-        shared: false,
-        y: {
-          formatter: function (val: any) {
-            return (val / 1000000).toFixed(0);
-          },
-        },
-      },
+    },
+
+    fill: {
+      opacity: 1,
     },
   };
 

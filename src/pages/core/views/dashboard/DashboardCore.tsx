@@ -13,6 +13,8 @@ import { ChartDashboard } from "./components/ChartDashboard";
 import { TablePayment } from "../finances/payments/components/table/TablePayments";
 import { PLayouts } from "../../layout/PLayouts";
 import { ChartMethodPayments } from "./components/ChartMethodPayments";
+import { SearchCompanyDashboard } from "./components/SearchCompanyDashboard";
+import { ButtonsModalCompaniesDashboard } from "./components/ButtonsModalCompaniesDashboard";
 
 const DashboardCore = () => {
   const { dashboard } = useSelector((resp: RootState) => resp.dashboard);
@@ -44,26 +46,26 @@ const DashboardCore = () => {
           Icon={<FaMoneyBillTrendUp className="w-12 h-12" />}
         />
       </div>
-      <div className="grid lg:grid-cols-6 gap-3 sm:grid-cols-1">
-        <div className="col-span-4">
-          <ChartDashboard />
+      <div className="grid lg:grid-cols-7 gap-3 sm:grid-cols-1">
+        <div className="col-span-full lg:col-span-2 p-4  bg-white dark:bg-primaryDark rounded-xl shadow-xl">
+          <div className="flex justify-between">
+          <PLayouts message="Compañías" />
+          <ButtonsModalCompaniesDashboard/>
+          </div>
+          <SearchCompanyDashboard />
         </div>
-
-        <div className="col-span-2">
-          <ChartMethodPayments />
+        <div className="col-span-1 lg:col-span-5  ">
+          <ChartDashboard />
         </div>
       </div>
       <div className="grid lg:grid-cols-7 gap-3 sm:grid-cols-1">
-        <div className="col-span-5 rounded-xl bg-white dark:bg-primaryDark shadow-xl p-3">
-          <PLayouts message="Información de pago" />
+        <div className="lg:col-span-5 col-span-full rounded-xl bg-white dark:bg-primaryDark shadow-xl p-4 hidden lg:flex lg:flex-col">
+          <PLayouts message="Compañías" />
           <TablePayment />
         </div>
 
-        <div className="col-span-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-          quidem magnam ratione vel a esse facere quis incidunt rem explicabo
-          aspernatur cumque, laborum ipsum optio temporibus reiciendis harum
-          libero est.
+        <div className="lg:col-span-2 col-span-full">
+          <ChartMethodPayments />
         </div>
       </div>
     </div>

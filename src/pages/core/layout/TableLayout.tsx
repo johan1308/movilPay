@@ -38,7 +38,7 @@ export const TableLayout = ({ columns, data, Paginator, isLoading }: Props) => {
   };
   return (
     <Table
-      radius="lg"
+      radius="none"
       shadow="none"
       fullWidth
       aria-label="Example static collection table"
