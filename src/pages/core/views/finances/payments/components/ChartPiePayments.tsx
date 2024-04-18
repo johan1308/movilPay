@@ -1,5 +1,4 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 import { PLayouts } from "../../../../layout/PLayouts";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -35,14 +34,7 @@ export const ChartPiePayments = () => {
   return (
     <div className="bg-white rounded-xl shadow-xl p-4">
       <PLayouts message="Estadísticas de los pagos" />
-      <Doughnut data={data} options={{
-        plugins:{
-            legend:{
-                align:'end',
-                position:'left'
-            }
-        }
-      }} />;
+
     </div>
   );
 };

@@ -3,4 +3,5 @@ export class DashboardParams {
   until?: string;
   bank?: number;
   method?: number;
+  company?:number|string
 }

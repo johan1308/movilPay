@@ -16,7 +16,7 @@ interface Root {
 export const useUserMovilPay = ():Root => {
   const data = useMemo(() => {
     const local = JSON.parse(localStorage.getItem("user") ?? "{}");
-    console.log(local);
+    
     
     return local;
   }, []);

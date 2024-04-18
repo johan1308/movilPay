@@ -2,20 +2,24 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 import { navigation } from "../data/menu";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import { useUserMovilPay } from '../../../hooks/useUserMovilPay';
+import { useUserMovilPay } from "../../../hooks/useUserMovilPay";
 
-export const SidebarDesktop = ({setExpand}:{setExpand:(e:any)=>void}) => {
-  const {name,lastname,identification}=useUserMovilPay()
+export const SidebarDesktop = ({
+  setExpand,
+}: {
+  setExpand: (e: any) => void;
+}) => {
+  const { name, lastname, identification } = useUserMovilPay();
   const username = `${name} ${lastname}`;
   const company = `J${identification}`;
   const profilePic =
     "https://img.mbiz.web.id/180x180/erp/R2p1IXoyVEpBMk01WOEAdaI3hHVlkuIg0wW5_pn-CJCKHSrA_n1-U1tfE7Bl5H4_4Z7AxgL0DPOmUCdPuCHHC5lWvMU5Ig3t1uDrkVN53MlWlnA";
 
   const [isExpand, setIsExpand] = useState(true);
-  const handleOpened=(status:any)=>{
-    setIsExpand(status)
-    setExpand(status)
-  }
+  const handleOpened = (status: any) => {
+    setIsExpand(status);
+    setExpand(status);
+  };
 
   return (
     <div className="hidden lg:fixed lg:inset-y-0 lg:z-1 mt-[4.1rem] lg:flex lg:w-72 lg:flex-col ">
@@ -59,7 +63,9 @@ export const SidebarDesktop = ({setExpand}:{setExpand:(e:any)=>void}) => {
               >
                 <div
                   className={`flex items-center rounded-lg w-full h-20 duration-300 ${
-                    isExpand ? "bg-gray-400/25 dark:bg-primaryDark px-4 gap-3" : ""
+                    isExpand
+                      ? "bg-gray-400/25 dark:bg-primaryDark px-4 gap-3"
+                      : ""
                   }`}
                 >
                   <div
@@ -77,7 +83,9 @@ export const SidebarDesktop = ({setExpand}:{setExpand:(e:any)=>void}) => {
                     >
                       {username}
                     </div>
-                    <div className={`text-sm text-slate-500 truncate dark:text-white`}>
+                    <div
+                      className={`text-sm text-slate-500 truncate dark:text-white`}
+                    >
                       {company}
                     </div>
                   </div>
@@ -221,21 +229,20 @@ const ComponentChildren = ({ item, isExpand }: any) => {
           </AccordionItem>
         </Accordion>
       ) : (
-        <li key={item.name}>
-          <NavLink
-            to={item.path}
-            className={({ isActive }) => {
-              const res = isActive
-                ? "bg-secondary text-white shadow-lg"
-                : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
-              return `${res} group flex ${
-                !isExpand && "justify-center animate-jump-in"
-              } gap-x-3 rounded-md p-2 text-base leading-6 font-semibold duration-200`;
-            }}
-          >
-            <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />  
-          </NavLink>
-        </li>
+        <NavLink
+          to={item.path}
+          key={item.name}
+          className={({ isActive }) => {
+            const res = isActive
+              ? "bg-secondary text-white shadow-lg"
+              : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
+            return `${res} group flex ${
+              !isExpand && "justify-center animate-jump-in"
+            } gap-x-3 rounded-md p-2 text-base leading-6 font-semibold duration-200`;
+          }}
+        >
+          <item.icon className="h-6 w-6 shrink-0" aria-hidden="true" />
+        </NavLink>
       )}
     </>
   );

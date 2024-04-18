@@ -39,13 +39,14 @@ const dataTable: valueType[] = [
 ];
 
 export const TablePayment = () => {
-  const { payments, isLoading}: any = useSelector(
-    (d:RootState) => d.payments
+  const { payments, isLoading }: any = useSelector(
+    (d: RootState) => d.payments
   );
+
+  
 
   return (
     <>
-      
       <TableLayout
         isLoading={isLoading}
         data={payments}

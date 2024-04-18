@@ -1,28 +1,18 @@
 import Chart from "react-apexcharts";
 import { useThemeMovilPay } from "../../../../../hooks/useTheme";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
+import { useMemo, useState } from "react";
+import { getMonthById } from "../../../services/getMonthById";
 
 export const ChartDashboard = () => {
   const { darkMode } = useThemeMovilPay();
+  const [data, setData] = useState<any>([]);
+  const { dashboard, isLoading } = useSelector((d: RootState) => d.dashboard);
+
   // Configuración del gráfico
   const options = {
-    series: [
-      {
-        name: "XYZ MOTORS",
-        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
-      },
-      {
-        name: "XYZ 1",
-        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
-      },
-      {
-        name: "XYZ 3",
-        data: [1, 2, 3, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
-      },
-      {
-        name: "XYZ 5",
-        data: [41, 32, 23, 4, 5, 2, 3, 6, 9, 7, 4, 1, 2, 3, 5, 4, 8, 6],
-      },
-    ],
+    series: data,
     options: {
       chart: {
         type: "area",
@@ -55,7 +45,46 @@ export const ChartDashboard = () => {
     fill: {
       opacity: 1,
     },
+    selection: {
+      enabled: true,
+      fill: {
+        color: "#fff",
+        opacity: 0.4
+      },
+      xaxis: {
+        min: new Date("27 Jul 2017 10:00:00").getTime(),
+        max: new Date("14 Aug 2017 10:00:00").getTime()
+      }
+    }
+  
   };
+
+  useMemo(() => {
+    // Agrupar los elementos por el nombre de la compañía
+    const groupedCompanies = dashboard.reduce(
+      (accumulator: any, element: any) => {
+        const nameCompany = element.commpany;
+
+        // Si ya existe una entrada para la compañía, agregar el elemento al array existente
+        // Si no, crear una nueva entrada en el acumulador
+        if (!accumulator[nameCompany]) {
+          accumulator[nameCompany] = [];
+        }
+        accumulator[nameCompany].push(element.total);
+
+        return accumulator;
+      },
+      {}
+    );
+
+    const filtereArray = Object.keys(groupedCompanies).map((d) => {
+      return {
+        name: d,
+        data: groupedCompanies[d],
+      };
+    });
+    setData(filtereArray);
+  }, [isLoading]);
 
   return (
     <div className="bg-white rounded-xl pb-6 pt-3 shadow-lg dark:bg-primaryDark">
@@ -64,7 +93,7 @@ export const ChartDashboard = () => {
         <Chart
           options={options}
           series={options.series}
-          type="line"
+          type="area"
           height={320}
         />
       </div>

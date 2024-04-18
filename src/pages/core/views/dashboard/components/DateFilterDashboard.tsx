@@ -1,15 +1,15 @@
-import { Button, Input } from "@nextui-org/react";
 import { Controller, useForm } from "react-hook-form";
-
-import { FaTrash } from "react-icons/fa6";
+import { useAllParams } from "../../../../../hooks/useAllParams";
+import { firstDayMonth, getToday } from "../../../services/getToday";
+import { Button, Input } from "@nextui-org/react";
+import { FaTrash } from "react-icons/fa";
 import { BiSearch } from "react-icons/bi";
-import { ErrorToast } from "../../../../../../../hooks/Notifications";
-import { useAllParams } from "../../../../../../../hooks/useAllParams";
-import { getToday } from "../../../../../services/getToday";
 
-export const SinceUntilPayments = () => {
-  const today = getToday()
-  const { addParams, params, deleteParams, setSearchParams } = useAllParams();
+export const DateFilterDashboard = ({ setSearchParams }: any) => {
+  const today = getToday();
+  const firstDay = firstDayMonth();
+
+  const { params, deleteParams, setSearchParams: setSearch } = useAllParams();
   const {
     handleSubmit,
     control,
@@ -18,30 +18,31 @@ export const SinceUntilPayments = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      since: params.since,
-      until: params.until,
+      since: params.since || firstDay,
+      until: params.until || today,
     },
   });
-  const onSubmit = ({ since, until }: any) => {
-    const formaterSince = new Date(since);
-    const formaterUntil = new Date(until);
 
-    if (formaterSince > formaterUntil) {
-      return ErrorToast("El DESDE no puede ser mayor");
-    }
+  const onSubmit = ({ since, until }: any) => {
     const { page, search, ...restParams } = params;
     const payload = { ...restParams, since, until };
+    setSearch(payload);
     setSearchParams(payload);
   };
 
-  const deleteDate = (field: "since" | "until") => {
-    setValue(field, "");
+  const deleteDate = (field: "since" | "until",value:string) => {
+    setValue(field, value);
     deleteParams(["since", "until", "page"]);
   };
   return (
-    <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="desde" className="dark:text-white">Desde</label>
+    <form
+      className="flex flex-col lg:flex-row justify-end items-center lg:space-x-2 space-x-2 mb-2"
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="lg:w-[20rem] w-full">
+        <label htmlFor="desde" className="dark:text-white">
+          Desde
+        </label>
         <Controller
           name="since"
           control={control}
@@ -51,20 +52,20 @@ export const SinceUntilPayments = () => {
               type="date"
               placeholder="desde"
               className="mb-4 dark:text-white"
-              variant="bordered"
+              variant="faded"
               color="primary"
               value={value}
               onBlur={onBlur}
               onChange={onChange}
               max={today}
+              size="lg"
               isInvalid={!!errors.since}
               errorMessage={!!errors.since && "Introduce un dato valido"}
-              
               endContent={
                 <button
                   className="focus:outline-none"
                   type="button"
-                  onClick={() => deleteDate("since")}
+                  onClick={() => deleteDate("since",firstDay)}
                 >
                   <FaTrash className="text-md text-red-500 pointer-events-none " />
                 </button>
@@ -73,8 +74,10 @@ export const SinceUntilPayments = () => {
           )}
         />
       </div>
-      <div>
-        <label htmlFor="desde" className="dark:text-white">Hasta</label>
+      <div className="lg:w-[20rem] w-full">
+        <label htmlFor="desde" className="dark:text-white">
+          Hasta
+        </label>
         <Controller
           name="until"
           control={control}
@@ -84,8 +87,9 @@ export const SinceUntilPayments = () => {
               type="date"
               placeholder="desde"
               className="mb-4 dark:text-white"
-              variant="bordered"
+              variant="faded"
               color="primary"
+              size="lg"
               value={value}
               onBlur={onBlur}
               onChange={onChange}
@@ -97,7 +101,7 @@ export const SinceUntilPayments = () => {
                   className="focus:outline-none"
                   type="button"
                   color="danger"
-                  onClick={() => deleteDate("until")}
+                  onClick={() => deleteDate("until",today)}
                 >
                   <FaTrash className="text-md text-red-500 pointer-events-none " />
                 </button>
@@ -107,13 +111,12 @@ export const SinceUntilPayments = () => {
         />
       </div>
       <Button
-        className="w-full"
+        isIconOnly
         color="primary"
         type="submit"
-        endContent={<BiSearch className="w-5 h-5" />}
-      >
-        Buscar
-      </Button>
+        className="mt-2 w-full lg:w-fit"
+        endContent={<BiSearch className="w-6 h-6" />}
+      ></Button>
     </form>
   );
 };

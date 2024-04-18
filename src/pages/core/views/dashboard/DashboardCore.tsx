@@ -1,56 +1,85 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../store/store";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { DashboardThunks } from "../../../../store/dashboard/thunks";
 import { DashboardParams } from "../../params/dashboard/DashboardParams";
 import { configTaiwind } from "../../../../utils/configTaiwind";
-import { CardInforDarshboard } from "./components/CardInforDarshboard";
-import { IoIosCash } from "react-icons/io";
-import { FaUserTag } from "react-icons/fa";
-import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { ChartDashboard } from "./components/ChartDashboard";
-
 import { TablePayment } from "../finances/payments/components/table/TablePayments";
 import { PLayouts } from "../../layout/PLayouts";
 import { ChartMethodPayments } from "./components/ChartMethodPayments";
 import { SearchCompanyDashboard } from "./components/SearchCompanyDashboard";
 import { ButtonsModalCompaniesDashboard } from "./components/ButtonsModalCompaniesDashboard";
+import { getCookie, setCookie } from "../../../../config/cookies";
+import { setCompanyDash } from "../../../../store/dashboard/DashCompanySlice";
+import { DateFilterDashboard } from "./components/DateFilterDashboard";
+import { useAllParams } from "../../../../hooks/useAllParams";
+import { PaymentsThunks } from "../../../../store/payment/thunks";
+import { PaymentParams } from "../../params/payment/payments/paymentParams";
+import { firstDayMonth, getToday } from "../../services/getToday";
+import { CardInforDarshboard } from "./components/CardInforDarshboard";
 
 const DashboardCore = () => {
-  const { dashboard } = useSelector((resp: RootState) => resp.dashboard);
+  const { params } = useAllParams();
+  const { company } = useSelector((d: RootState) => d.dashCompany);
   const dispatch = useDispatch<AppDispatch>();
+
+  const SelectCompany = (company: any) => {
+    const data = getCookie("companyDash");
+    if (data) {
+      setCookie("companyDash", [...data, company]);
+      dispatch(setCompanyDash([...data, company]));
+      return;
+    }
+    setCookie("companyDash", [company]);
+    dispatch(setCompanyDash([company]));
+  };
+
+  const sendRequestDashboard = () => {
+    const parameters = new DashboardParams();
+    params.since
+      ? (parameters.since = params.since)
+      : (parameters.since = "2000-01-20");
+    params.until
+      ? (parameters.until = params.until)
+      : (parameters.until = firstDayMonth());
+    const companiesId = company.map((d) => d.id).join(",");
+    companiesId.length > 0 && (parameters.company = companiesId);
+    dispatch(DashboardThunks(parameters));
+  };
+
+  const sendRequestPayment = () => {
+    const parametersPay = new PaymentParams();
+    params.since
+      ? (parametersPay.since = params.since)
+      : (parametersPay.since = getToday());
+    params.until
+      ? (parametersPay.until = params.until)
+      : (parametersPay.until = firstDayMonth());
+    params.page && (parametersPay.page = Number(params.page));
+    const companiesId = company.map((d) => d.id).join(",");
+    companiesId.length > 0 && (parametersPay.company = companiesId);
+    dispatch(PaymentsThunks(parametersPay));
+  };
+
+  const sendRequest = () => {
+    sendRequestDashboard();
+    sendRequestPayment();
+  };
+
   useEffect(() => {
-    const params = new DashboardParams();
-    const today = new Date();
-    const formatter = `${today.getFullYear()}-${
-      today.getMonth() + 1
-    }-${today.getDate()}`;
-    params.since = formatter;
-    params.until = formatter;
-    dispatch(DashboardThunks(params));
-  }, []);
+    sendRequest();
+  }, [company, params]);
 
   return (
     <div className={`${configTaiwind.animateView} dark:text-white space-y-7`}>
-      <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:space-y-0 space-y-7 gap-3">
-        <CardInforDarshboard
-          title="Cantidad"
-          Icon={<IoIosCash className="w-12 h-12" />}
-        />
-        <CardInforDarshboard
-          title="Cliente"
-          Icon={<FaUserTag className="w-12 h-12" />}
-        />
-        <CardInforDarshboard
-          title="Acumulado"
-          Icon={<FaMoneyBillTrendUp className="w-12 h-12" />}
-        />
-      </div>
+      <DateFilterDashboard setSearchParams={sendRequest} />
+      <CardInforDarshboard />
       <div className="grid lg:grid-cols-7 gap-3 sm:grid-cols-1">
         <div className="col-span-full lg:col-span-2 p-4  bg-white dark:bg-primaryDark rounded-xl shadow-xl">
           <div className="flex justify-between">
-          <PLayouts message="Compañías" />
-          <ButtonsModalCompaniesDashboard/>
+            <PLayouts message="Compañías" />
+            <ButtonsModalCompaniesDashboard selectCompany={SelectCompany} />
           </div>
           <SearchCompanyDashboard />
         </div>

@@ -1,38 +1,19 @@
 import Chart from "react-apexcharts";
 import { useThemeMovilPay } from "../../../../../hooks/useTheme";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../store/store";
+import { getMonthById } from "../../../services/getMonthById";
 
 export const ChartMethodPayments = () => {
   const { darkMode } = useThemeMovilPay();
+  const [data, setData] = useState<any>([]);
+  const { dashboard, isLoading } = useSelector((d: RootState) => d.dashboard);
   const options = {
-    series: [
-      {
-        name: "Organic",
-        data: [
-          { x: "Mon", y: 231 },
-          { x: "Tue", y: 122 },
-          { x: "Wed", y: 63 },
-          { x: "Thu", y: 421 },
-          { x: "Fri", y: 122 },
-          { x: "Sat", y: 323 },
-          { x: "Sun", y: 111 },
-        ],
-      },
-      {
-        name: "Social media",
-        data: [
-          { x: "Mon", y: 232 },
-          { x: "Tue", y: 113 },
-          { x: "Wed", y: 341 },
-          { x: "Thu", y: 224 },
-          { x: "Fri", y: 522 },
-          { x: "Sat", y: 411 },
-          { x: "Sun", y: 243 },
-        ],
-      },
-    ],
+    series: data,
     options: {
       chart: {
-        type: "column",
+        type: "bar",
         height: 350,
       },
     },
@@ -52,16 +33,55 @@ export const ChartMethodPayments = () => {
     },
 
     legend: {
-      show: true, 
-      labels:{
-        colors:darkMode?'#ffffff' :'#000000'
-      }
+      show: true,
+      labels: {
+        colors: darkMode ? "#ffffff" : "#000000",
+      },
     },
 
     fill: {
       opacity: 1,
     },
   };
+
+  useMemo(() => {
+    // Agrupar los elementos por el nombre de la compañía
+    const groupedMethod = dashboard.reduce(
+      (accumulator: any, element: any) => {
+        const nameMethod = element.payment_method;
+        if (!accumulator[nameMethod]) {
+          accumulator[nameMethod] = [];
+        }
+        accumulator[nameMethod].push(element);
+
+        return accumulator;
+      },
+      {}
+    );
+
+    const filtereArray = Object.keys(groupedMethod).map((d) => {
+      const filt = groupedMethod[d].reduce(
+        (acumulador: any, { month, total }: any) => {
+          const nombreMes = getMonthById(month);
+          if (!acumulador[nombreMes]) {
+            acumulador[nombreMes] = 0;
+          }
+          acumulador[nombreMes] += total;
+          return acumulador;
+        },
+        {}
+      );
+
+      const formater = Object.entries(filt).map(([x, y]) => ({ x, y }));
+
+      return {
+        name: d,
+        data: formater,
+      };
+    });
+
+    setData(filtereArray);
+  }, [isLoading]);
 
   return (
     <div className="bg-white rounded-xl pb-6 pt-3 shadow-lg dark:bg-primaryDark">
