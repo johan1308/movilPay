@@ -18,11 +18,13 @@ movilPayAPI.interceptors.response.use(
     return response;
   },
   (error) => {
+    
+    
     // Manejar errores de respuesta
     if (error.response.status == 500) {
       ErrorToast("Server Internal Error (500)");
     }
-    if (error.response.status == 0) {
+    if (error.request.status == 0) {
       ErrorToast("Error de conexion, intente nuevamente");
     }
     if (error.response.status == 401) {

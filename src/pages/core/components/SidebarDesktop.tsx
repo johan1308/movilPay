@@ -28,7 +28,7 @@ export const SidebarDesktop = ({
         <nav
           role="navigation"
           className={[
-            "dark:bg-transparent border-r-3 dark:border-r-transparent bg-white/80  border-r border-slate-100 shadow-sm absolute inset-y-0 left-0 mt-14",
+            "dark:bg-transparent  dark:border-r-transparent bg-transparent   shadow-sm absolute inset-y-0 left-0 mt-14",
             "transition-all duration-300 ease-in-out md:fixed",
             `${isExpand ? "w-72" : "w-20"}`,
           ].join(" ")}

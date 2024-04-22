@@ -12,13 +12,12 @@ import { TransferMethod } from "./TransferMethod";
 import { MovilPayMethod } from "./MovilPayMethod";
 import {
   MethodPaymentsThunks,
-  PaymentsThunks,
 } from "../../../../../../../store/payment/thunks";
 import { BanksThunks } from "../../../../../../../store/banks/thunks";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../../../../store/store";
 import { SlidePayments } from "../SlidePayments";
-import { useAllParams } from "../../../../../../../hooks/useAllParams";
+
 
 export const AddPayments = ({refresh}:{refresh:any}) => {
   const { methods_payments } = useSelector((d: RootState) => d.methodPayments);
@@ -70,7 +69,7 @@ export const AddPayments = ({refresh}:{refresh:any}) => {
 
   return (
     <>
-      <Dropdown>
+      <Dropdown backdrop="opaque">
         <DropdownTrigger>
           <Button
             color="primary"
