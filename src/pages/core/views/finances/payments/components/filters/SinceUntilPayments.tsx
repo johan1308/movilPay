@@ -1,14 +1,18 @@
 import { Button, Input } from "@nextui-org/react";
 import { Controller, useForm } from "react-hook-form";
-
+import {RangeCalendar} from "@nextui-org/calendar";
 import { FaTrash } from "react-icons/fa6";
 import { BiSearch } from "react-icons/bi";
 import { ErrorToast } from "../../../../../../../hooks/Notifications";
 import { useAllParams } from "../../../../../../../hooks/useAllParams";
 import { getToday } from "../../../../../services/getToday";
+import moment from "moment";
+import {today as hoy, getLocalTimeZone} from "@internationalized/date";
+
 
 export const SinceUntilPayments = () => {
   const today = getToday()
+  
   const { addParams, params, deleteParams, setSearchParams } = useAllParams();
   const {
     handleSubmit,
@@ -39,6 +43,7 @@ export const SinceUntilPayments = () => {
     deleteParams(["since", "until", "page"]);
   };
   return (
+    <>
     <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="desde" className="dark:text-white">Desde</label>
@@ -115,5 +120,8 @@ export const SinceUntilPayments = () => {
         Buscar
       </Button>
     </form>
+    
+    <RangeCalendar aria-label="Date (No Selection)"  maxValue={hoy(getLocalTimeZone())}/>
+    </>
   );
 };
