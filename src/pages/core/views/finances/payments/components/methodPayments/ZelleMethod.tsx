@@ -20,7 +20,7 @@ import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
 import { classNames } from "../../../../../../../helpers/ClassN";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoadingToast } from "../../../../../../../hooks/Notifications";
+import { LoadingToast } from "../../../../../../../libs/Notifications";
 import { CreatePaymentThunks } from "../../../../../../../store/payment/thunks";
 interface Props {
   setOpenSlice: (e?: any) => void;

@@ -56,7 +56,7 @@ export const AllCompanies = () => {
           </div>
         </div>
         <div className="col-span-full lg:col-span-3 ">
-          <div className="lg:flex lg:justify-between  mr-3 space-x-3 bg-white p-5  dark:bg-primaryDark rounded-xl shadow-xl">
+          <div className="lg:flex lg:justify-between  mr-3 space-x-3 ">
             <PLayouts message="Servicios de la compañía" />
           </div>
           <div className=" mt-5">

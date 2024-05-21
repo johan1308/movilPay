@@ -3,6 +3,7 @@ import { navigation } from "../data/menu";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useUserMovilPay } from "../../../hooks/useUserMovilPay";
+import { CardDolar } from "./dollars/CardDolar";
 
 export const SidebarDesktop = ({
   setExpand,
@@ -30,7 +31,7 @@ export const SidebarDesktop = ({
           className={[
             "dark:bg-transparent  dark:border-r-transparent bg-transparent   shadow-sm absolute inset-y-0 left-0 mt-14",
             "transition-all duration-300 ease-in-out md:fixed",
-            `${isExpand ? "w-72" : "w-20"}`,
+            `${isExpand ? "w-60" : "w-20"}`,
           ].join(" ")}
         >
           <button
@@ -88,9 +89,11 @@ export const SidebarDesktop = ({
                     >
                       {company}
                     </div>
+                    
                   </div>
                 </div>
               </div>
+              
 
               <div className="mt-3 mb-10 p-0 leading-10">
                 <ul className="list-none text-sm font-normal px-3">
@@ -106,7 +109,7 @@ export const SidebarDesktop = ({
                                   className={({ isActive }) => {
                                     const res = isActive
                                       ? "bg-secondary text-white shadow-lg"
-                                      : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
+                                      : "text-black hover:text-white hover:bg-secondary dark:text-white";
                                     return `${res} group flex ${
                                       !isExpand &&
                                       "justify-center animate-jump-in"
@@ -148,6 +151,7 @@ const ComponentChildren = ({ item, isExpand }: any) => {
       {isExpand ? (
         <Accordion
           selectionMode="multiple"
+          
           motionProps={{
             variants: {
               enter: {
@@ -197,7 +201,7 @@ const ComponentChildren = ({ item, isExpand }: any) => {
             }
             title={
               <p
-                className={`text-secondary  dark:text-white group flex gap-x-3 rounded-md  text-base leading-6 font-semibold`}
+                className={`text-dark  dark:text-white group flex gap-x-3 rounded-md  text-base leading-6 font-semibold`}
               >
                 {item.name}
               </p>
@@ -213,7 +217,7 @@ const ComponentChildren = ({ item, isExpand }: any) => {
                       className={({ isActive }) => {
                         const res = isActive
                           ? "bg-secondary text-white shadow-lg"
-                          : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
+                          : "text-dark hover:text-white hover:bg-secondary dark:text-white";
                         return `${res} group flex gap-x-1 rounded-md p-2 text-base leading-6 font-semibold`;
                       }}
                     >
@@ -235,7 +239,7 @@ const ComponentChildren = ({ item, isExpand }: any) => {
           className={({ isActive }) => {
             const res = isActive
               ? "bg-secondary text-white shadow-lg"
-              : "text-secondary hover:text-white hover:bg-secondary dark:text-white";
+              : "text-dark hover:text-white hover:bg-secondary dark:text-white";
             return `${res} group flex ${
               !isExpand && "justify-center animate-jump-in"
             } gap-x-3 rounded-md p-2 text-base leading-6 font-semibold duration-200`;

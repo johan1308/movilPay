@@ -1,20 +1,15 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
 import { BottonsPayments } from "./components/table/BottonsPayments";
 import { CheckFilterPayments } from "./components/filters/CheckFilterPayments";
 import { SinceUntilPayments } from "./components/filters/SinceUntilPayments";
 import { TablePayment } from "./components/table/TablePayments";
-
-import moment from "moment";
 import { PaymentParams } from "../../../params/payment/payments/paymentParams";
 import { AppDispatch } from "../../../../../store/store";
 import { useAllParams } from "../../../../../hooks/useAllParams";
 import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
 import { BanksDestinyOriginPayments } from "./components/filters/BanksDestinyOriginPayments";
-import { ChartPiePayments } from "./components/ChartPiePayments";
-import { CompaniesFilterPayments } from "./components/filters/CompaniesFilterPayments";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams, setSearchParams } = useAllParams();
@@ -34,8 +29,8 @@ const PaymentCore = () => {
   };
 
   const handleSearch = ({ search }: any) => {
-    if (search == undefined ||search == null ) return
-    
+    if (search == undefined || search == null) return;
+
     if (search.length == 0) {
       deleteParams(["search"]);
       return;
@@ -43,6 +38,7 @@ const PaymentCore = () => {
     const { page, ...rest } = params;
     setSearchParams({ ...rest, search });
   };
+  console.log(params);
 
   useEffect(() => {
     handleConsultation();
@@ -56,32 +52,32 @@ const PaymentCore = () => {
         search={handleSearch}
         filters={[
           {
-            name: "Estado",
+            name: "",
             component: <CheckFilterPayments />,
             field: "status",
           },
           {
-            name: "Fecha",
+            name: "Introduce un rango de fecha",
             component: <SinceUntilPayments />,
             field: "since",
           },
           {
-            name: "Bancos",
+            name: "Selecciona los bancos",
             component: <BanksDestinyOriginPayments />,
             field: "banks",
           },
-          {
-            name: "Compañía",
-            component: <CompaniesFilterPayments />,
-            field: "company",
-          },
+          // {
+          //   name: "Compañía",
+          //   component: <CompaniesFilterPayments />,
+          //   field: "company",
+          // },
         ]}
       >
         <>
           {params.since && (
-            <p className="font-semibold text-xl dark:text-white text-end mt-10">
-              {moment(params.since).format("DD-MM-YYYY")} a{" "}
-              {moment(params.until).format("DD-MM-YYYY")}
+            <p className="font-semibold text-xl dark:text-white text-end mt-4">
+              {params.since && params.since}
+              {params.until && ` – ${params.until}`}
             </p>
           )}
           <TablePayment />

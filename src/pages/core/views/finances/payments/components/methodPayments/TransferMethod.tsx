@@ -21,7 +21,7 @@ import { classNames } from "../../../../../../../helpers/ClassN";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { CreatePaymentThunks } from "../../../../../../../store/payment/thunks";
-import { LoadingToast } from "../../../../../../../hooks/Notifications";
+import { LoadingToast } from "../../../../../../../libs/Notifications";
 
 interface Props {
   setOpenSlice: (e?: any) => void;
@@ -123,7 +123,8 @@ export const TransferMethod = ({ setOpenSlice, setHandleRefresh }: Props) => {
                   placeholder="Escribe para buscar"
                   variant="bordered"
                   size="lg"
-                  className={configTaiwind.animateViewFade}
+                  
+                  className={`w-full ${darkMode&&'text-white'} ${configTaiwind.animateViewFade}`}
                   color="primary"
                   onInputChange={getCompanies}
                   onSelectionChange={(e) => handleSelected(e)}
@@ -308,7 +309,7 @@ export const TransferMethod = ({ setOpenSlice, setHandleRefresh }: Props) => {
                 maxLength={10}
                 isInvalid={!!errors.amount}
                 errorMessage={errors.amount?.message}
-                className="w-full"
+                className={`${darkMode ? "text-white" : "text-gray-900"}`}
                 placeholder="Monto del pago"
               />
             )}
@@ -327,7 +328,7 @@ export const TransferMethod = ({ setOpenSlice, setHandleRefresh }: Props) => {
             rules={{ required: true }}
             render={({ field: { onBlur, onChange, value } }) => (
               <Textarea
-                className="w-full"
+              className={`${darkMode ? "text-white" : "text-gray-900"}`}
                 color="primary"
                 onBlur={onBlur}
                 onChange={onChange}

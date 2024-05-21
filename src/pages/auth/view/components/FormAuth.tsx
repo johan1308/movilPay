@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { LoadingToast } from "../../../../hooks/Notifications";
+import { LoadingToast } from "../../../../libs/Notifications";
 import { authApi } from "../../../../api/authAPI";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../context/AuthProviders";

@@ -5,7 +5,7 @@ import { classNames } from '../../../helpers/ClassN'
 export const PLayouts = ({message,icon}:{message:string,icon?:any}) => {
   const {darkMode} = useThemeMovilPay()
   return (
-    <p className={classNames(darkMode&&'text-white',"font-semibold text-xl ")}>
+    <p className={classNames(darkMode&&'text-white',"font-semibold text-2xl ")}>
         {message}
         {icon}
     </p>

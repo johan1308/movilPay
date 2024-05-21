@@ -102,7 +102,7 @@ export const SidebarCore = ({
         {/* Sidebar para escritorio*/}
         <SidebarDesktop setExpand={setIsExpandOnHover}/>
 
-        <div className={`${isExpandOnHover?'lg:pl-72':'lg:pl-20'}  transition-all duration-300 ease-in-out `}>
+        <div className={`${isExpandOnHover?'lg:pl-64':'lg:pl-20'}  transition-all duration-300 ease-in-out `}>
           <main className="py-4">
             <div className="px-6 sm:px-6 lg:px-8 ">
               

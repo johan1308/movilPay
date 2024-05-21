@@ -31,7 +31,7 @@ export const NavbarCore = ({
         <div className="mt-3 hidden sm:flex ">
           <Img
             src={require(`../../../assets/img/${img}.png`)}
-            className="h-10 w-38 mb-2 ml-7"
+            className="h-10 w-38 mb-2 ml-3"
           />
         </div>
         <div className="flex lg:ml-36">{children}</div>

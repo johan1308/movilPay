@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorToast } from "../hooks/Notifications";
+import { ErrorToast } from "../libs/Notifications";
 
 export const movilPayAPI = axios.create({
   baseURL: "https://validator.movilpay.app",

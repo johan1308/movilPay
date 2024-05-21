@@ -3,10 +3,13 @@ import { Controller, useForm } from "react-hook-form";
 
 import { FaTrash } from "react-icons/fa6";
 import { BiSearch } from "react-icons/bi";
-import { ErrorToast } from "../../../../../../../hooks/Notifications";
+import { ErrorToast } from "../../../../../../../libs/Notifications";
 import { useAllParams } from "../../../../../../../hooks/useAllParams";
 
+import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
+
 export const CompaniesFilterPayments = () => {
+  const { darkMode } = useThemeMovilPay();
   const { addParams, params, deleteParams, setSearchParams } = useAllParams();
   const {
     handleSubmit,
@@ -28,9 +31,9 @@ export const CompaniesFilterPayments = () => {
 
   return (
     <div>
+      
       <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
         <div>
-          
           <Controller
             name="company"
             control={control}

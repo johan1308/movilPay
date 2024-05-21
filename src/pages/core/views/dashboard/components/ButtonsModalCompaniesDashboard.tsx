@@ -20,7 +20,7 @@ import { Loading } from "../../../../../components/Loading";
 import { useEffect } from "react";
 import { Company } from "../../../interfaces/CompaniesInterfaces";
 import { getCookie, setCookie } from "../../../../../config/cookies";
-import { ErrorToast } from "../../../../../hooks/Notifications";
+import { ErrorToast } from "../../../../../libs/Notifications";
 
 type ParamsSelect = {
   id: number;

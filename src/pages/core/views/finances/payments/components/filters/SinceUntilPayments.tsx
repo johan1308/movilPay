@@ -1,127 +1,81 @@
-import { Button, Input } from "@nextui-org/react";
-import { Controller, useForm } from "react-hook-form";
-import {RangeCalendar} from "@nextui-org/calendar";
-import { FaTrash } from "react-icons/fa6";
-import { BiSearch } from "react-icons/bi";
-import { ErrorToast } from "../../../../../../../hooks/Notifications";
+import { DateValue, RangeCalendar, RangeValue } from "@nextui-org/calendar";
 import { useAllParams } from "../../../../../../../hooks/useAllParams";
-import { getToday } from "../../../../../services/getToday";
-import moment from "moment";
-import {today as hoy, getLocalTimeZone} from "@internationalized/date";
 
+import {
+  DateInternalized,
+  formaterTimeInternalizedRange,
+  todayInternalized,
+} from "../../../../../../../libs/GetTimeInternalized";
+import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
+import { Button } from "@nextui-org/react";
+import { HiMiniTrash } from "react-icons/hi2";
+import { useState } from "react";
 
 export const SinceUntilPayments = () => {
-  const today = getToday()
-  
-  const { addParams, params, deleteParams, setSearchParams } = useAllParams();
-  const {
-    handleSubmit,
-    control,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      since: params.since,
-      until: params.until,
-    },
-  });
-  const onSubmit = ({ since, until }: any) => {
-    const formaterSince = new Date(since);
-    const formaterUntil = new Date(until);
+  const { darkMode } = useThemeMovilPay();
+  const { params, setSearchParams } = useAllParams();
 
-    if (formaterSince > formaterUntil) {
-      return ErrorToast("El DESDE no puede ser mayor");
-    }
+  
+
+  const handleChange = (date: any) => {
+    setValue(date)
+    const { since, until } = formaterTimeInternalizedRange(date);
     const { page, search, ...restParams } = params;
-    const payload = { ...restParams, since, until };
+    const payload = {
+      ...restParams,
+      since: since.trim(),
+      until: !until ? since.trim() : until.trim(),
+    };
     setSearchParams(payload);
   };
 
-  const deleteDate = (field: "since" | "until") => {
-    setValue(field, "");
-    deleteParams(["since", "until", "page"]);
+  const initValue = () => {
+    if (params.since) {
+      return {
+        start: DateInternalized(params.since),
+        end: DateInternalized(params.until),
+      };
+    }
+
+    return {
+      start: todayInternalized(),
+      end: todayInternalized(),
+    };
   };
+
+  const [value, setValue] = useState<RangeValue<DateValue>|null>({
+    start: initValue().start,
+    end: initValue().end,
+  });
+
+  const resetDate = () => {
+    const { page, search,since,until, ...restParams } = params;
+    setValue(null)
+    setSearchParams(restParams);
+  };
+
+  
+
   return (
     <>
-    <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="desde" className="dark:text-white">Desde</label>
-        <Controller
-          name="since"
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              type="date"
-              placeholder="desde"
-              className="mb-4 dark:text-white"
-              variant="bordered"
-              color="primary"
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              max={today}
-              isInvalid={!!errors.since}
-              errorMessage={!!errors.since && "Introduce un dato valido"}
-              
-              endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  onClick={() => deleteDate("since")}
-                >
-                  <FaTrash className="text-md text-red-500 pointer-events-none " />
-                </button>
-              }
-            />
-          )}
-        />
-      </div>
-      <div>
-        <label htmlFor="desde" className="dark:text-white">Hasta</label>
-        <Controller
-          name="until"
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              type="date"
-              placeholder="desde"
-              className="mb-4 dark:text-white"
-              variant="bordered"
-              color="primary"
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              max={today}
-              isInvalid={!!errors.since}
-              errorMessage={!!errors.until && "Introduce un dato valido"}
-              endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  color="danger"
-                  onClick={() => deleteDate("until")}
-                >
-                  <FaTrash className="text-md text-red-500 pointer-events-none " />
-                </button>
-              }
-            />
-          )}
-        />
-      </div>
-      <Button
-        className="w-full"
-        color="primary"
-        type="submit"
-        endContent={<BiSearch className="w-5 h-5" />}
-      >
-        Buscar
-      </Button>
-    </form>
-    
-    <RangeCalendar aria-label="Date (No Selection)"  maxValue={hoy(getLocalTimeZone())}/>
+      <RangeCalendar
+        aria-label="Date (No Selection)"
+        value={value}
+        bottomContent={
+          <div className="flex justify-end m-2">
+            <Button color="danger" size="sm" isIconOnly onClick={resetDate}>
+              <HiMiniTrash className="h-6 w-6" />
+            </Button>
+          </div>
+        }
+        maxValue={todayInternalized()}
+        className={`w-full ${darkMode && "dark"}`}
+        classNames={{
+          cell: "w-full",
+          cellButton: "w-full",
+        }}
+        onChange={handleChange}
+      />
     </>
   );
 };
