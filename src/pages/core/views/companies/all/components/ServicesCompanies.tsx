@@ -162,7 +162,7 @@ export const ServicesCompanies = () => {
           {people.map((person, i) => (
             <li
               key={person.email + i}
-              className={`${configTaiwind.animateView} relative flex justify-between gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-xl rounded-xl `}
+              className={`${configTaiwind.animateView} relative flex justify-between gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-md rounded-xl `}
             >
               <div className="flex min-w-0 gap-x-4">
                 <FaHandHoldingDollar className="h-10 w-10 p-1 flex-none rounded-full bg-gray-100 text-primaryDark" />
@@ -220,7 +220,7 @@ export const ServicesCompanies = () => {
 const NotServiceCompanies = () => {
   return (
     <li
-      className={`${configTaiwind.animateView} relative flex justify-center gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-xl rounded-xl `}
+      className={`${configTaiwind.animateView} relative flex justify-center gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-md rounded-xl `}
     >
       <div className="text-center">
         <IoBanOutline className="mx-auto h-12 w-12 text-gray-400" />

@@ -41,6 +41,7 @@ const initialState: arrayState[] = [
 export const CardInforDarshboard = () => {
   const { darkMode } = useThemeMovilPay();
   const { dashboard } = useSelector((d: RootState) => d.dashboard);
+  console.log(dashboard);
   
 
   const getAmount:any = useMemo(() => {
@@ -59,6 +60,7 @@ export const CardInforDarshboard = () => {
     const totalAccumulated = dashboard.reduce((acumulador: any, elemento: any) => {
       return acumulador + elemento.total;
     }, 0);
+    
     const ttA =`${totalAccumulated}$`
     
     
@@ -72,8 +74,8 @@ export const CardInforDarshboard = () => {
 
   return (
     <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:space-y-0 space-y-7 gap-3">
-      {initialState.map((resp) => (
-        <div className=" w-full bg-white rounded-lg shadow dark:bg-primaryDark shadow-xl p-4 md:p-6">
+      {initialState.map((resp,i) => (
+        <div key={i} className=" w-full bg-white rounded-lg  dark:bg-primaryDark shadow-md p-4 md:p-6" >
           <div className="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
             <dl>
               <dt className="text-base font-semibold text-gray-500 dark:text-gray-400 pb-1">

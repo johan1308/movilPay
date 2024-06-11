@@ -32,7 +32,7 @@ export const data = {
 
 export const ChartPiePayments = () => {
   return (
-    <div className="bg-white rounded-xl shadow-xl p-4">
+    <div className="bg-white rounded-xl shadow-md p-4">
       <PLayouts message="Estadísticas de los pagos" />
 
     </div>

@@ -39,7 +39,7 @@ export const SlidePayments = ({ open, setOpen,children }: Props) => {
                 leaveTo="translate-x-full"
               >
                 <Dialog.Panel className="pointer-events-auto w-[650px] ">
-                  <div className={classNames(darkMode?'bg-primaryDark':'bg-white',"flex h-full flex-col overflow-y-scroll py-6 shadow-xl ")}>
+                  <div className={classNames(darkMode?'bg-primaryDark':'bg-white',"flex h-full flex-col overflow-y-scroll py-6 shadow-md ")}>
                     <div className="px-4 sm:px-6 py-2">
                       <div className="flex items-start justify-between ">
                         <Dialog.Title className={classNames(darkMode?'text-white':'text-gray-900',"text-base font-semibold leading-6  ")}>

@@ -1,122 +1,73 @@
-import { Controller, useForm } from "react-hook-form";
 import { useAllParams } from "../../../../../hooks/useAllParams";
-import { firstDayMonth, getToday } from "../../../services/getToday";
-import { Button, Input } from "@nextui-org/react";
-import { FaTrash } from "react-icons/fa";
-import { BiSearch } from "react-icons/bi";
+import {
+  Button,
+  DateRangePicker,
+  DateValue,
+  RangeValue,
+} from "@nextui-org/react";
+import {
+  DateInternalized,
+  formaterTimeInternalizedRange,
+  todayInternalized,
+} from "../../../../../libs/GetTimeInternalized";
+import { HiMiniTrash } from "react-icons/hi2";
+import { useState } from "react";
 
 export const DateFilterDashboard = ({ setSearchParams }: any) => {
-  const today = getToday();
-  const firstDay = firstDayMonth();
+  const today = todayInternalized();
+  const { params,  setSearchParams: setSearch } = useAllParams();
 
-  const { params, deleteParams, setSearchParams: setSearch } = useAllParams();
-  const {
-    handleSubmit,
-    control,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      since: params.since || firstDay,
-      until: params.until || today,
-    },
+  const handleChange = (date: any) => {
+    setValue(date);
+    const { since, until } = formaterTimeInternalizedRange(date);
+    const { page, search, ...restParams } = params;
+    const payload = {
+      ...restParams,
+      since: since.trim(),
+      until: !until ? since.trim() : until.trim(),
+    };
+    setSearch(payload);
+  };
+
+  const initValue = () => {
+    if (params.since) {
+      return {
+        start: DateInternalized(params.since),
+        end: DateInternalized(params.until),
+      };
+    }
+
+    return {
+      start: todayInternalized(),
+      end: todayInternalized(),
+    };
+  };
+
+  const [value, setValue] = useState<RangeValue<DateValue> | null>({
+    start: initValue().start,
+    end: initValue().end,
   });
 
-  const onSubmit = ({ since, until }: any) => {
-    const { page, search, ...restParams } = params;
-    const payload = { ...restParams, since, until };
-    setSearch(payload);
-    setSearchParams(payload);
+  const resetDate = () => {
+    const { page, search, since, until, ...restParams } = params;
+    setValue(null);
+    setSearch(restParams);
   };
 
-  const deleteDate = (field: "since" | "until",value:string) => {
-    setValue(field, value);
-    deleteParams(["since", "until", "page"]);
-  };
   return (
-    <form
-      className="flex flex-col lg:flex-row justify-end items-center lg:space-x-2 space-x-2 mb-2"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div className="lg:w-[20rem] w-full">
-        <label htmlFor="desde" className="dark:text-white">
-          Desde
-        </label>
-        <Controller
-          name="since"
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              type="date"
-              placeholder="desde"
-              className="mb-4 dark:text-white"
-              variant="faded"
-              color="primary"
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              max={today}
-              size="lg"
-              isInvalid={!!errors.since}
-              errorMessage={!!errors.since && "Introduce un dato valido"}
-              endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  onClick={() => deleteDate("since",firstDay)}
-                >
-                  <FaTrash className="text-md text-red-500 pointer-events-none " />
-                </button>
-              }
-            />
-          )}
-        />
-      </div>
-      <div className="lg:w-[20rem] w-full">
-        <label htmlFor="desde" className="dark:text-white">
-          Hasta
-        </label>
-        <Controller
-          name="until"
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <Input
-              type="date"
-              placeholder="desde"
-              className="mb-4 dark:text-white"
-              variant="faded"
-              color="primary"
-              size="lg"
-              value={value}
-              onBlur={onBlur}
-              onChange={onChange}
-              max={today}
-              isInvalid={!!errors.since}
-              errorMessage={!!errors.until && "Introduce un dato valido"}
-              endContent={
-                <button
-                  className="focus:outline-none"
-                  type="button"
-                  color="danger"
-                  onClick={() => deleteDate("until",today)}
-                >
-                  <FaTrash className="text-md text-red-500 pointer-events-none " />
-                </button>
-              }
-            />
-          )}
-        />
-      </div>
-      <Button
-        isIconOnly
-        color="primary"
-        type="submit"
-        className="mt-2 w-full lg:w-fit"
-        endContent={<BiSearch className="w-6 h-6" />}
-      ></Button>
-    </form>
+    <div className="flex items-center space-x-4">
+      <DateRangePicker
+        label="Fecha"
+        className="max-w-xs"
+        variant="faded"
+        placeholderValue={today}
+        maxValue={today}
+        value={value}
+        onChange={handleChange}
+      />
+      <Button color="danger" size="md" isIconOnly onClick={resetDate}>
+        <HiMiniTrash className="h-6 w-6" />
+      </Button>
+    </div>
   );
 };

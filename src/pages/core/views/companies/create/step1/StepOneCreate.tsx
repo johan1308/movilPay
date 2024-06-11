@@ -55,7 +55,7 @@ export const StepOneCreate = () => {
   return (
     <div className={configTaiwind.animateView}>
       <main>
-        <div className="p-4  lg:text-center sm:px-6 lg:px-8  bg-white rounded-xl shadow-xl dark:bg-primaryDark">
+        <div className="p-4  lg:text-center sm:px-6 lg:px-8  bg-white rounded-xl shadow-md dark:bg-primaryDark">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
             Servicios
           </h1>

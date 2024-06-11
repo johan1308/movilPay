@@ -84,7 +84,7 @@ export const ChartMethodPayments = () => {
   }, [isLoading]);
 
   return (
-    <div className="bg-white rounded-xl pb-6 pt-3 shadow-lg dark:bg-primaryDark">
+    <div className="bg-white rounded-xl pb-6 pt-3 shadow-md dark:bg-primaryDark">
       <p className=" font-semibold ml-7 text-2xl mb-5">Métodos de pago</p>
       <div className="p-5 ">
         <Chart

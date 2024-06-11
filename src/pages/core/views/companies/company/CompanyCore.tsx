@@ -10,7 +10,7 @@ export const CompanyCore = () => {
 
                     {/* <!-- profile card --> */}
                     <div className="flex flex-col top-0 ">
-                        <div className="bg-white shadow-xl rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl p-4">
+                        <div className="bg-white shadow-md rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl p-4">
                             <div className="flex-none sm:flex">
                                 <div className=" relative h-32 w-32   sm:mb-0 mb-3">
                                     {/* <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" w-32 h-32 object-cover rounded-2xl"> */}
@@ -104,7 +104,7 @@ export const CompanyCore = () => {
                     {/* <!---stats--> */}
                     <div className="grid grid-cols-12 gap-4 ">
                         <div className="col-span-12 sm:col-span-4">
-                            <div className="p-4 relative  bg-white shadow-xl rounded-xl dark:bg-primaryDark shadow-lg  rounded-2xl">
+                            <div className="p-4 relative  bg-white shadow-md rounded-xl dark:bg-primaryDark shadow-lg  rounded-2xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14  absolute bottom-4 right-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
                                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
@@ -117,7 +117,7 @@ export const CompanyCore = () => {
                             </div>
                         </div>
                         <div className="col-span-12 sm:col-span-4">
-                            <div className="p-4 relative  bg-white shadow-xl rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
+                            <div className="p-4 relative  bg-white shadow-md rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
                                 </svg>
@@ -129,7 +129,7 @@ export const CompanyCore = () => {
                             </div>
                         </div>
                         <div className="col-span-12 sm:col-span-4">
-                            <div className="p-4 relative  bg-white shadow-xl rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
+                            <div className="p-4 relative  bg-white shadow-md rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-14 w-14  absolute bottom-4 right-3 text-yellow-300" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
@@ -144,7 +144,7 @@ export const CompanyCore = () => {
                     <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
 
                         {/* <!--confirm modal--> */}
-                        <div className="flex flex-col p-4 relative items-center justify-center bg-white shadow-xl rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
+                        <div className="flex flex-col p-4 relative items-center justify-center bg-white shadow-md rounded-xl dark:bg-primaryDark  shadow-lg  rounded-2xl">
                             <div className="">
                                 <div className="text-center p-5 flex-auto justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 -m-1 flex items-center text-blue-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,17 +158,17 @@ export const CompanyCore = () => {
                                         This process cannot be undone</p>
                                 </div>
                                 <div className="p-3  mt-2 text-center space-x-4 md:block">
-                                    <button className="mb-2 md:mb-0 bg-gray-700 px-5 py-2 text-sm shadow-sm font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-white shadow-xl rounded-xl dark:bg-primaryDark transition ease-in duration-300">
+                                    <button className="mb-2 md:mb-0 bg-gray-700 px-5 py-2 text-sm shadow-md font-medium tracking-wider border-2 border-gray-600 hover:border-gray-700 text-gray-300 rounded-full hover:shadow-lg hover:bg-white shadow-md rounded-xl dark:bg-primaryDark transition ease-in duration-300">
                                         Cancel
                                     </button>
-                                    <button className="bg-green-400 hover:bg-green-500 px-5 ml-4 py-2 text-sm shadow-sm hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300">Confirm</button>
+                                    <button className="bg-green-400 hover:bg-green-500 px-5 ml-4 py-2 text-sm shadow-md hover:shadow-lg font-medium tracking-wider border-2 border-green-300 hover:border-green-500 text-white rounded-full transition ease-in duration-300">Confirm</button>
                                 </div>
                             </div>
                         </div>
                         {/* <!--elements--> */}
                         <div className="flex flex-col space-y-4">
                             {/* <!-- elements 1 --> */}
-                            <div className="flex flex-col p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
+                            <div className="flex flex-col p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center mr-auto">
@@ -192,7 +192,7 @@ export const CompanyCore = () => {
                                 </div>
                             </div>
                             {/* <!--elements 2--> */}
-                            <div className="flex flex-col p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
+                            <div className="flex flex-col p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center mr-auto">
@@ -218,7 +218,7 @@ export const CompanyCore = () => {
                                 </div>
                             </div>
                             {/* Element 2 */}
-                            <div className="flex flex-col p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
+                            <div className="flex flex-col p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl cursor-pointer transition ease-in duration-500  transform hover:scale-105">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center mr-auto">
                                         <div className="inline-flex w-12 h-12"><img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" relative p-1 w-12 h-12 object-cover rounded-2xl" /><span className="absolute w-12 h-12 inline-flex border-2 rounded-2xl border-gray-600 opacity-75"></span>
@@ -244,12 +244,12 @@ export const CompanyCore = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex flex-col p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark  shadow-md hover:text-green-500 text-gray-400 hover:shodow-lg rounded-2xl transition ease-in duration-500  transform hover:scale-105 cursor-pointer">
+                            <div className="flex flex-col p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark  shadow-md hover:text-green-500 text-gray-400 hover:shodow-lg rounded-2xl transition ease-in duration-500  transform hover:scale-105 cursor-pointer">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center mr-auto">
                                         <div className="-space-x-5 flex ">
-                                            {/* <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" relative p-1 w-12 h-12 object-cover rounded-2xl border-2 border-gray-600 bg-white shadow-xl rounded-xl dark:bg-primaryDark">
-                                      <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" relative p-1 w-12 h-12 object-cover rounded-2xl border-2 border-gray-600 bg-white shadow-xl rounded-xl dark:bg-primaryDark shadow"> */}
+                                            {/* <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" relative p-1 w-12 h-12 object-cover rounded-2xl border-2 border-gray-600 bg-white shadow-md rounded-xl dark:bg-primaryDark">
+                                      <img src="https://tailwindcomponents.com/storage/avatars/njkIbPhyZCftc4g9XbMWwVsa7aGVPajYLRXhEeoo.jpg" alt="aji" className=" relative p-1 w-12 h-12 object-cover rounded-2xl border-2 border-gray-600 bg-white shadow-md rounded-xl dark:bg-primaryDark shadow"> */}
                                         </div>
 
                                         <div className="flex flex-col ml-3 min-w-0">
@@ -265,7 +265,7 @@ export const CompanyCore = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-col justify-center p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl">
+                        <div className="flex flex-col justify-center p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
                                     <div className="flex flex-col">
@@ -278,7 +278,7 @@ export const CompanyCore = () => {
                                 </svg></a>
                             </div>
                         </div>
-                        <div className="flex flex-col p-4 bg-white shadow-xl rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl">
+                        <div className="flex flex-col p-4 bg-white shadow-md rounded-xl dark:bg-primaryDark border-gray-800 shadow-md hover:shodow-lg rounded-2xl">
                             <div className="flex">
                                 {/* <img src="https://images.unsplash.com/photo-1575390730294-dfc5efa5250b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80" alt="Just a flower" className=" w-16  object-fit  h-16 rounded-2xl"> */}
                                 <div className="flex flex-col justify-center w-full px-2 py-1">

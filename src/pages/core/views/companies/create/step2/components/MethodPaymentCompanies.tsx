@@ -68,7 +68,7 @@ export const MethodPaymentCompanies = () => {
         {people.map((person) => (
           <li
             key={person.email}
-            className="relative flex justify-between gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-xl rounded-xl "
+            className="relative flex justify-between gap-x-1 py-5 px-3 bg-white dark:bg-primaryDark shadow-md rounded-xl "
           >
             <div className="flex min-w-0 gap-x-4">
               <img

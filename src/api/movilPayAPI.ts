@@ -32,6 +32,7 @@ movilPayAPI.interceptors.response.use(
       sessionStorage.clear();
       deleteCookie("token")
       deleteCookie("user")
+      deleteCookie("companyDash")
       window.location.href = "/auth/";
       return;
     }

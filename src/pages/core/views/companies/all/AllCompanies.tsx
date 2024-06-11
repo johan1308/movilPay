@@ -39,17 +39,17 @@ export const AllCompanies = () => {
     <div className={`${configTaiwind.animateView}`}>
       <div className="grid gap-4 grid-cols-5">
         <div className="col-span-full lg:col-span-2">
-          <div className="p-4 dark:bg-primaryDark bg-white rounded-xl shadow-xl">
+          <div className="">
             <SearchCompanies search={handleSearch} />
           </div>
-          <div className="mt-4 bg-white dark:bg-primaryDark shadow-xl rounded-xl p-2">
+          <div className="mt-2 bg-white dark:bg-primaryDark shadow-md rounded-xl p-2">
             <h3 className="text-lg font-medium  p-1 dark:text-white">
-              Resultado de la busqueda
+              Resultado de la búsqueda
             </h3>
             {(typeof params.search == "undefined" ||
               params.search.length == 0) && (
               <p className="mt-1 text-sm text-gray-500">
-                Por defecto se muestran los 10 ultimos registrados
+                Por defecto se muestran los 10 últimos registrados
               </p>
             )}
             <ResultsSearchCompanies />

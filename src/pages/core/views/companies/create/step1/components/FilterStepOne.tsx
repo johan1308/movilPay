@@ -11,7 +11,7 @@ export const FilterStepOne = () => {
     <div
       
       aria-labelledby="filter-heading"
-      className="bg-white   rounded-xl mb-7 mt-3 shadow-xl dark:bg-primaryDark grid grid-cols-1 gap-4 "
+      className="bg-white   rounded-xl mb-7 mt-3 shadow-md dark:bg-primaryDark grid grid-cols-1 gap-4 "
     >
     
       <div className="relative  row-start-1 py-4 ">

@@ -32,5 +32,5 @@ export const MethodPaymentsThunks = createAsyncThunk(
 
 
 export const CreatePaymentThunks=(body:any)=>{
-  return movilPayAPI.post(`/api/payments/`,body)
+  return movilPayAPI.post(`/payments/`,body)
 }

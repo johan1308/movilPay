@@ -54,13 +54,14 @@ export const SearchCompanies = ({ search, title }: Props) => {
             <Input
               type="text"
               placeholder="Introduce para buscar"
-              className="my-4 dark:text-white"
-              variant="bordered"
+              className="my-4 dark:text-white "
+              variant="faded"
               color="primary"
               size="lg"
               value={value}
               onBlur={onBlur}
               onChange={onChange}
+              
               endContent={
                 <button className="focus:outline-none" type="submit">
                   <BiSearch className="text-2xl text-default-400 pointer-events-none " />

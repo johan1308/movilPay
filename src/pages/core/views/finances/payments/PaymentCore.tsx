@@ -10,6 +10,7 @@ import { useAllParams } from "../../../../../hooks/useAllParams";
 import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
 import { BanksDestinyOriginPayments } from "./components/filters/BanksDestinyOriginPayments";
+import { CompaniesFilterPayments } from "./components/filters/CompaniesFilterPayments";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams, setSearchParams } = useAllParams();
@@ -65,11 +66,11 @@ const PaymentCore = () => {
             component: <BanksDestinyOriginPayments />,
             field: "banks",
           },
-          // {
-          //   name: "Compañía",
-          //   component: <CompaniesFilterPayments />,
-          //   field: "company",
-          // },
+          {
+            name: "Compañía",
+            component: <CompaniesFilterPayments />,
+            field: "company",
+          },
         ]}
       >
         <>

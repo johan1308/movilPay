@@ -1,11 +1,6 @@
-import { Button, Input } from "@nextui-org/react";
-import { Controller, useForm } from "react-hook-form";
-
-import { FaTrash } from "react-icons/fa6";
-import { BiSearch } from "react-icons/bi";
-import { ErrorToast } from "../../../../../../../libs/Notifications";
+import { Select, SelectItem } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
 import { useAllParams } from "../../../../../../../hooks/useAllParams";
-
 import { useThemeMovilPay } from "../../../../../../../hooks/useTheme";
 
 export const CompaniesFilterPayments = () => {
@@ -31,38 +26,26 @@ export const CompaniesFilterPayments = () => {
 
   return (
     <div>
-      
-      <form className="space-y-1" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <Controller
-            name="company"
-            control={control}
-            rules={{ required: true }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input
-                type="text"
-                placeholder="Selecciona una compañía"
-                className="mb-4 dark:text-white"
-                variant="bordered"
-                color="primary"
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                isInvalid={!!errors.company}
-                errorMessage={!!errors.company && "Introduce un dato valido"}
-              />
-            )}
-          />
-        </div>
-        <Button
-          className="w-full"
-          color="primary"
-          type="submit"
-          endContent={<BiSearch className="w-5 h-5" />}
-        >
-          Buscar
-        </Button>
-      </form>
+      <Select label="Select an animal" className="w-full" variant="faded" size="sm">
+        {animals.map((animal) => (
+          <SelectItem key={animal.key}>{animal.label}</SelectItem>
+        ))}
+      </Select>
     </div>
   );
 };
+export const animals = [
+  { key: "cat", label: "Cat" },
+  { key: "dog", label: "Dog" },
+  { key: "elephant", label: "Elephant" },
+  { key: "lion", label: "Lion" },
+  { key: "tiger", label: "Tiger" },
+  { key: "giraffe", label: "Giraffe" },
+  { key: "dolphin", label: "Dolphin" },
+  { key: "penguin", label: "Penguin" },
+  { key: "zebra", label: "Zebra" },
+  { key: "shark", label: "Shark" },
+  { key: "whale", label: "Whale" },
+  { key: "otter", label: "Otter" },
+  { key: "crocodile", label: "Crocodile" },
+];

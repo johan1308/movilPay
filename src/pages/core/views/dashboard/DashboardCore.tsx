@@ -18,6 +18,7 @@ import { PaymentsThunks } from "../../../../store/payment/thunks";
 import { PaymentParams } from "../../params/payment/payments/paymentParams";
 import { firstDayMonth, getToday } from "../../services/getToday";
 import { CardInforDarshboard } from "./components/CardInforDarshboard";
+import { ChartMethodMostUsing } from "./components/ChartMethodMostUsing";
 
 const DashboardCore = () => {
   const { params } = useAllParams();
@@ -43,6 +44,7 @@ const DashboardCore = () => {
     params.until
       ? (parameters.until = params.until)
       : (parameters.until = firstDayMonth());
+
     const companiesId = company.map((d) => d.id).join(",");
     companiesId.length > 0 && (parameters.company = companiesId);
     dispatch(DashboardThunks(parameters));
@@ -63,7 +65,7 @@ const DashboardCore = () => {
   };
 
   const sendRequest = () => {
-    // sendRequestDashboard();
+    sendRequestDashboard();
     sendRequestPayment();
   };
 
@@ -76,25 +78,23 @@ const DashboardCore = () => {
       <DateFilterDashboard setSearchParams={sendRequest} />
       <CardInforDarshboard />
       <div className="grid lg:grid-cols-7 gap-3 sm:grid-cols-1">
-        <div className="col-span-full lg:col-span-2 p-4  bg-white dark:bg-primaryDark rounded-xl shadow-xl">
+        <div className="col-span-1 lg:col-span-5  ">
+          <ChartDashboard />
+        </div>
+        <div className="col-span-full lg:col-span-2 p-4  bg-white dark:bg-primaryDark rounded-xl shadow-md">
           <div className="flex justify-between">
             <PLayouts message="Compañías" />
             <ButtonsModalCompaniesDashboard selectCompany={SelectCompany} />
           </div>
           <SearchCompanyDashboard />
         </div>
-        <div className="col-span-1 lg:col-span-5  ">
-          <ChartDashboard />
-        </div>
       </div>
       <div className="grid lg:grid-cols-7 gap-3 sm:grid-cols-1">
-        <div className="lg:col-span-5 col-span-full rounded-xl bg-white dark:bg-primaryDark shadow-xl p-4 hidden lg:flex lg:flex-col">
-          <PLayouts message="Compañías" />
-          <TablePayment />
-        </div>
-
         <div className="lg:col-span-2 col-span-full">
           <ChartMethodPayments />
+        </div>
+        <div className="lg:col-span-5 col-span-full">
+          <ChartMethodMostUsing />
         </div>
       </div>
     </div>

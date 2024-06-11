@@ -1,144 +1,48 @@
-import React, { lazy } from "react";
 import {
-  FcBriefcase,
-  FcBusinessman,
-  FcCollaboration,
   FcComboChart,
-  FcConferenceCall,
-  FcCurrencyExchange,
-  FcDonate,
   FcFactory,
-  FcLibrary,
-  FcOrganization,
-  FcPlus,
   FcSalesPerformance,
   FcSettings,
   FcViewDetails,
 } from "react-icons/fc";
+import { financesRouters } from "../views/finances/routers/finances";
+import { settingRouters } from "../views/setting/routers/settingRouters";
+import { companiesRouters } from "../views/companies/routers/companiesRouters";
 
 export const navigation = [
   {
     name: "Estadísticas",
     path: "dashboard/",
     icon: FcComboChart,
-    superAdmin: false,
     show: true,
-    children:false,
+    children: false,
   },
   {
     name: "Compañías",
     path: "companies/",
     icon: FcFactory,
-    superAdmin: false,
     show: true,
-    children: [
-      {
-        name: "Registrar compañía",
-        path: "companies/create/",
-        icon: FcPlus,
-        superAdmin: false,
-        show: true,
-        children: [
-          {
-            name: "Paso 1",
-            path: "companies/create/step1/",
-            icon: FcPlus,
-            superAdmin: false,
-            show: false,
-            children: null,
-          },
-          {
-            name: "Paso 2",
-            path: "companies/create/step2/",
-            icon: FcOrganization,
-            superAdmin: false,
-            show: false,
-            children: null,
-          },
-          {
-            name: "Paso 3",
-            path: "companies/create/step3/",
-            icon: FcOrganization,
-            superAdmin: false,
-            show: false,
-            children: null,
-          },
-        ],
-      },      
-      {
-        name: "Todas las compañía",
-        path: "companies/",
-        icon: FcOrganization,
-        superAdmin: false,
-        show: true,
-        children: null,
-      },
-      {
-        name: "Compañía",
-        path: "companies/company/",
-        icon: FcPlus,
-        superAdmin: false,
-        show: false,
-        children: false
-      },
-    ],
+    children: companiesRouters
   },
-  {
-    name: "Configuración",
-    path: "setting/",
-    icon: FcSettings,
-    superAdmin: false,
-    show: true,
-    children:  [
-      {
-        name: "Servicios",
-        path: "setting/services/",
-        icon: FcDonate ,
-        superAdmin: false,
-        show: true,
-        children: null,
-      },
-      {
-        name: "Usuarios",
-        path: "setting/users/",
-        icon: FcConferenceCall,
-        superAdmin: false,
-        show: true,
-        children: null,
-      },
-    ],
-  },
+  // {
+  //   name: "Configuración",
+  //   path: "setting/",
+  //   icon: FcSettings,
+  //   show: true,
+  //   children: settingRouters
+  // },
   {
     name: "Finanzas",
     path: "finance/",
     icon: FcSalesPerformance,
-    superAdmin: false,
     show: true,
-    children: [
-      {
-        name: "Pagos",
-        path: "finance/payments/",
-        icon: FcCurrencyExchange,
-        superAdmin: false,
-        show: true,
-        children: null,
-      },
-      {
-        name: "Cobranzas",
-        path: "finance/collections/",
-        icon: FcBriefcase,
-        superAdmin: false,
-        show: true,
-        children: null,
-      },
-    ],
+    children:financesRouters
   },
-  {
-    name: "Reportes",
-    path: "reports/",
-    icon: FcViewDetails,
-    superAdmin: false,
-    show: true,
-    children: null,
-  },
+  // {
+  //   name: "Reportes",
+  //   path: "reports/",
+  //   icon: FcViewDetails,
+  //   show: true,
+  //   children: null,
+  // },
 ];

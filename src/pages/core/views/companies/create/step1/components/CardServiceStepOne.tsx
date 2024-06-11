@@ -9,7 +9,7 @@ export const CardServiceStepOne = ({ product }: { product: any }) => {
     navigate('/companies/create/step2/')
   }
   return (
-    <div className=" bg-white shadow-xl rounded-xl  dark:bg-primaryDark dark:border-gray-700">
+    <div className=" bg-white shadow-md rounded-xl  dark:bg-primaryDark dark:border-gray-700">
       {/* <Image
         className="rounded-xl p-8 "
         src=""

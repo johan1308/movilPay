@@ -60,7 +60,7 @@ export const TemplateTableLayout = ({
   return (
     <>
       <div className=" ">
-        <div className="col-span-full  bg-white p-4 h-full dark:bg-primaryDark rounded-xl shadow-xl">
+        <div className="col-span-full  bg-white p-4 h-full dark:bg-primaryDark rounded-xl shadow-md">
           <div className="lg:flex lg:justify-between">
             <p className="font-semibold text-xl  mb-5 lg:mb-0 dark:text-white">
               {title}
@@ -138,7 +138,7 @@ export const TemplateTableLayout = ({
                             <div
                               className={classNames(
                                 darkMode ? "bg-primaryDark" : "bg-white",
-                                "flex h-full flex-col overflow-y-scroll py-6 shadow-xl "
+                                "flex h-full flex-col overflow-y-scroll py-6 shadow-md "
                               )}
                             >
                               <div className="px-4 sm:px-6 py-2">
