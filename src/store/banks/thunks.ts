@@ -4,7 +4,7 @@ import { PaymentParams } from "../../pages/core/params/payment/payments/paymentP
 
 export const BanksThunks = createAsyncThunk("banks", async (params?:PaymentParams) => {
   return movilPayAPI
-    .get("/api/payments/banks/",{params})
+    .get("/payments/banks/",{params})
     .then((result) => {
       return result.data;
     })

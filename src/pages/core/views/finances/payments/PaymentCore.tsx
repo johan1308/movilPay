@@ -17,9 +17,8 @@ const PaymentCore = () => {
 
   const handleConsultation = () => {
     const param = new PaymentParams();
-
     params.status && (param.status = params.status);
-    params.page && (param.page = Number(params.page));
+    params.page  && (param.page = Number(params.page));
     params.since && (param.since = params.since);
     params.until && (param.until = params.until);
     params.search && (param.search = params.search);
@@ -38,7 +37,7 @@ const PaymentCore = () => {
     const { page, ...rest } = params;
     setSearchParams({ ...rest, search });
   };
-  console.log(params);
+  
 
   useEffect(() => {
     handleConsultation();

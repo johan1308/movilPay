@@ -40,7 +40,7 @@ export const TableLayout = ({ columns, data, Paginator, isLoading }: Props) => {
     <Table
       radius="none"
       shadow="none"
-      removeWrapper={true}
+      removeWrapper={false}
       aria-label="Example static collection table"
       bottomContent={Paginator}
     >

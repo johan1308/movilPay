@@ -88,7 +88,7 @@ export const ChartDashboard = () => {
 
   return (
     <div className="bg-white rounded-xl pb-6 pt-3 shadow-lg dark:bg-primaryDark">
-      <p className=" font-semibold ml-7 text-2xl mb-5">Gráficas</p>
+      <p className=" font-semibold ml-7 text-2xl mb-5">Total de ingresos</p>
       <div className="p-5 ">
         <Chart
           options={options}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createContext } from "react";
+import { getCookie } from "../config/cookies";
 // Define your context type
 interface AuthContextInterface {
   token: string | boolean;
@@ -18,7 +19,7 @@ export const AuthContext = createContext<AuthContextInterface>({
 export const AuthProviders = ({ children }: Props) => {
   const [token, setToken] = useState<string | boolean>(false);
   useEffect(() => {
-    const to = localStorage.getItem("token");
+    const to = getCookie("token");
     if (to) {
         setToken(to)
     }

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { getCookie } from "../config/cookies";
 
 interface Root {
   id: number
@@ -15,7 +16,8 @@ interface Root {
 
 export const useUserMovilPay = ():Root => {
   const data = useMemo(() => {
-    const local = JSON.parse(localStorage.getItem("user") ?? "{}");
+    const local = JSON.parse(getCookie('user'))  ?? "{}"
+    
     
     
     return local;

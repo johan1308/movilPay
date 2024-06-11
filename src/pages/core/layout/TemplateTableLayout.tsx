@@ -11,6 +11,7 @@ import { HiBars4, HiOutlineXMark } from "react-icons/hi2";
 import { HiX } from "react-icons/hi";
 import { classNames } from "../../../helpers/ClassN";
 import { useThemeMovilPay } from "../../../hooks/useTheme";
+import { FaFilter } from "react-icons/fa";
 
 interface ItemFilter {
   name: string;
@@ -58,20 +59,20 @@ export const TemplateTableLayout = ({
 
   return (
     <>
-      <div className="grid gap-4  h-fit">
+      <div className=" ">
         <div className="col-span-full  bg-white p-4 h-full dark:bg-primaryDark rounded-xl shadow-xl">
-          <div className="flex justify-between ">
+          <div className="lg:flex lg:justify-between">
             <p className="font-semibold text-xl  mb-5 lg:mb-0 dark:text-white">
               {title}
             </p>
-            <p className="font-semibold text-xl  mb-5 lg:mb-0 dark:text-white">
-              {title}
-            </p>
+            <div className="">
+              {bottons}
+            </div>
           </div>
 
-          <div className="lg:flex lg:justify-between  mr-3 space-x-3 items-center">
+          <div className="lg:flex lg:justify-between col-span-full mr-3 space-x-3 items-center">
             {search && (
-              <form onSubmit={handleSubmit(onSubmit)} className="lg:w-[40%]">
+              <form onSubmit={handleSubmit(onSubmit)} className="lg:w-[40%] flex items-center">
                 <Controller
                   name="search"
                   control={control}
@@ -79,7 +80,7 @@ export const TemplateTableLayout = ({
                     <Input
                       type="text"
                       placeholder="Introduce para buscar"
-                      className={`my-4 ${darkMode && 'text-white'}`}
+                      className={`my-4 ${darkMode && "text-white"}`}
                       variant="bordered"
                       color="primary"
                       size="lg"
@@ -94,22 +95,20 @@ export const TemplateTableLayout = ({
                     />
                   )}
                 />
+                <Button
+                  isIconOnly
+                  color="default"
+                  aria-label="Like"
+                  type="button"
+                  className="ml-5"
+                  onClick={() => setOpen(true)}
+                >
+                  <FaFilter  className="h-6 w-6 text-white" />
+                </Button>
               </form>
             )}
-            <div className="flex ">
-              {bottons}
-
-              <Button
-                isIconOnly
-                color="default"
-                aria-label="Like"
-                className="ml-5"
-                onClick={() => setOpen(true)}
-              >
-                <HiBars4 className="h-6 w-6 text-white" />
-              </Button>
-
-              <Transition.Root show={open} as={Fragment}>
+            
+            <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10 " onClose={setOpen}>
                   <Transition.Child
                     as={Fragment}
@@ -150,14 +149,17 @@ export const TemplateTableLayout = ({
                                       "text-base font-semibold leading-6  "
                                     )}
                                   >
-                                    <p className="font-semibold text-xl mb-2 dark:text-white">
-                                      Filtros
+                                    <p className="flex items-center font-semibold text-xl mb-2 dark:text-white">
+                                      Filtros 
+                                      <FaFilter className="h-5 w-5 ml-2"/>
                                     </p>
                                   </Dialog.Title>
                                   <div className="ml-3 flex h-7 items-center">
                                     <button
                                       type="button"
-                                      className={`relative rounded-md ${darkMode ?'bg-primaryDark' :'bg-white'}  text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
+                                      className={`relative rounded-md ${
+                                        darkMode ? "bg-primaryDark" : "bg-white"
+                                      }  text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`}
                                       onClick={() => setOpen(false)}
                                     >
                                       <span className="absolute -inset-2.5" />
@@ -198,7 +200,6 @@ export const TemplateTableLayout = ({
                   </div>
                 </Dialog>
               </Transition.Root>
-            </div>
           </div>
           <div className=" mt-5">{children}</div>
         </div>

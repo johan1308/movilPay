@@ -5,7 +5,7 @@ export const DashboardThunks = createAsyncThunk(
   "dashboard",
   async (params?: any) => {
     return movilPayAPI
-      .get("/api/companies/dashboard/", { params })
+      .get("/companies/dashboard/", { params })
       .then((result) => {
         return result.data;
       })

@@ -63,7 +63,7 @@ const DashboardCore = () => {
   };
 
   const sendRequest = () => {
-    sendRequestDashboard();
+    // sendRequestDashboard();
     sendRequestPayment();
   };
 

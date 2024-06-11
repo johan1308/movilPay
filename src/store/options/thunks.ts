@@ -6,7 +6,7 @@ export const OptionsThunks = createAsyncThunk(
   "options",
   async (params?: any) => {
     return movilPayAPI
-      .get("/api/options/", { params })
+      .get("/options/", { params })
       .then((result) => {
         return result.data;
       })

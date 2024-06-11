@@ -12,22 +12,6 @@ export const AuthPage = () => {
         style={{ overflowY: "hidden" }}
       >
         <div
-          className="lg:flex w-1/2 hidden bg-black bg-cover relative items-center"
-          style={{ overflowY: "hidden" }}
-        >
-          <div className="absolute bg-black opacity-60 inset-0 z-0">
-            <AuthWorld />
-          </div>
-          <div className="w-full px-32 z-10">
-            <h1 className="text-5xl font-bold text-secondary text-left tracking-wide">
-              Keep it special
-            </h1>
-            <p className="text-3xl my-4">
-              Capture your personal memory in unique way, anywhere.
-            </p>
-          </div>
-        </div>
-        <div
           className="lg:w-1/2 w-full flex lg:mt-[-100px] items-center bg-black justify-center text-center md:px-16 px-0 z-0"
           style={{ overflowY: "hidden" }}
         >
@@ -49,6 +33,23 @@ export const AuthPage = () => {
             <FormAuth />
           </div>
         </div>
+        <div
+          className="lg:flex w-1/2 hidden bg-black bg-cover relative items-center"
+          style={{ overflowY: "hidden" }}
+        >
+          <div className="absolute bg-black opacity-60 inset-0 z-0">
+            <AuthWorld />
+          </div>
+          <div className="w-full px-32 z-10">
+            {/* <h1 className="text-5xl font-bold text-white text-left tracking-wide">
+              Tu dinero móvil
+            </h1> */}
+            {/* <p className="text-3xl my-4">
+              Tu dinero móvil
+            </p> */}
+          </div>
+        </div>
+        
       </section>
     </>
   );

@@ -8,6 +8,7 @@ import { LoadingToast } from "../../../../libs/Notifications";
 import { authApi } from "../../../../api/authAPI";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../context/AuthProviders";
+import { setCookie } from "../../../../config/cookies";
 
 const schema = yup
   .object({
@@ -44,8 +45,9 @@ export const FormAuth = () => {
     authApi
       .post("/login/", data)
       .then(({ data }: any) => {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", `Token ${data.token}`);
+        
+        setCookie("user", JSON.stringify(data.user));
+        setCookie("token", `Token ${data.token}`);
         success(`Bienvenido ${data.user.name} ${data.user.lastname}`);
         setCargando(false);
         setToken(data.token);
