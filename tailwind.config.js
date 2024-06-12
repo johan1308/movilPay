@@ -14,6 +14,8 @@ module.exports = {
         default: "#777777",
         primaryDark:"#18181B",
         secondaryDark:"#000000",
+        titleDark:"#d1d5db",
+        textDark:"#f9fafb",
       },
     },
   },

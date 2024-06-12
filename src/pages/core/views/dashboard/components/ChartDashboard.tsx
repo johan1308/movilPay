@@ -3,7 +3,7 @@ import { useThemeMovilPay } from "../../../../../hooks/useTheme";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
 import { useMemo, useState } from "react";
-import { getMonthById } from "../../../services/getMonthById";
+
 
 export const ChartDashboard = () => {
   const { darkMode } = useThemeMovilPay();

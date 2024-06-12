@@ -6,8 +6,6 @@ import { Loading } from "../../../components/Loading";
 import { Statistics, Setting, Report, Companies } from "../data/ItemRouter";
 import { AllCompanies, CreateCompanies } from "../views/companies";
 import { CompanyCore } from "../views/companies/company/CompanyCore";
-import { StepOneCreate } from "../views/companies/create/step1/StepOneCreate";
-import { StepTwoCreate } from "../views/companies/create/step2/StepTwoCreate";
 import { BreadCrumbCore } from "../components/BreadCrumb/BreadCrumbCore";
 import FinancesCore from "../views/finances/FinancesCore";
 import PaymentCore from "../views/finances/payments/PaymentCore";
@@ -46,12 +44,7 @@ export const CoreRouters = () => {
               <Route path="companies/" element={<Companies />}>
                 <Route index element={<AllCompanies />} />
                 {/* Rutas del create */}
-                <Route path="create/" element={<CreateCompanies />}>
-                  <Route index element={<Navigate to="step1/" />} />
-                  <Route path="step1/" element={<StepOneCreate />} />
-                  <Route path="step2/" element={<StepTwoCreate />} />
-                  <Route path="*" element={<Navigate to="step1/" />} />
-                </Route>
+                <Route path="create/" element={<CreateCompanies />}/>
                 <Route path="company/:id/" element={<CompanyCore />} />
                 <Route path="*" element={<Navigate to="./" />} />
               </Route>

@@ -16,18 +16,17 @@ const theme = {
 };
 
 function App() {
-  
   return (
     <NextUIProvider>
       <AuthProviders>
-      <ThemeProvider>
-        <BrowserRouter>
-          <Provider store={store}>
-            <RutaPrincipal />
-            <Toaster position="top-right" reverseOrder={false} />
-          </Provider>
-        </BrowserRouter>
-      </ThemeProvider>
+        <ThemeProvider>
+          <BrowserRouter>
+            <Provider store={store}>
+              <RutaPrincipal />
+              <Toaster position="top-right" reverseOrder={false} />
+            </Provider>
+          </BrowserRouter>
+        </ThemeProvider>
       </AuthProviders>
     </NextUIProvider>
   );
