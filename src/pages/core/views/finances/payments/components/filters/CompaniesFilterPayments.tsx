@@ -20,7 +20,7 @@ export const CompaniesFilterPayments = () => {
   const onSubmit = ({ since, until }: any) => {
     const { page, search, ...restParams } = params;
     const payload = { ...restParams, since, until };
-    console.log(payload);
+    
     //setSearchParams(payload);
   };
 

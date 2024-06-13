@@ -43,61 +43,103 @@ const initialState: arrayState[] = [
 export const CardInforDarshboard = () => {
   const { darkMode } = useThemeMovilPay();
   const { dashboard } = useSelector((d: RootState) => d.dashboard);
-  console.log(dashboard);
+  
 
   const getAmount: any = useMemo(() => {
     // calcular total de transacciones
     const totalQuantity = dashboard.reduce((acumulador: any, elemento: any) => {
       return acumulador + elemento.quantity;
     }, 0);
+    
+    
 
     // calcular total de clientes
     const nameUnique = new Set();
     dashboard.forEach((element) => {
-      nameUnique.add(element.commpany);
+      nameUnique.add(element.company);
     });
 
     // calcular total acumulado
-    const totalAccumulated = dashboard.reduce(
+    const totalAccumulatedDollar = dashboard.reduce(
       (acumulador: any, elemento: any) => {
-        return acumulador + elemento.total;
+        return acumulador + elemento.total_in_usd;
       },
       0
     );
 
-    const ttA = `${totalAccumulated}$`;
+    const totalAccumulatedBs = dashboard.reduce(
+      (acumulador: any, elemento: any) => {
+        return acumulador + elemento.total_in_bs;
+      },
+      0
+    );
+
+    
 
     return {
       totalQuantity,
       nameUnique: nameUnique.size,
-      totalAccumulated,
+      totalAccumulatedDollar,
+      totalAccumulatedBs,
     };
   }, [dashboard]);
 
   return (
     <div className="grid lg:grid-cols-3 sm:grid-cols-1 lg:space-y-0 space-y-7 gap-3">
-      {initialState.map((resp, i) => (
-        <div
-          key={i}
-          className=" p-6 bg-white rounded-xl shadow-md flex-col justify-start items-start gap-4 inline-flex"
-        >
-          <div className="justify-center items-center gap-4 inline-flex">
-            <div className="text-zinc-700 text-2xl font-medium flex items-center ">
-              {resp.title}
-              {resp.Icon}
-            </div>
-          </div>
-          <div className="text-lime-600 text-4xl font-medium ">
-            {formatBS(getAmount[resp.data])}
-          </div>
-          <div className="flex-col justify-start items-start gap-2 flex">
-            <div className="text-neutral-400 text-2xl font-medium ">
-              <span className="mr-2 border-t-2">REF:</span>
-              {formatDollar(getAmount[resp.data])}
-            </div>
+      {/* Card 1 */}
+      <div className=" p-6 bg-white dark:bg-primaryDark rounded-xl shadow-md flex-col justify-start items-start gap-4 inline-flex">
+        <div className="justify-center items-center gap-4 inline-flex">
+          <div className="text-zinc-700 text-2xl dark:text-titleDark  font-medium flex items-center ">
+            Cantidad
+            <GrMoney className="w-8 h-8 ml-2 " />
           </div>
         </div>
-      ))}
+        <div className="text-lime-600 text-4xl font-medium ">
+          {getAmount['totalQuantity']}
+        </div>
+        <div className="flex-col justify-start items-start gap-2 flex">
+          <div className="text-neutral-400 text-2xl font-medium ">
+            <span className="mr-2 border-t-2 text-white dark:text-primaryDark">Total</span>
+            
+          </div>
+        </div>
+      </div>
+
+      {/* Card 2*/}
+      <div className=" p-6 bg-white dark:bg-primaryDark rounded-xl shadow-md flex-col justify-start items-start gap-4 inline-flex">
+        <div className="justify-center items-center gap-4 inline-flex">
+          <div className="text-zinc-700 text-2xl dark:text-titleDark font-medium flex items-center ">
+            Clientes
+            <LuUser2 className="w-8 h-8 ml-2 " />
+          </div>
+        </div>
+        <div className="text-lime-600 text-4xl font-medium ">{getAmount['nameUnique']}</div>
+        <div className="flex-col justify-start items-start gap-2 flex">
+          <div className="text-neutral-400 text-2xl font-medium ">
+            <span className="mr-2 border-t-2 text-white dark:text-primaryDark"> Total </span>
+            
+          </div>
+        </div>
+      </div>
+
+      {/* Card 3 */}
+      <div className=" p-6 bg-white dark:bg-primaryDark rounded-xl shadow-md flex-col justify-start items-start gap-4 inline-flex">
+        <div className="justify-center items-center gap-4 inline-flex">
+          <div className="text-zinc-700 text-2xl dark:text-titleDark font-medium flex items-center ">
+            Acumulado
+            <TbMoneybag className="w-8 h-8 ml-2" />
+          </div>
+        </div>
+        <div className="text-lime-600 text-4xl font-medium ">
+          {formatBS(getAmount['totalAccumulatedBs'])}
+        </div>
+        <div className="flex-col justify-start items-start gap-2 flex">
+          <div className="text-neutral-400 text-2xl font-medium ">
+            <span className="mr-2 border-t-2">REF:</span>
+            {formatDollar(getAmount['totalAccumulatedDollar'])}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

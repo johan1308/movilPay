@@ -1,18 +1,19 @@
-import { IoMdAddCircleOutline } from "react-icons/io";
 import { classNames } from "../../../../../../helpers/ClassN";
-import { Button } from "@nextui-org/react";
+
+import { ButtonModalMethodComponents } from "../../../../components/methodPayments";
+import { FaMobileAlt } from "react-icons/fa";
+import { TbTransfer } from "react-icons/tb";
 
 const eventTypes = {
-  applied: { icon: IoMdAddCircleOutline, bgColorClass: "bg-gray-400" },
-  advanced: { icon: IoMdAddCircleOutline, bgColorClass: "bg-blue-500" },
-  completed: { icon: IoMdAddCircleOutline, bgColorClass: "bg-green-500" },
+  applied: { icon: FaMobileAlt, bgColorClass: "bg-primary" },
+  advanced: { icon: TbTransfer, bgColorClass: "bg-primary" },
 };
 
 const timeline = [
   {
     id: 1,
     type: eventTypes.applied,
-    content: "Applied to",
+    content: "Pago Movil",
     target: "Front End Developer",
     date: "Sep 20",
     datetime: "2020-09-20",
@@ -21,33 +22,25 @@ const timeline = [
     id: 2,
     type: eventTypes.advanced,
     content: "Advanced to phone screening by",
-    target: "Bethany Blake",
+    target: "Transferencia",
     date: "Sep 22",
     datetime: "2020-09-22",
   },
   {
     id: 3,
-    type: eventTypes.completed,
+    type: eventTypes.applied,
     content: "Completed phone screening with",
-    target: "Martha Gardner",
+    target: "Pago Movil",
     date: "Sep 28",
     datetime: "2020-09-28",
   },
   {
     id: 4,
     type: eventTypes.advanced,
-    content: "Advanced to interview by",
+    content: "Transferencia",
     target: "Bethany Blake",
     date: "Sep 30",
     datetime: "2020-09-30",
-  },
-  {
-    id: 5,
-    type: eventTypes.completed,
-    content: "Completed interview with",
-    target: "Katherine Snyder",
-    date: "Oct 4",
-    datetime: "2020-10-04",
   },
 ];
 
@@ -65,7 +58,7 @@ export const MethodPaymentsCompany = () => {
           >
             Método de pagos
           </h2>
-          <Button isIconOnly>sadsa</Button>
+          <ButtonModalMethodComponents />
         </div>
 
         {/* Activity Feed */}

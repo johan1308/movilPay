@@ -1,6 +1,10 @@
+
 import { FaBuildingUser } from "react-icons/fa6";
+import { useSelector, } from "react-redux";
+import { RootState } from "../../../../../../store/store";
 
 export const HeaderCompany = () => {
+  const {companies} = useSelector((d:RootState)=>d.companyID)
   return (
     <div className=" mb-7 max-w-3xl px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
       <div className="flex items-center space-x-5">
@@ -15,14 +19,10 @@ export const HeaderCompany = () => {
         </div>
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-titleDark">
-            Ricardo Cooper
+            {companies?.name}
           </h1>
           <p className="text-sm font-medium text-gray-500">
-            Applied for{" "}
-            <a href="#" className="text-gray-900">
-              Front End Developer
-            </a>{" "}
-            on <time dateTime="2020-08-25">August 25, 2020</time>
+            {companies?.rif}
           </p>
         </div>
       </div>

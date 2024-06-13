@@ -11,6 +11,11 @@ import { PaymentsThunks } from "../../../../../store/payment/thunks";
 import { TemplateTableLayout } from "../../../layout/TemplateTableLayout";
 import { BanksDestinyOriginPayments } from "./components/filters/BanksDestinyOriginPayments";
 import { CompaniesFilterPayments } from "./components/filters/CompaniesFilterPayments";
+import { CardInfoPayments } from '../../companies/company/components/CardInfoPayments';
+import { DashboardParams } from "../../../params/dashboard/DashboardParams";
+import { firstDayMonth } from "../../../services/getToday";
+import moment from "moment";
+import { DashboardParamsThunks, DashboardThunks } from "../../../../../store/dashboard/thunks";
 
 const PaymentCore = () => {
   const { params, addParams, deleteParams, setSearchParams } = useAllParams();
@@ -25,7 +30,10 @@ const PaymentCore = () => {
     params.search && (param.search = params.search);
     params.bank_origin && (param.bank_origin = params.bank_origin);
     params.bank_destiny && (param.bank_destiny = params.bank_destiny);
+    
+    
     dispatch(PaymentsThunks(param));
+    
   };
 
   const handleSearch = ({ search }: any) => {
@@ -38,14 +46,33 @@ const PaymentCore = () => {
     const { page, ...rest } = params;
     setSearchParams({ ...rest, search });
   };
+
+  const sendRequestDashboard = () => {
+    const parameters = new DashboardParams();
+    
+
+    params.since
+      ? (parameters.since = params.since)
+      : (parameters.since = firstDayMonth());
+    params.until
+      ? (parameters.until = params.until)
+      : (parameters.until = moment(new Date()).format("DD/MM/YYYY"));    
+    // companiesId.length > 0 && (parameters.company = companiesId);
+    parameters.group_by = "company_id";
+    
+    
+    dispatch(DashboardParamsThunks(parameters));
+  };
   
 
   useEffect(() => {
+    sendRequestDashboard()
     handleConsultation();
   }, [params]);
 
   return (
     <div className="animate-fade-up space-y-5">
+      <CardInfoPayments/>
       <TemplateTableLayout
         title="Información de los pagos"
         bottons={<BottonsPayments refresh={handleConsultation} />}

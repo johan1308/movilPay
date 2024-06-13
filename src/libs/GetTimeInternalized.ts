@@ -11,6 +11,8 @@ export const todayInternalized = () => {
 };
 
 export const DateInternalized = (date: any) => {
+  
+  
   const [day, month, year] = date.split("/").map((d: string) => Number(d));
   const dateFormatter= new CalendarDate(year, month, day);
   return dateFormatter
@@ -32,6 +34,8 @@ export const formaterTimeInternalizedRange = ({ start, end }: any) => {
 
   // Formatea el rango de fechas
   const [since, until] = formatter.formatRange(startDate, endDate).split("–");
+  
+  
   return {
     since,
     until,

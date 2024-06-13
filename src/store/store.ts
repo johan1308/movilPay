@@ -6,6 +6,8 @@ import { OptionsSlice } from "./options/OptionSlice";
 import { MethodPaymentsSlice } from "./payment/MethodPaymentsSlice";
 import { DashboardSlice } from "./dashboard/DashboardSlice";
 import { DashCompanySlice } from "./dashboard/DashCompanySlice";
+import { CompanyIDSlice } from "./companies/CompanyIDSlice";
+import { DashboardPaymentSlice } from "./dashboard/DashCompanyPaymentSlice";
 
 
 export const store = configureStore({
@@ -17,6 +19,8 @@ export const store = configureStore({
     methodPayments:MethodPaymentsSlice.reducer,
     dashboard:DashboardSlice.reducer,
     dashCompany:DashCompanySlice.reducer,
+    companyID:CompanyIDSlice.reducer,
+    DashboardPaymentSlice:DashboardPaymentSlice.reducer,
   },
 });
 

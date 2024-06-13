@@ -3,8 +3,24 @@ import { InfoCompany } from "./components/InfoCompany";
 import { ChartIncomeCompany } from "./components/ChartIncomeCompany";
 import { HeaderCompany } from "./components/HeaderCompany";
 import { configTaiwind } from "../../../../../utils/configTaiwind";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { CompaniesIDThunks } from "../../../../../store/companies/thunks";
+import { AppDispatch } from "../../../../../store/store";
 
 export const CompanyCore = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { id } = useParams();
+
+  const handleSearch = () => {
+    dispatch(CompaniesIDThunks({ id }));
+  };
+
+  useEffect(() => {
+    if (id) handleSearch();
+  }, []);
+
   return (
     <>
       <main className={configTaiwind.animateView}>
@@ -21,7 +37,7 @@ export const CompanyCore = () => {
           </div>
           <div className="col-span-full">
             {/* Gráfica de los ingresos de la compañía */}
-            <ChartIncomeCompany />
+            {/* <ChartIncomeCompany /> */}
           </div>
         </div>
       </main>

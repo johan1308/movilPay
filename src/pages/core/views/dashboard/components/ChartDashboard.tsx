@@ -4,18 +4,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
 import { useMemo, useState } from "react";
 
-
 export const ChartDashboard = () => {
   const { darkMode } = useThemeMovilPay();
-  const [data, setData] = useState<any>([]);
-  const { dashboard, isLoading } = useSelector((d: RootState) => d.dashboard);
+  const [value, setValue] = useState<any>([]);
+  const { dashboard, isLoading } = useSelector(
+    (d: RootState) => d.DashboardPaymentSlice
+  );
 
   // Configuración del gráfico
   const options = {
-    series: data,
+    series: value,
     options: {
       chart: {
-        type: "area",
+        type: "line",
         height: 350,
         toolbar: {
           show: false,
@@ -33,6 +34,11 @@ export const ChartDashboard = () => {
 
     tooltip: {
       theme: darkMode ? "dark" : "light",
+      x: {
+        formatter: function (val: any) {
+          return `Pago`;
+        },
+      },
     },
 
     legend: {
@@ -49,29 +55,36 @@ export const ChartDashboard = () => {
       enabled: true,
       fill: {
         color: "#fff",
-        opacity: 0.4
+        opacity: 0.4,
       },
       xaxis: {
         min: new Date("27 Jul 2017 10:00:00").getTime(),
-        max: new Date("14 Aug 2017 10:00:00").getTime()
-      }
-    }
-  
+        max: new Date("14 Aug 2017 10:00:00").getTime(),
+      },
+    },
+  };
+
+  const transactionExists = (newTransaction: any) => {
+    return value.some(
+      (transaction: any) => transaction.payment_id === newTransaction.payment_id
+    );
   };
 
   useMemo(() => {
     // Agrupar los elementos por el nombre de la compañía
+
     const groupedCompanies = dashboard.reduce(
       (accumulator: any, element: any) => {
-        const nameCompany = element.commpany;
+        const nameCompany = element.payment_method;
 
         // Si ya existe una entrada para la compañía, agregar el elemento al array existente
         // Si no, crear una nueva entrada en el acumulador
         if (!accumulator[nameCompany]) {
           accumulator[nameCompany] = [];
         }
-        accumulator[nameCompany].push(element.total);
-
+        if (!transactionExists(element)) {
+          accumulator[nameCompany].push(element.total);
+        }
         return accumulator;
       },
       {}
@@ -83,7 +96,7 @@ export const ChartDashboard = () => {
         data: groupedCompanies[d],
       };
     });
-    setData(filtereArray);
+    setValue(filtereArray);
   }, [isLoading]);
 
   return (
@@ -93,7 +106,7 @@ export const ChartDashboard = () => {
         <Chart
           options={options}
           series={options.series}
-          type="area"
+          type="line"
           height={320}
         />
       </div>

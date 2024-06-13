@@ -37,7 +37,8 @@ export const AllCompanies = () => {
 
   return (
     <div className={`${configTaiwind.animateView}`}>
-      <div className="grid gap-4 grid-cols-5">
+      {/* grid gap-4 grid-cols-5 */}
+      <div className="grid gap-1 grid-cols-1">
         <div className="col-span-full lg:col-span-2">
           <div className="">
             <SearchCompanies search={handleSearch} />
@@ -55,14 +56,14 @@ export const AllCompanies = () => {
             <ResultsSearchCompanies />
           </div>
         </div>
-        <div className="col-span-full lg:col-span-3 ">
+        {/* <div className="col-span-full lg:col-span-3 ">
           <div className="lg:flex lg:justify-between  mr-3 space-x-3 ">
             <PLayouts message="Servicios de la compañía" />
           </div>
           <div className=" mt-5">
             <ServicesCompanies />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

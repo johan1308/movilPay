@@ -4,4 +4,5 @@ export class DashboardParams {
   bank?: number;
   method?: number;
   company?:number|string
+  group_by?:number|string
 }

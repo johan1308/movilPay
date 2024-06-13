@@ -12,7 +12,7 @@ module.exports = {
         secondary: "#028454",
         tertiary: "#777777",
         default: "#777777",
-        primaryDark:"#18181B",
+        primaryDark:"#18181B" ,
         secondaryDark:"#000000",
         titleDark:"#d1d5db",
         textDark:"#f9fafb",

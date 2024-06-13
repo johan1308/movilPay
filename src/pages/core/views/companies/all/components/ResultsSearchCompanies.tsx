@@ -7,13 +7,16 @@ import { IoBanOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
 import { useAllParams } from "../../../../../../hooks/useAllParams";
+import { useNavigate } from "react-router-dom";
 
 export const ResultsSearchCompanies = () => {
   const { addParams } = useAllParams();
   const { companies } = useSelector((d: RootState) => d.companies);
+  const navigate = useNavigate();
 
   const handleButton = (id: number) => {
-    addParams({ contract: id });
+    // addParams({ contract: id });
+    navigate(`/companies/company/${id}/`);
   };
   return (
     <>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ErrorToast } from "../libs/Notifications";
 import { deleteCookie, getCookie } from "../config/cookies";
+import { configLogout } from "../utils/configLogout";
 
 export const movilPayAPI = axios.create({
   //baseURL: "https://validator.movilpay.app",
@@ -27,13 +28,8 @@ movilPayAPI.interceptors.response.use(
     if (error.request.status == 0) {
       ErrorToast("Error de conexión, intente nuevamente");
     }
-    if (error.response.status == 401) {
-      localStorage.clear();
-      sessionStorage.clear();
-      deleteCookie("token")
-      deleteCookie("user")
-      deleteCookie("companyDash")
-      window.location.href = "/auth/";
+    if (error.response.status == 401 || error.response.status == 403 ) {
+      configLogout()
       return;
     }
     return Promise.reject(error);
